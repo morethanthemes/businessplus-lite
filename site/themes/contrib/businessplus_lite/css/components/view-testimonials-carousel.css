@@ -1,0 +1,62 @@
+/**
+ * @file
+ * Visual styles for Business+'s testimonials carousel.
+ */
+.mt-carousel-testimonials {
+  padding: 0 0 25px;
+}
+.view-mt-testimonials-carousel .icon {
+  width: 60px;
+  height: 60px;
+  background-color: #f3f3f3;
+  border-radius: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.region--gray-background .view-mt-testimonials-carousel .icon {
+  background-color: #ffffff;
+}
+.view-mt-testimonials-carousel .icon .svg-inline--fa {
+  font-size: 20px;
+  height: 100%;
+}
+.view-mt-testimonials-carousel .view-header h2 {
+  max-width: 500px;
+  margin-bottom: 70px;
+}
+.mt-carousel-testimonials .owl-item {
+  margin-bottom: 30px;
+}
+.mt-carousel-testimonials .mt-carousel-item {
+  margin: 0 15px;
+  min-height: 230px;
+  background-color: #ffffff;
+  color: #424242;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 3px 13px 30px 0px rgba(0, 0, 0, 0.05);
+  border-top-width: 3px;
+  border-top-style: solid;
+  border-top-color: transparent;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+@media (max-width: 1400px) and (min-width: 1200px) {
+  .mt-carousel-testimonials .mt-carousel-item {
+    min-height: 290px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .mt-carousel-testimonials .mt-carousel-item {
+    min-height: 290px;
+  }
+}
+.mt-carousel-testimonials .mt-carousel-item:hover {
+  box-shadow: 5px 13px 30px 0px rgba(73, 45, 105, 0.25),inset 0px 3px 0px 0px rgba(245, 67, 70, 0.004);
+}
+.region--light-typography .view-mt-testimonials-carousel .view-header h2 {
+  color: #ffffff;
+}

@@ -1,0 +1,73 @@
+/**
+ * @file
+ * Styles for Business+ Lite's more links.
+ */
+.node ul.links {
+  padding: 10px 0;
+  margin: 0;
+  list-style: none;
+}
+.node ul.links li a {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0 0 3px;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1;
+  border-bottom-width: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.headings-wide-spacing-enabled .node ul.links li a {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.node ul.links li.node-readmore a:after {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  content: "\f105";
+  padding-left: 8px;
+}
+.node ul.links li a:hover,
+.node ul.links li a:focus {
+  color: #575757;
+  border-bottom-color: transparent;
+  background-color: transparent;
+}
+.node ul.links li a.active {
+  color: #575757;
+}
+.node ul.inline li {
+  padding: 0;
+  display: inline-block;
+}
+.node ul.inline li a {
+  margin: 0 20px 10px 0;
+}
+.node .comment-forbidden a:last-child {
+  margin: 0;
+}
+.node .comment-forbidden a:first-child {
+  margin: 0;
+}
+ul.links li.comment-forbidden a {
+  text-transform: none;
+  font-weight: 400;
+}
+.node--view-mode-teaser ul.links li.comment-forbidden {
+  margin-left: 10px;
+  font-size: 14px;
+}
+.node--view-mode-teaser ul.links li.comment-forbidden {
+  font-size: 14px;
+}

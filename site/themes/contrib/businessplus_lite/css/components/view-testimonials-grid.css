@@ -1,0 +1,66 @@
+/**
+ * @file
+ * Visual styles for Business+'s testimonials grid views.
+ */
+.view-testimonials-grid .views-row {
+  margin: 0 0 60px 0;
+  border-radius: 5px;
+}
+.view-testimonials-grid .views-row:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.view-testimonials-grid .views-field-field-mt-tst-testimonial-image {
+  text-align: center;
+}
+.view-testimonials-grid .views-field-field-mt-tst-body {
+  padding-bottom: 10px;
+}
+.region--dark-typography .view-testimonials-grid .views-field-field-mt-tst-body {
+  color: #424242;
+}
+.view-testimonials-grid .views-field-field-mt-tst-body p {
+  padding: 0;
+  position: relative;
+  margin-bottom: 10px;
+}
+.view-testimonials-grid .views-field-title a {
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-block;
+}
+.headings-wide-spacing-enabled .view-testimonials-grid .views-field-title {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.view-testimonials-grid .views-field-field-mt-tst-subtitle {
+  font-size: 16px;
+  font-weight: 500;
+}
+.view-testimonials-grid .views-field-field-mt-tst-subtitle {
+  font-style: italic;
+  font-weight: 400;
+}
+.region--dark-typography .view-testimonials-grid .views-field-field-mt-tst-subtitle {
+  color: #939393;
+}
+@media (min-width: 768px) {
+  .views-field-field-mt-tst-testimonial-image {
+    margin-right: 25px;
+    float: left;
+    max-width: 70px;
+    max-height: 70px;
+  }
+  .view-testimonials-grid .views-field-field-mt-tst-testimonial-image ~ .views-field-title,
+  .view-testimonials-grid .views-field-field-mt-tst-testimonial-image ~ .views-field-field-mt-tst-subtitle {
+    margin-left: 95px;
+  }
+}
+@media (max-width: 767px) {
+  .view-testimonials-grid .views-field-field-mt-tst-testimonial-image .views-field-field-image {
+    max-width: 70px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+}

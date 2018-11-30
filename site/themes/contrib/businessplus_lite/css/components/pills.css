@@ -1,0 +1,57 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's nav pills.
+ */
+.nav.nav-pills {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+.nav-pills > li > a.nav-link {
+  text-decoration: none;
+  padding: 10px 25px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 0;
+  color: #575757;
+  background-color: #f6f6f6;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+.region--gray-background .nav-pills > li > a.nav-link {
+  background-color: #ffffff;
+}
+.headings-wide-spacing-enabled .nav-pills > li > a.nav-link {
+  letter-spacing: 0.25em;
+}
+.nav-pills > li > a.nav-link:focus,
+.nav-pills > li > a.nav-link:hover {
+  color: #ffffff;
+}
+.nav-pills > li > a.nav-link.active,
+.nav-pills > li > a.nav-link.active:focus,
+.nav-pills > li > a.nav-link.active:hover {
+  color: #ffffff;
+  background-color: #575757;
+}
+.nav.nav-pills > li,
+.nav.nav-pills > li + li {
+  margin: 0px 5px 15px;
+}
+
+/*nav pills @colored-regions*/
+.region--light-typography .nav-pills > li > a.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ffffff;
+}
+.region--light-typography .nav-pills > li > a.nav-link.active,
+.region--light-typography .nav-pills > li > a.nav-link.active:focus,
+.region--light-typography .nav-pills > li > a.nav-link.active:hover,
+.region--light-typography .nav-pills > li > a.nav-link:hover,
+.region--light-typography .nav-pills > li > a.nav-link:focus {
+  color: #363636;
+  background-color: #ffffff;
+}

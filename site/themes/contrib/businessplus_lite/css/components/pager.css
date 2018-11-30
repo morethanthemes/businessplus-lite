@@ -1,0 +1,77 @@
+/**
+ * @file
+ * Styles for Business+ Lite's full pager.
+ */
+
+/* Using .pager selector on the first one to override .region-content ul. */
+.pager__items {
+  margin: 20px 0;
+  padding: 0;
+  font-size: 0;
+  text-align: center;
+}
+li.pager__item {
+  padding: 0;
+  margin: 0;
+  margin-top: -1px;
+  display: inline-block;
+}
+li.pager__item > a {
+  font-size: 16px;
+  text-align: center;
+  min-height: 50px;
+  min-width: 50px;
+  padding: 0;
+  margin: 0;
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: #e5e5e5;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  line-height: 48px;
+  text-decoration: none;
+  background-color: transparent;
+  display: block;
+  color: #424242;
+}
+li.pager__item:last-child > a {
+  border-width: 1px 1px 1px 1px;
+}
+li.pager__item.is-active a,
+li.pager__item.is-active a:hover,
+li.pager__item.is-active a:focus {
+  color: #ffffff;
+}
+li.pager__item a:hover,
+li.pager__item a:focus {
+  background-color: transparent;
+}
+li.pager__item--next a,
+li.pager__item--previous a,
+li.pager__item--last a,
+li.pager__item--first a {
+  padding: 0 15px;
+}
+
+/*mini pager @colored regions*/
+.region--light-typography li.pager__item > a {
+  color: #ffffff;
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.region--light-typography li.pager__item a:hover,
+.region--light-typography li.pager__item a:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+.region--light-typography li.pager__item.is-active a,
+.region--light-typography li.pager__item.is-active a:hover,
+.region--light-typography li.pager__item.is-active a:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+/*Reset Bootstrap's rules*/
+.pager {
+  margin: 0;
+}

@@ -1,0 +1,84 @@
+/**
+ * @file
+ * Styles for Business+ Lite's breadcrumbs.
+ */
+.breadcrumb {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  text-align: center;
+}
+.region--light-typography .breadcrumb {
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+.breadcrumb__items {
+  font-size: 0;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumb__item {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: 1.75;
+  padding: 13px 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: #424242;
+}
+.breadcrumb__item a {
+  text-decoration: none;
+}
+.region--light-typography .breadcrumb__item {
+  color: #ffffff;
+}
+.region--light-typography .breadcrumb__item a {
+  color: rgba(255, 255, 255, 0.8);
+}
+.region--light-typography .breadcrumb__item a:hover {
+  color: #ffffff;
+}
+.breadcrumb__item .breadcrumb__item-separator {
+  display: inline-block;
+  padding-left: 2px;
+  font-size: 10px;
+  vertical-align: middle;
+  font-weight: 400;
+  width: 20px;
+}
+.breadcrumb__item:first-child .breadcrumb__item-separator {
+  display: none;
+}
+.container-fluid .breadcrumb .breadcrumb__items {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 578px) {
+  .container-fluid .breadcrumb .breadcrumb__items {
+    width: 510px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@media (min-width: 768px) {
+  .container-fluid .breadcrumb .breadcrumb__items {
+    width: 690px;
+  }
+}
+@media (min-width: 992px) {
+  .container-fluid .breadcrumb .breadcrumb__items {
+    width: 930px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-fluid .breadcrumb .breadcrumb__items {
+    width: 1110px;
+  }
+}

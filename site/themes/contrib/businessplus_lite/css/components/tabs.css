@@ -1,0 +1,232 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's tabs.
+ */
+.nav-tabs {
+  border-bottom: none;
+  margin-bottom: 1px;
+}
+.nav-tabs a.nav-link {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 5px;
+  border: 1px solid #f6f6f6;
+  border-bottom-color: transparent;
+  padding: 10px 20px 7px;
+  display: block;
+  text-decoration: none;
+  border-radius: 5px 5px 0 0;
+  background-color: #f6f6f6;
+  color: #424242;
+  text-transform: uppercase;
+}
+.headings-wide-spacing-enabled .nav-tabs a.nav-link {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.nav-tabs li a .svg-inline--fa {
+  margin-right: 10px;
+  font-size: 20px;
+}
+.nav-tabs a.nav-link:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.nav-tabs a.nav-link:hover,
+.nav-tabs a.nav-link:focus {
+  background-color: #424242;
+  border-color: #424242;
+  color: #ffffff;
+}
+.nav-tabs a.nav-link.active,
+.nav-tabs a.nav-link.active:focus,
+.nav-tabs a.nav-link.active:hover {
+  color: #ffffff;
+  cursor: default;
+}
+.nav-tabs ~ .tab-content {
+  padding: 25px 0 25px;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: #eaeaea;
+  border-radius: 0;
+}
+.region--gray-background .nav-tabs ~ .tab-content {
+  border-color: #e5e5e5;
+}
+.region--gray-background .nav-tabs a.nav-link {
+  background-color: #e5e5e5;
+}
+.region--gray-background .nav-tabs a.nav-link:hover,
+.region--gray-background .nav-tabs a.nav-link:focus {
+  background-color: #424242;
+}
+@media (max-width: 767px) {
+  .nav-tabs a.nav-link {
+    font-size: 13px;
+    padding: 10px 15px 8px;
+    margin: 0 2px;
+  }
+  .nav-tabs ~ .tab-content {
+    padding: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-3 .nav-tabs a.nav-link {
+    font-size: 13px;
+    padding: 14px 10px 8px;
+  }
+  .col-md-3 .nav-tabs ~ .tab-content {
+    padding: 20px 10px;
+  }
+}
+@media (min-width: 1200px) {
+  .col-md-3 .nav-tabs a.nav-link {
+    padding: 14px 15px 8px;
+  }
+  .col-md-3 .nav-tabs ~ .tab-content {
+    padding: 20px;
+  }
+}
+
+/*primary tabs*/
+ul.tabs.primary {
+  margin-bottom: 20px;
+}
+
+/*Vertical Tabs*/
+.nav-tabs-vertical-container {
+  font-size: 0;
+}
+.nav-tabs.nav-tabs--vertical {
+  display: inline-block;
+  vertical-align: top;
+  width: 28%;
+  margin-right: 2%;
+  border-right-color: transparent;
+}
+.nav-tabs.nav-tabs--vertical + .tab-content {
+  display: inline-block;
+  max-width: 70%;
+  font-size: 18px;
+  padding: 25px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+}
+.nav-tabs.nav-tabs--vertical > li {
+  float: none;
+}
+.nav-tabs.nav-tabs--vertical a.nav-link {
+  min-width: 70px;
+  margin: 10px 0px;
+  text-align: center;
+  border-right-color: transparent;
+  border-bottom-color: #f6f6f6;
+  border-radius: 5px;
+}
+@media (max-width: 767px) {
+  .nav-tabs.nav-tabs--vertical a.nav-link {
+    padding: 10px 7px 8px;
+  }
+}
+@media (max-width: 480px) {
+  .nav-tabs.nav-tabs--vertical,
+  .nav-tabs.nav-tabs--vertical + .tab-content {
+    display: block;
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+  .nav-tabs.nav-tabs--vertical + .tab-content {
+    margin-top: 20px;
+  }
+}
+
+/*Tabs @colored-regions*/
+.region--light-typography .nav-tabs ~ .tab-content {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.region--light-typography .nav-tabs a.nav-link:hover,
+.region--light-typography .nav-tabs a.nav-link:focus,
+.region--light-typography .nav-tabs a.active.nav-link,
+.region--light-typography .nav-tabs a.active.nav-link:focus,
+.region--light-typography .nav-tabs a.active.nav-link:hover {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.25) transparent rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+.region--light-typography .nav-tabs.nav-tabs--vertical a.nav-link:hover,
+.region--light-typography .nav-tabs.nav-tabs--vertical a.nav-link:focus,
+.region--light-typography .nav-tabs.nav-tabs--vertical a.active.nav-link,
+.region--light-typography .nav-tabs.nav-tabs--vertical a.active.nav-link:focus,
+.region--light-typography .nav-tabs.nav-tabs--vertical a.active.nav-link:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/*Fancy Tabs*/
+.nav-tabs.nav-tabs--fancy {
+  border-color: transparent;
+}
+.nav-tab__title {
+  font-size: 40px;
+  text-transform: none;
+  font-weight: 300;
+}
+.headings-wide-spacing-enabled .nav-tab__title {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.nav-tab__subtitle {
+  display: block;
+  font-size: 16px;
+  text-transform: none;
+}
+.nav-tabs.nav-tabs--fancy a.nav-link {
+  padding: 35px 25px 40px;
+  background-color: transparent;
+  border-color: transparent;
+  border-width: 2px;
+  border-radius: 0;
+  margin: 0;
+  color: #575757;
+  text-align: center;
+}
+.nav-tabs.nav-tabs--fancy a.nav-link.active,
+.nav-tabs.nav-tabs--fancy a.nav-link.active:focus,
+.nav-tabs.nav-tabs--fancy a.nav-link.active:hover,
+.nav-tabs.nav-tabs--fancy a.nav-link:focus,
+.nav-tabs.nav-tabs--fancy a.nav-link:hover {
+  border-width: 2px;
+  background-color: transparent;
+  color: #575757;
+}
+.nav-tabs.nav-tabs--fancy a.nav-link:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
+.nav-tabs.nav-tabs--fancy + .tab-content {
+  padding: 0;
+  border-width: 0px;
+  border-style: none;
+  border-radius: 0px;
+  background-color: transparent;
+}
+
+/*Fancy Tabs @colored-regions*/
+.region--light-typography .nav-tabs.nav-tabs--fancy a.nav-link {
+  color: #ffffff;
+}
+.region--light-typography .nav-tabs.nav-tabs--fancy a.nav-link.active,
+.region--light-typography .nav-tabs.nav-tabs--fancy a.nav-link.active:focus,
+.region--light-typography .nav-tabs.nav-tabs--fancy a.nav-link.active:hover,
+.region--light-typography .nav-tabs.nav-tabs--fancy a.nav-link:focus,
+.region--light-typography .nav-tabs.nav-tabs--fancy a.nav-link:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+  background-color: transparent;
+}
+.region--light-typography.region--colored-background .nav-tab__subtitle {
+  color: #ffffff;
+}

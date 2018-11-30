@@ -1,0 +1,191 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's accordions.
+ */
+
+/*Style 1*/
+.collapse-group {
+  margin: 0 0 25px 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #eaeaea;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.collapse-group .card {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  border-width: 0 0 1px 0;
+  border-color: #eaeaea;
+  background-color: transparent;
+  box-shadow: none;
+}
+.collapse-group .card:last-child {
+  border-bottom: none;
+}
+.collapse-group .card + .card {
+  margin: 0;
+}
+.card-header {
+  background-color: #ffffff;
+  border-bottom: none;
+  padding: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+.card-title {
+  margin-bottom: 0;
+}
+.card-title a {
+  font-weight: 500;
+  font-size: 18px;
+  padding: 10px 20px;
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #f4f4f4;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #eaeaea;
+  color: #575757;
+}
+.card-title a:focus,
+.card-title a:hover {
+  color: #575757;
+}
+.headings-wide-spacing-enabled .card-title a {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.card-title a.collapsed {
+  background-color: #ffffff;
+  border-bottom-color: transparent;
+}
+.card:last-child .card-title a:not(.collapsed) {
+  border-radius: 0;
+}
+.card-title a:hover,
+.card-title a:focus {
+  background-color: #f4f4f4;
+}
+.card:first-child .card-title a {
+  border-radius: 5px 5px 0 0;
+}
+.card:last-child .card-title a {
+  border-radius: 0 0 5px 5px;
+}
+.card-header--trigger-icon .card-title a {
+  position: relative;
+  padding-right: 65px;
+}
+.card-header--trigger-icon .card-title a:after {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+  color: #ffffff;
+  top: 50%;
+  right: 20px;
+  margin-top: -15px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -o-border-radius: 100%;
+  border-radius: 100%;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  line-height: 30px;
+  content: "\f106";
+}
+.headings-wide-spacing-enabled .card-header--trigger-icon .card-title a:after {
+  letter-spacing: 0;
+}
+.card-header--trigger-icon .card-title a.collapsed:after {
+  content: "\f107";
+  color: #ffffff;
+  background-color: #424242;
+}
+.card-title span {
+  display: inline-block;
+  padding-right: 5px;
+}
+.card-body {
+  padding: 20px;
+  background-color: #fff;
+  color: #2d2d2d;
+  border-top-color: #eaeaea;
+}
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+}
+.card:last-child .card-body {
+  border-radius: 0 0 5px 5px;
+}
+
+/*accrodions @colored-regions*/
+.region--gray-background .card-title a {
+  background-color: #ffffff;
+}
+
+/*Style 2*/
+.collapse-group.collapse-group--style-2 {
+  border-width: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  overflow: visible;
+}
+.collapse-group.collapse-group--style-2 .card {
+  border-width: 0;
+}
+.collapse-group.collapse-group--style-2 .card + .card {
+  margin-top: 10px;
+}
+.collapse-group.collapse-group--style-2 .card-header {
+  background-color: transparent;
+}
+.collapse-group.collapse-group--style-2 .card .card-title a {
+  border-radius: 5px;
+  color: #ffffff;
+}
+.collapse-group.collapse-group--style-2 .card-header--trigger-icon .card-title a {
+  padding-right: 35px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+}
+.collapse-group.collapse-group--style-2 .card-header--trigger-icon .card-title a:after {
+  right: 10px;
+  content: "\f056";
+  background-color: transparent;
+  color: inherit;
+}
+.collapse-group.collapse-group--style-2 .card-header--trigger-icon .card-title a.collapsed:after {
+  content: "\f055";
+}
+.collapse-group.collapse-group--style-2 .card-header--trigger-icon .card-title a.collapsed:hover:after,
+.collapse-group.collapse-group--style-2 .card-header--trigger-icon .card-title a.collapsed:focus:after {
+  background-color: transparent;
+}
+.collapse-group.collapse-group--style-2 .card-body {
+  background-color: transparent;
+  color: inherit;
+  border-top: none;
+  padding: 15px 25px;
+}
+
+/*Style 2 @colored regions*/
+.region--light-typography .collapse-group.collapse-group--style-2 .card-header--trigger-icon .card-title a.collapsed {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+.region--light-typography .collapse-group.collapse-group--style-2 .card-header--trigger-icon .card-title a,
+.region--light-typography .collapse-group.collapse-group--style-2 .card-header--trigger-icon .card-title a:hover {
+  background-color: #ffffff;
+}

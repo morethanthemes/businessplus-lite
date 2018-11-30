@@ -1,0 +1,73 @@
+/**
+ * @file
+ * Styles for Business+ Lite's scroll to bottom button.
+ */
+.scroll-button span {
+  width: 50px;
+  height: 60px;
+  background-color: rgba(0,0,0,0.4);
+  display: block;
+  position: relative;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
+}
+.scroll-button span:hover {
+  cursor: pointer;
+}
+.scroll-button span:after {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 35px;
+  border: 2px solid #bcbcbc;
+  top: 50%;
+  left: 50%;
+  margin: -17px 0 0 -10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.scroll-button span:before {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 8px;
+  left: 50%;
+  top: 20px;
+  margin-left: -1px;
+  background-color: #bcbcbc;
+}
+.scroll-button span:hover:before {
+  -webkit-animation: moving 1.1s ease-in infinite;
+  animation: moving 1.1s ease-in infinite;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+@-webkit-keyframes moving {
+  0% {
+    top: 20px;
+  }
+  25% {
+    top: 25px;
+
+  }
+  50% {
+    top: 30px;
+  }
+}
+@keyframes moving {
+  0% {
+    top: 20px;
+  }
+  25% {
+    top: 25px;
+
+  }
+  50% {
+    top: 30px;
+  }
+}

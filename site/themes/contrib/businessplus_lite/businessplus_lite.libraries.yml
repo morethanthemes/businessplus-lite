@@ -1,0 +1,573 @@
+bootstrap:
+  version: 4.1.3
+  css:
+    base: #The CSS category. base is loaded before theme category
+      bootstrap/css/bootstrap.min.css: { weight: 0 } #weight sets the order within the category above
+  js:
+    bootstrap/js/bootstrap.bundle.min.js: {}
+  dependencies:
+    - core/jquery
+
+popper-cdn:
+  version: 1.12.9
+  remote: //cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/
+  js:
+    //cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js: {}
+  license:
+    name: The MIT License (MIT)
+    url: //github.com/FezVrasta/popper.js/blob/master/LICENSE.md
+    gpl-compatible: true
+  dependencies:
+    - core/jquery
+
+bootstrap-cdn:
+  version: 4.1.3
+  remote: //maxcdn.bootstrapcdn.com/bootstrap/4.1.3
+  css:
+    base:
+      //maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css: { weight: 0 }
+  js:
+    //maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js: {}
+  license:
+    name: The MIT License (MIT)
+    url: //github.com/twbs/bootstrap/blob/master/LICENSE
+    gpl-compatible: true
+  dependencies:
+    - core/jquery
+    - businessplus_lite/popper-cdn
+
+global-styling:
+  version: VERSION
+  css:
+    base:
+      css/base/elements.css: { weight: 1 }
+      css/base/layout.css: { weight: 100 }
+      css/base/typography.css: {}
+    component:
+      css/components/alert.css: {}
+      css/components/accordion.css: {}
+      css/components/block.css: {}
+      css/components/buttons.css: {}
+      css/components/contact-info.css: {}
+      css/components/call-to-action.css: {}
+      css/components/credit-cards.css: {}
+      css/components/dropdowns.css: {}
+      css/components/highlights.css: {}
+      css/components/more-links.css: {}
+      css/components/fa-icons-list.css: {}
+      css/components/forms.css: {}
+      css/components/field-taxonomy-term.css: {}
+      css/components/icons-list.css: {}
+      css/components/social-links.css: {}
+      css/components/social-media.css: {}
+      css/components/item-list.css: {}
+      css/components/inline-list.css: {}
+      css/components/image-overlay.css: {}
+      css/components/node-links.css: {}
+      css/components/separators.css: {}
+      css/components/subscribe-forms.css: {}
+      css/components/search.css: {}
+      css/components/site-branding.css: {}
+      css/components/static-promoted-images-grid.css: {}
+      css/components/pricing-tables.css: {}
+      css/components/text-blocks.css: {}
+      css/components/tables.css: {}
+      css/components/tabs.css: {}
+      css/components/team-members.css: {}
+      css/components/pills.css: {}
+      css/components/progress-bars.css: {}
+      css/components/layout-switcher.css: {}
+      css/components/language-switcher.css: {}
+      css/components/menu.css: {}
+      css/components/username.css: {}
+      css/components/views.css: {}
+      css/components/icon-features.css: {}
+
+to-top:
+  version: VERSION
+  css:
+    component:
+      css/components/to-top.css: {}
+  js:
+    js/custom/to-top.js: {}
+  dependencies:
+    - core/jquery
+
+fixed-header:
+  version: VERSION
+  css:
+    component:
+      css/components/fixed-header.css: {}
+  js:
+    js/init/waypoints-fixed-header-init.js: {}
+  dependencies:
+    - businessplus_lite/waypoints
+    - businessplus_lite/waypoints-sticky
+
+transparent-header:
+  version: VERSION
+  css:
+    component:
+      css/components/transparent-header.css: {}
+  js:
+    js/custom/transparent-header.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
+inverted-header:
+  version: VERSION
+  css:
+    component:
+      css/components/inverted-header.css: {}
+
+animate:
+  version: 3.4.0
+  css:
+    component:
+      js/animate/animate.css: { weight: 0 }
+
+animate-global:
+  version: VERSION
+  css:
+    theme:
+      css/theme/animations.css: { weight: 1 }
+  dependencies:
+    - businessplus_lite/animate
+
+slideout:
+  version: 0.1.12
+  css:
+    component:
+      js/slideout/slideout.css: { weight: 0 }
+  js:
+    js/slideout/slideout.min.js: {}
+  dependencies:
+    - core/jquery
+
+slideout-init:
+  version: VERSION
+  css:
+    component:
+      css/components/slideout.css: { weight: 0 }
+  js:
+    js/init/slideout-init.js: {}
+  dependencies:
+    - businessplus_lite/slideout
+
+waypoints:
+  version: 4.0.1
+  js:
+    js/waypoints/jquery.waypoints.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
+
+waypoints-sticky:
+  version: 4.0.1
+  js:
+    js/waypoints/shortcuts/sticky.min.js: {}
+  dependencies:
+    - core/jquery
+
+waypoints-inview:
+  version: 4.0.1
+  js:
+    js/waypoints/shortcuts/inview.min.js: {}
+  dependencies:
+    - core/jquery
+
+waypoints-animations-init:
+  version: VERSION
+  js:
+    js/init/waypoints-animations-init.js: {}
+  dependencies:
+    - businessplus_lite/waypoints
+
+magnific-popup:
+  version: 1.1.0
+  css:
+    component:
+      js/magnific-popup/magnific-popup.css: { weight: 0 }
+  js:
+    js/magnific-popup/jquery.magnific-popup.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
+
+magnific-popup-field-image-init:
+  version: VERSION
+  js:
+    js/init/magnific-popup-field-image-init.js: {}
+  dependencies:
+    - businessplus_lite/magnific-popup
+
+flexslider:
+  version: 2.6.1
+  css:
+    base:
+      js/flexslider/flexslider.css: { weight: 0 }
+  js:
+    js/flexslider/jquery.flexslider-min.js: {}
+  dependencies:
+    - core/jquery
+
+flexslider-global:
+  version: VERSION
+  css:
+    component:
+      css/components/flexslider-global.css: {}
+  dependencies:
+    - businessplus_lite/flexslider
+
+flexslider-in-page-init:
+  version: VERSION
+  css:
+    component:
+      css/components/flexslider-in-page.css: {}
+  js:
+    js/init/flexslider-in-page-init.js: {}
+  dependencies:
+    - businessplus_lite/flexslider-global
+    - core/drupalSettings
+    - core/drupal
+    - core/jquery.once
+
+owl-carousel:
+  version: 2.2.1
+  css:
+    base:
+      js/owl-carousel/assets/owl.carousel.min.css: { weight: 0 }
+      js/owl-carousel/assets/owl.theme.default.min.css: { weight: 0 }
+  js:
+    js/owl-carousel/owl.carousel.min.js: {}
+  dependencies:
+    - core/jquery
+
+owl-carousel-global:
+  version: VERSION
+  css:
+    component:
+      css/components/owl-carousel-global.css: {}
+  dependencies:
+    - businessplus_lite/owl-carousel
+    - core/drupal
+    - core/jquery.once
+
+owl-carousel-testimonials-init:
+  version: VERSION
+  css:
+    component:
+      css/components/view-testimonials-carousel.css: {}
+  js:
+    js/init/owl-carousel-testimonials-init.js: {}
+  dependencies:
+    - businessplus_lite/view-testimonials-grid
+    - businessplus_lite/owl-carousel-global
+    - core/drupalSettings
+
+owl-carousel-features-slideshow-init:
+  version: VERSION
+  js:
+    js/init/owl-carousel-features-slideshow-init.js: {}
+  dependencies:
+    - businessplus_lite/owl-carousel-global
+    - core/drupalSettings
+
+in-page-navigation:
+  version: VERSION
+  css:
+    component:
+      css/components/in-page-navigation.css: {}
+  js:
+    js/custom/in-page-navigation-scroll.js: {}
+    js/custom/in-page-navigation-scrollspy.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
+frontpage-cover-block:
+  version: VERSION
+  css:
+    component:
+      css/components/frontpage-cover-block.css: {}
+
+detailed-feature-block:
+  version: VERSION
+  css:
+    component:
+      css/components/detailed-feature-block.css: {}
+
+header-background-image:
+  version: VERSION
+  css:
+    component:
+      css/components/header-background-image.css: {}
+
+view-testimonials-grid:
+  version: VERSION
+  css:
+    component:
+      css/components/view-testimonials-grid.css: {}
+
+tooltip:
+  version: VERSION
+  css:
+    component:
+      css/components/tooltip.css: {}
+  js:
+    js/init/tooltip-init.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
+
+node:
+  version: VERSION
+  css:
+    component:
+      css/components/node.css: {}
+
+node-article:
+  version: VERSION
+  css:
+    component:
+      css/components/node-article.css: {}
+    theme:
+      css/theme/article-print.css: { media: print }
+
+post-progress:
+  version: VERSION
+  css:
+    component:
+      css/components/post-progress.css: {}
+  js:
+    js/custom/post-progress.js: {}
+  dependencies:
+    - core/jquery
+
+reading-time:
+  version: VERSION
+  css:
+    component:
+      css/components/reading-time.css: {}
+
+share-links:
+  version: VERSION
+  css:
+    component:
+      css/components/share-links.css: {}
+
+font-resize:
+  version: VERSION
+  css:
+    component:
+      css/components/font-resize.css: {}
+  js:
+    js/custom/font-resize.js: {}
+
+node-images:
+  version: VERSION
+  css:
+    component:
+      css/components/node-images.css: {}
+
+background-image-block:
+  version: VERSION
+  css:
+    component:
+      css/components/background-image-block.css: {}
+  dependencies:
+    - core/modernizr
+
+fontawesome:
+  version: 5.1.0
+  remote: //use.fontawesome.com/
+  js:
+    //use.fontawesome.com/releases/v5.1.0/js/all.js: {}
+  license:
+    name: MIT
+    url: //opensource.org/licenses/mit-license.html
+    gpl-compatible: true
+
+fontawesome-css:
+  version: 5.1.0
+  remote: //use.fontawesome.com/
+  css:
+    theme:
+      //use.fontawesome.com/releases/v5.1.0/css/all.css: { type: external }
+  license:
+    name: MIT
+    url: //opensource.org/licenses/mit-license.html
+    gpl-compatible: true
+
+breadcrumb:
+  version: VERSION
+  css:
+    component:
+      css/components/breadcrumb.css: {}
+
+pager:
+  version: VERSION
+  css:
+    component:
+      css/components/pager.css: {}
+
+mini-pager:
+  version: VERSION
+  css:
+    component:
+      css/components/mini-pager.css: {}
+
+detailed-pager:
+  version: VERSION
+  css:
+    component:
+      css/components/detailed-pager.css: {}
+
+messages:
+  version: VERSION
+  css:
+    component:
+      css/components/messages.css: { preprocess: false }
+
+comments:
+  version: VERSION
+  css:
+    component:
+      css/components/comments.css: {}
+
+comment:
+  version: VERSION
+  css:
+    component:
+      css/components/comment.css: {}
+
+theme-settings:
+  version: VERSION
+  css:
+    theme:
+      css/components/theme-settings.css: {}
+
+maintenance-page:
+  version: VERSION
+  css:
+    component:
+      css/components/maintenance-page.css: {}
+
+local-stylesheets:
+  version: VERSION
+  css:
+    base:
+      css/base/local-base.css: { weight: 100 }
+    component:
+      css/components/local-components.css: { weight: 100 }
+    theme:
+      css/theme/local-theme.css: { weight: 150 }
+
+#####################
+#   Color Schemes   #
+#####################
+color-blue:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-blue.css: { weight: 100, preprocess: FALSE }
+
+color-purple-orange:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-purple-orange.css: { weight: 100, preprocess: FALSE }
+
+color-khaki:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-khaki.css: { weight: 100, preprocess: FALSE }
+
+color-gold:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-gold.css: { weight: 100, preprocess: FALSE }
+
+color-gray:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-gray.css: { weight: 100, preprocess: FALSE }
+
+color-green:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-green.css: { weight: 100, preprocess: FALSE }
+
+color-night-blue:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-night-blue.css: { weight: 100, preprocess: FALSE }
+
+color-orange:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-orange.css: { weight: 100, preprocess: FALSE }
+
+color-pink:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-pink.css: { weight: 100, preprocess: FALSE }
+
+color-purple:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-purple.css: { weight: 100, preprocess: FALSE }
+
+color-red:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-red.css: { weight: 100, preprocess: FALSE }
+
+####################
+# Fonts collection #
+####################
+fonts-id-49:
+  version: VERSION
+  remote: //fonts.googleapis.com/css
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Barlow:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext: { type: external }
+  license:
+    name: SIL Open Font License, 1.1
+    url: //scripts.sil.org/OFL
+    gpl-compatible: true
+
+fonts-sourcecodepro:
+  version: VERSION
+  remote: //fonts.googleapis.com/css
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Source+Code+Pro&subset=latin,latin-ext: { type: external }
+  license:
+    name: SIL Open Font License, 1.1
+    url: //scripts.sil.org/OFL
+    gpl-compatible: true
+
+fonts-pt-serif:
+  version: VERSION
+  remote: //fonts.googleapis.com/css
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,latin-ext: { type: external }
+  license:
+    name: SIL Open Font License, 1.1
+    url: //scripts.sil.org/OFL
+    gpl-compatible: true

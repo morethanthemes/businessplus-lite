@@ -1,0 +1,73 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's status messages.
+ */
+.system-messages .col-12 {
+  min-height: 0;
+}
+.messages {
+  color: #ffffff;
+  margin: 30px 0 10px;
+  padding: 15px 75px;
+  position: relative;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+.headings-wide-spacing-enabled .messages {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.messages a {
+  color: #ffffff;
+  text-decoration:underline;
+}
+.messages--status {
+  background: #7aa239;
+}
+.messages--error {
+  background: #c53300;
+}
+.messages--warning {
+  background: #eb8314;
+}
+
+/*Status messages symbols*/
+.messages:after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 20px;
+  position: absolute;
+  left: 15px;
+  top: 4px;
+  text-align: center;
+  padding-top: 10px;
+  width: 20px;
+  height: 35px;
+}
+.messages:before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.messages--status:after {
+  content: "\f00c";
+}
+.messages--status:before {
+  background-color: #547f1f;
+}
+.messages--error:after {
+  content: "\f00d";
+}
+.messages--error:before {
+  background-color: #980a00;
+}
+.messages--warning:after {
+  content: "\f12a";
+}
+.messages--warning:before {
+  background-color: #e2630b;
+}

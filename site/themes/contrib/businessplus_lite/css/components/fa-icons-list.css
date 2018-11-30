@@ -1,0 +1,67 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's fa icons list.
+ */
+.list--fa-star,
+.list--fa-caret-right,
+.list--fa-plus,
+.list--fa-square,
+.list--fa-check,
+.list--fa-check-circle,
+.list--fa-custom {
+  margin-bottom: 15px;
+  padding-left: 0;
+  list-style: none;
+}
+.list--fa-star li,
+.list--fa-plus li,
+.list--fa-square li,
+.list--fa-caret-right li,
+.list--fa-check li,
+.list--fa-check-circle li {
+  padding: 0 0 15px 35px;
+  position: relative;
+}
+.list--fa-star li:before,
+.list--fa-caret-right li:before,
+.list--fa-plus li:before,
+.list--fa-square li:before,
+.list--fa-check li:before,
+.list--fa-check-circle li:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  top: -3px;
+  font-size: 20px;
+}
+.list--fa-star li:before {
+  content: "\f005";
+}
+.list--fa-caret-right li:before {
+  content: "\f0da";
+  font-size: 20px;
+  top: -3px;
+}
+.list--fa-plus li:before {
+  content: "\f067";
+}
+.list--fa-square li:before {
+  content: "\f0c8";
+  font-size: 12px;
+  top: 5px;
+}
+.list--fa-check li:before {
+  content: "\f00c";
+}
+.list--fa-check-circle li:before {
+  content: "\f058";
+}
+.list--fa-custom li {
+  padding: 0 0 15px 0;
+}
+.list--fa-custom li .svg-inline--fa {
+  margin-right: 20px;
+  width: 20px;
+  font-size: 20px;
+}

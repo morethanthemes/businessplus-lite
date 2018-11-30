@@ -1,0 +1,19 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's progress bars.
+ */
+.progress {
+  border-radius: 0;
+}
+.progress-title {
+	font-size: 12px;
+  font-weight: 600;
+  padding-top: 10px;
+}
+.headings-wide-spacing-enabled .progress-title {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.progress-bar-gray {
+  background-color: #767676;
+}

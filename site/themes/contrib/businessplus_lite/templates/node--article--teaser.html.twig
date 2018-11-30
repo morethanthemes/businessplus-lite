@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Business+ Lites's theme implementation to display a Article node.
+ */
+#}
+
+{% extends "node.html.twig" %}
+{% block node_side %}
+{% endblock %}
+{% block meta_area %}
+  {{ content.field_image }}
+  {{ title_prefix }}
+  <h2{{ title_attributes.addClass('node__title') }}>
+    <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+  </h2>
+  {{ title_suffix }}
+  {% if display_submitted or (node.comment and comment_count > 0) %}
+    {{ metadata }}
+    <div class="node__meta">
+      {% if display_submitted %}
+        <span class="node__meta-item">
+          {{ date }}
+        </span>
+        <span{{ author_attributes.addClass('node__meta-user node__meta-item') }}>
+          {% trans %} By {{ author_name }}{% endtrans %}
+        </span>
+      {% endif %}
+      {% if node.comment and comment_count > 0 %}
+        <div class="node__meta-item node__meta-comments">
+          {% trans %}
+            1 comment
+          {% plural comment_count %}
+            {{ comment_count }} comments
+          {% endtrans %}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endblock %}
+{% block content %}
+  {{ attach_library('businessplus_lite/node-article') }}
+  <div class="node__main-content-section">
+    {{ content|without('comment', 'links', 'field_image') }}
+  </div>
+  {{ content.links }}
+  {{ content.comment }}
+{% endblock %}

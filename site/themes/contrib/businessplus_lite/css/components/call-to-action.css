@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's contact info block.
+ */
+.container-fluid .call-to-action {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.call-to-action h2.title {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+.call-to-action h5 {
+  font-weight: 400;
+}
+.node--type-mt-product .call-to-action {
+  margin-bottom: 100px;
+}
+@media (max-width: 575px) {
+  .call-to-action h2.title {
+    font-size: 48px;
+  }
+}

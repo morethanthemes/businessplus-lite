@@ -1,0 +1,867 @@
+/**
+ * @file
+ * Red color styling for Business+ Lite for Drupal 8.
+ *
+ * $base: #fe2a3c;
+ * $secondary: #da0113;
+ * $dark: #a8010f;
+ */
+
+ $base: #fe2a3c;
+ $secondary: #da0113;
+ $dark: #a8010f;
+
+/* $base: elements */
+a {
+  color: $base;
+}
+a:hover,
+a:focus {
+  color: $base;
+}
+a.link--dark,
+.link--dark a {
+  color: $dark;
+}
+a.link--dark:hover,
+.link--dark a:hover,
+a.link--dark:focus,
+.link--dark a:focus {
+  color: $base;
+}
+a.link--bordered,
+.link--bordered a {
+  border-color: $base;
+}
+.text--dark {
+  color: $dark;
+}
+.region--colored-background h1.text--dark,
+.region--colored-background h2.text--dark,
+.region--colored-background h3.text--dark,
+.region--colored-background h4.text--dark,
+.region--colored-background h5.text--dark,
+.region--colored-background h6.text--dark {
+  color: $dark;
+}
+.text--colored {
+  color: $base;
+}
+.region--black-background h1.text--colored,
+.region--black-background h2.text--colored,
+.region--black-background h3.text--colored,
+.region--black-background h4.text--colored,
+.region--black-background h5.text--colored,
+.region--black-background h6.text--colored,
+.region--dark-background h1.text--colored,
+.region--dark-background h2.text--colored,
+.region--dark-background h3.text--colored,
+.region--dark-background h4.text--colored,
+.region--dark-background h5.text--colored,
+.region--dark-background h6.text--colored {
+  color: $base;
+}
+.link--hover-style-3 {
+  background-image: linear-gradient(rgba($base, 0.5) 0%, rgba($base, 0.5) 100%);
+}
+.link--hover-style-3:hover {
+  background-image: linear-gradient($base 0%, $base 100%);
+}
+.region--light-typography .link--hover-style-3:hover {
+  color: $base;
+}
+.region--dark-typography .col-12 h2.title,
+.region--dark-typography .col-12 nav > h2,
+.region--dark-typography .col-12 .block-search > h2 {
+  color: $dark;
+}
+
+/* $base: layout */
+.region--dark-background {
+  background-color: $dark;
+}
+.region--colored-background {
+  background-color: $base;
+}
+.region--white-dark-background {
+  background: #ffffff;
+  background: -moz-linear-gradient(top, #ffffff 50%, $dark 50%);
+  background: -webkit-linear-gradient(top, #ffffff 50%, $dark 50%);
+  background: linear-gradient(to bottom, #ffffff 50%, $dark 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='$dark',GradientType=0 );
+}
+.region--gray-background + .region--white-dark-background {
+  background: #f3f3f3;
+  background: -moz-linear-gradient(top, #f3f3f3 50%, $dark 50%);
+  background: -webkit-linear-gradient(top, #f3f3f3 50%, $dark 50%);
+  background: linear-gradient(to bottom, #f3f3f3 50%, $dark 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='$dark',GradientType=0 );
+}
+.region--dark-background + .region--separator-incline-diagonal:before {
+  background: linear-gradient(to bottom right, $dark 49.5%, transparent 50%);
+}
+.region--colored-background + .region--separator-incline-diagonal:before {
+  background: linear-gradient(to bottom right, $base 49.5%, transparent 50%);
+}
+.region--dark-background + .region--separator-decline-diagonal:before {
+  background: linear-gradient(to bottom left, $dark 49.5%, transparent 50%);
+}
+.region--colored-background + .region--separator-decline-diagonal:before {
+  background: linear-gradient(to bottom left, $base 49.5%, transparent 50%);
+}
+.page-container-border-enabled .page-container {
+  border-color: $base;
+}
+.region--dark-background.header-top-highlighted:before {
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba($base, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+}
+.region--dark-background.header-top:before {
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba($base, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+}
+.region--dark-background.header:before {
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba($base, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+}
+.region--dark-background.banner:before {
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba($base, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+}
+.region--white-dark-background.footer-top:before {
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba($base, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+}
+.region--dark-background.footer-top:before {
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba($base, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+}
+.region--dark-background.footer:before {
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba($base, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+}
+.region--dark-background.footer-bottom:before {
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba($base, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+}
+.region--dark-background.subfooter:before {
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba($base, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,rgba($base, 0.1) 50%,rgba(255, 255, 255, 0) 100%);
+}
+
+/* components: accordion */
+.region--light-typography.region--dark-background .card-title a:hover,
+.region--light-typography.region--dark-background .card-title a:focus {
+  color: $dark;
+}
+.card-header--trigger-icon .card-title a:after {
+  background-color: $base;
+}
+.card-header--trigger-icon .card-title a.collapsed:hover:after,
+.card-header--trigger-icon .card-title a.collapsed:focus:after {
+  background-color: $base;
+}
+.collapse-group.collapse-group--style-2 .card .card-title a {
+  background-color: $dark;
+}
+.collapse-group.collapse-group--style-2 .card-title a.collapsed {
+  background-color: $dark;
+}
+.collapse-group.collapse-group--style-2 .card-title a:hover {
+  background-color: $dark;
+}
+.region--light-typography .collapse-group.collapse-group--style-2 .card-header--trigger-icon .card-title a,
+.region--light-typography .collapse-group.collapse-group--style-2 .card-header--trigger-icon .card-title a:hover {
+  color: $dark;
+}
+
+/* components: buttons */
+a.button,
+.button > a,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+  background-color: $secondary;
+}
+a.button.button--outline,
+.button.button--outline > a {
+  border-color: $secondary;
+  color: $secondary;
+}
+a.button.button--outline:hover,
+.button.button--outline > a:hover,
+a.button.button--outline:focus,
+.button.button--outline > a:focus {
+  background-color: $dark;
+  border-color: $dark;
+}
+.region--dark-background a.button.button--outline,
+.region--dark-background .button.button--outline > a {
+  border-color: $secondary;
+}
+a.button:hover,
+a.button:focus,
+.button > a:hover,
+.button > a:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="reset"]:hover,
+input[type="reset"]:focus,
+input[type="button"]:hover,
+input[type="button"]:focus {
+  background: transparent;
+  background-color: $dark;
+}
+a.button.button--hover-style-2:before,
+.button.button--hover-style-2 > a:before {
+  background: $dark;
+}
+
+/* components: collapsible block */
+.collapsible-block__trigger a {
+  background-color: $dark;
+}
+.collapsible-block__trigger a:hover,
+.collapsible-block__trigger a:focus {
+  background-color: $dark;
+}
+.region--colored-background .collapsible-block__trigger a {
+  background-color: $dark;
+  text-decoration: none;
+}
+.region--colored-background .collapsible-block__trigger a:hover {
+  background-color: rgba($base, 0.8);
+}
+
+/* components: detailed feature block */
+.region--dark-typography .detailed-feature-block__section .svg-inline--fa {
+  color: $dark;
+}
+.region--dark-typography .detailed-feature-block__section h2 {
+  color: $dark;
+}
+.region--dark-typography .list--fa-check-circle li:before {
+  color: $dark;
+}
+
+/* components: dropdowns */
+.region--colored-background .dropdown-menu {
+  background-color: $base;
+}
+.region--dark-background .dropdown-menu {
+  background-color: $dark;
+}
+
+/* components: fancy block */
+.region--dark-background .fancy-block-text {
+  background-color: $dark;
+}
+.region--colored-background .fancy-block-text {
+  background-color: $base;
+}
+
+/* components: fancy linked images block */
+.clip-path-support .clip-pentagon-container {
+  background-color: $dark;
+}
+.clip-path-support .clip-circle-container {
+  background-color: $dark;
+}
+.clip-path-support .clip-rectangle-container:before {
+  border-color: $dark;
+}
+
+/* CSS rules only for FF*/
+@-moz-document url-prefix() {
+  .clip-pentagon-container {
+    background-color: $dark;
+  }
+  .clip-circle-container {
+    background-color: $dark;
+  }
+  .clip-rectangle-container:before {
+    border-color: $dark;
+  }
+}
+
+/* components: featured linked text tiles block */
+.region--light-typography .featured-linked-text-tile__body a {
+  color: $dark;
+}
+.region--colored-background .featured-linked-text-tile a.button {
+  background-color: $dark;
+  border-color: $dark;
+}
+.region--light-typography .featured-linked-text-tile a.button:hover {
+  border-color: $dark;
+  color: $dark;
+}
+.featured-linked-text-tile .featured-linked-text-tile__title a {
+  color: $dark;
+}
+
+/* components: feature */
+.region--dark-typography .feature-item__title {
+  color: $dark;
+}
+
+/* components: forms */
+input.form-text:hover,
+input.form-tel:hover,
+input.form-email:hover,
+input.form-url:hover,
+input.form-search:hover,
+input.form-file:hover,
+input.form-number:hover,
+input.form-color:hover,
+input.form-date:hover,
+input.form-time:hover,
+textarea:hover,
+select:hover,
+input.form-text:focus,
+input.form-tel:focus,
+input.form-email:focus,
+input.form-url:focus,
+input.form-search:focus,
+input.form-file:focus,
+input.form-number:focus,
+input.form-color:focus,
+input.form-date:focus,
+input.form-time:focus,
+textarea:focus,
+select:focus {
+  border-color: $base;
+}
+
+/* components: content front page background */
+@media (max-width: 767px) {
+  .background-image-area.region--colored-background .header {
+    background-color: $base;
+  }
+  .background-image-area.region--dark-background .header {
+    background-color: $dark;
+  }
+}
+
+/* components: field taxonomy terms */
+.field--entity-reference-target-type-taxonomy-term .field__item a:hover,
+.field--entity-reference-target-type-taxonomy-term.field__item a:hover {
+  color: $dark;
+}
+
+/* components: fixed header */
+.onscroll .header.js-fixed.region--dark-background,
+.onscroll .region--dark-background .header.js-fixed {
+  background-color: rgba($dark, 0.95);
+}
+.onscroll .header.js-fixed.region--colored-background,
+.onscroll .region--colored-background .header.js-fixed {
+  background-color: rgba($base, 0.95);
+}
+
+/* components: flexslider in page */
+.in-page-images-carousel .slides li a:after {
+  background-color: rgba($dark, 0.8);
+}
+.in-page-images-carousel .slides li a:hover:after {
+  background-color: rgba($dark, 0.5);
+}
+
+/* components: frontpage cover block */
+.cta-button {
+  background-color: $dark;
+}
+.cta-button:hover,
+.cta-button:focus {
+  background-color: $secondary;
+}
+.cta-button span {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+}
+
+/* components: highlights */
+.region--dark-typography .highlight-head {
+  color: $dark;
+}
+.region--dark-typography .highlights-grid-item .svg-inline--fa {
+  color: $dark;
+}
+.region--dark-typography .highlights-grid-item h5 {
+  color: $dark;
+}
+
+/* components: how it workd */
+.region--dark-background .field--name-field-mt-hiw-item .field__item .how-it-works__badge {
+  background-color: $dark;
+}
+.region--colored-background .field--name-field-mt-hiw-item .field__item .how-it-works__badge {
+  background-color: $base;
+}
+
+/* components: icons feature */
+.region--dark-typography .feature__icon {
+  color: $dark;
+}
+.region--dark-typography .feature__title {
+  color: $dark;
+}
+
+/* components: icons list */
+.region--dark-typography ul.icons-list.icons-list--bordered li a:hover {
+  color: $base;
+  border-color: $base;
+}
+
+/* components: image overlay */
+.overlay--colored {
+  background-color: rgba($dark, 0.6);
+}
+.overlay--colored.overlay--visible {
+  background-color: rgba($dark, 0.4);
+}
+.overlay--colored.overlay--visible:hover {
+  background-color: rgba($dark, 0.6);
+}
+.overlay-icon--button {
+  background-color: $dark;
+}
+
+/* components: in page navigation */
+.header-container ul.in-page-navigation li a.active,
+.header-container ul.in-page-navigation li a:hover,
+.header-container ul.in-page-navigation li a:focus {
+  color: $base;
+}
+
+/* components: inverted header */
+.inverted-header-enabled:not(.onscroll) .header-container .sf-menu ul li.sfHover > a,
+.inverted-header-enabled:not(.onscroll) .header-container .sf-menu ul li > a:hover,
+.inverted-header-enabled:not(.onscroll) .header-container .sf-menu ul li > a.is-active,
+.inverted-header-enabled:not(.onscroll) .header-container .sf-menu ul li.active-trail > a,
+.inverted-header-enabled:not(.onscroll) .header-container .sf-menu ul li.sfHover > a.is-active,
+.inverted-header-enabled:not(.onscroll) .header-container .sf-menu ul li.sfHover.active-trail > a {
+  color: $base;
+}
+
+/* components: language switcher */
+.region--dark-typography .block-language ul li .is-active {
+  color: $base;
+}
+
+/* components: layout switcher */
+.layout-switcher ul li.active a,
+.layout-switcher ul li a:hover,
+.layout-switcher ul li a:focus {
+  color: $base;
+}
+
+/*main slideshow block*/
+.ms-transparent-background .region--dark-typography.tp-caption__title a:hover {
+  color: $base;
+}
+
+/* components: menu */
+.region--dark-typography ul.menu li a.is-active {
+  color: $base;
+}
+.region--dark-typography ul.menu li a:hover,
+.region--dark-typography ul.menu li a:focus {
+  color: $base;
+}
+.header-container ul.menu > li > a:hover,
+.header-container .region--dark-typography ul.menu li > a.is-active,
+.header-container .region--dark-typography ul.menu li.active-trail > a {
+  color: $base;
+}
+.header-container .sf-menu li.sfHover > a,
+.header-container .sf-menu li > a:hover,
+.header-container .sf-menu li.sfHover > a.is-active,
+.header-container .sf-menu li.sfHover.active-trail > a {
+  color: $base;
+}
+.header-container .sf-menu ul li.sfHover > a:after,
+.header-container .sf-menu ul li a:hover:after,
+.header-container .sf-menu ul li > a.is-active:after,
+.header-container .sf-menu ul li.active-trail > a:after {
+  background-color: $base;
+}
+.region--dark-typography ul.menu.cta-active > li:last-child > a {
+  border-color: $base;
+}
+.region--dark-typography ul.menu.cta-active > li:last-child > a:hover,
+.region--dark-typography ul.menu.cta-active > li:last-child > a:focus {
+  border-color: $dark;
+  background-color: $dark;
+}
+.region--dark-background ul.menu.cta-active > li:last-child > a {
+  border-color: $base;
+}
+.region--light-typography .menu.cta-active > li:last-child > a:hover {
+  opacity: 1;
+}
+.region--light-typography .menu.cta-active > li:last-child > a:hover,
+.region--light-typography .menu.cta-active > li:last-child > a:focus {
+  color: $base;
+}
+.region--dark-typography .footer-bottom__section ul.menu li a:hover,
+.region--dark-typography .footer-bottom__section ul.menu li a:focus {
+  border-bottom-color: $base;
+  color: $base;
+}
+.region--dark-typography .subfooter__section ul.menu li a:hover,
+.region--dark-typography .subfooter__section ul.menu li a:focus {
+  border-bottom-color: $base;
+  color: $base;
+}
+
+/* components: mt count down */
+.mt-count-down-inject.mt-count-down-theme {
+  background-color: $dark;
+}
+.mt-count-down-inject.mt-count-down-theme .mt-count-down__button {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+}
+.mt-count-down-block.mt-count-down-theme .mt-count-down__button {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+}
+.mt-count-down-block.mt-count-down-theme .mt-count-down__button:hover,
+.mt-count-down-block.mt-count-down-theme .mt-count-down__button:focus {
+  background: $dark;
+}
+
+/* components: node article*/
+.node--view-mode-teaser.node--type-article .node__header h2 a:hover {
+  color: $dark;
+}
+
+/* components: node images */
+.image-caption h4 {
+  background-color: rgba($base, 0.8);
+}
+
+/* components: node product */
+.node--type-mt-product .field--name-field-mt-prd-buy-link a {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+  background-color: $secondary;
+}
+.node--type-mt-product .field--name-field-mt-prd-buy-link a:hover,
+.node--type-mt-product .field--name-field-mt-prd-buy-link a:focus {
+  background: transparent;
+  background-color: $dark;
+}
+.field--name-field-mt-highlight-link a {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+  background-color: $secondary;
+}
+.field--name-field-mt-highlight-link a:hover,
+.field--name-field-mt-highlight-link a:focus {
+  background: transparent;
+  background-color: $dark;
+}
+
+/* components: node service */
+.node--type-mt-service .field--name-field-mt-srv-buy-link a {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+  background-color: $secondary;
+}
+.node--type-mt-service .field--name-field-mt-srv-buy-link a:hover,
+.node--type-mt-service .field--name-field-mt-srv-buy-link a:focus {
+  background: transparent;
+  background-color: $dark;
+}
+
+/* components: node testimonial */
+.field--name-field-mt-tst-testimonial-link a {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+}
+.field--name-field-mt-tst-testimonial-link a:hover,
+.field--name-field-mt-tst-testimonial-link a:focus {
+  background: $dark;
+}
+
+/* components: node team member */
+.field--name-field-mt-tmm-subheader-body {
+  color: $dark;
+}
+
+/* components: owl carousel global */
+.owl-nav div {
+  color: $base;
+}
+.owl-nav div:hover {
+  color: $dark;
+}
+.owl-dot.active span {
+  border-color: $base;
+  background-color: $base;
+}
+.owl-dot:hover span {
+  border-color: $dark;
+  background-color: $dark;
+}
+
+/* components: owl carousel testimonials */
+.view-mt-testimonials-carousel .icon .svg-inline--fa {
+  color: $dark;
+}
+.view-mt-testimonials-carousel .view-header h2 {
+  color: $dark;
+}
+.mt-carousel-testimonials .mt-carousel-item:hover {
+  border-top-color: $secondary;
+}
+.region--light-typography .views-field-title a {
+  color: $base;
+}
+
+/* components: pager */
+li.pager__item.is-active a,
+li.pager__item.is-active a:hover,
+li.pager__item.is-active a:focus {
+  background-color: $dark;
+  border-color: $dark;
+}
+li.pager__item a:hover,
+li.pager__item a:focus {
+  color: $base;
+}
+
+/* components: post progress */
+.post-progress__bar {
+  background-color: $dark;
+}
+
+/* components: pills */
+.nav-pills > li > a.nav-link:hover,
+.nav-pills > li > a.nav-link:focus {
+  background-color: $dark;
+}
+
+/* components: progress bars */
+.progress-bar-default {
+  background-color: $dark;
+}
+
+/* components: search */
+.region--dark-typography .block-search .form-actions:after {
+  color: $base;
+}
+
+/* components: separators */
+.separator {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+}
+
+/* components: share links */
+.share-links ul li a:hover {
+  background-color: $dark;
+}
+.js-share-links-fixed .share-links ul li a:hover {
+  background-color: $dark;
+}
+
+/* components: slideout */
+.slideout-toggle {
+  background-color: $dark;
+}
+
+/* components: slider revolution global */
+.tp-tabs {
+  background-color: rgba($base, 0.93) !important;
+}
+.tp-tabs .tp-tab.selected,
+.tp-tabs .tp-tab:hover {
+  background-color: $base;
+}
+
+/* components: slider revolution internal carousel */
+.carousel-internal .tp-bullets .tp-bullet:hover {
+  background-color: $dark;
+}
+
+/* components: tabs */
+.nav-tabs a.nav-link.active,
+.nav-tabs a.nav-link.active:focus,
+.nav-tabs a.nav-link.active:hover {
+  background-color: $base;
+  border-color: $base;
+}
+.region--colored-background .nav-tabs a.nav-link:focus,
+.region--colored-background .nav-tabs a.nav-link:hover {
+  background-color: $base;
+  border-color: $base;
+}
+.nav-tabs.nav-tabs--fancy a.nav-link.active,
+.nav-tabs.nav-tabs--fancy a.nav-link.active:focus,
+.nav-tabs.nav-tabs--fancy a.nav-link.active:hover {
+  border-color: $base;
+}
+
+/* components: timeline */
+.region--dark-background .field--name-field-mt-tml-timeline-item .field__item .timeline__badge {
+  background-color: $dark;
+}
+.region--colored-background .field--name-field-mt-tml-timeline-item .field__item .timeline__badge {
+  background-color: $base;
+}
+
+/* components: to top */
+.to-top {
+  background: $secondary;
+  background: -webkit-linear-gradient(bottom, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(bottom, $secondary 0%, $base 100%);
+  background: linear-gradient(to top, $secondary 0%, $base 100%);
+  background-color: $secondary;
+}
+.to-top:hover {
+  background: transparent;
+  background-color: $dark;
+}
+
+/* components: view articles list 2 */
+.region--dark-typography .view-articles-list-2 .views-row:after {
+  color: $base;
+}
+
+/* components: view collections image overlay */
+.view-collections-grid .overlay-inner a,
+.view-collections-carousel .overlay-inner a,
+.view-collection-masonry .overlay-inner a {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+  background-color: $secondary;
+}
+.view-collections-grid .overlay-inner a:hover,
+.view-collections-carousel .overlay-inner a:hover,
+.view-collection-masonry .overlay-inner a:hover {
+  background: transparent;
+  background-color: $dark;
+}
+.overlay-icon {
+  color: $dark;
+}
+.region--light-typography a.overlay-icon {
+  color: $dark;
+}
+.overlay-icon:hover,
+.overlay-icon:focus {
+  background-color: $dark;
+}
+
+/* components: view popular taxonomy */
+.region--dark-typography .view-mt-popular-tags .views-row a:hover {
+  background-color: $base;
+}
+.region--light-typography .view-mt-popular-tags .views-row a:hover {
+  color: $base;
+}
+
+/* components: view pricing tables */
+.view-pricing-tables .views-field-field-mt-prd-price {
+  color: $dark;
+}
+.view-pricing-tables .pricing-table .views-field-title a {
+  color: $dark;
+}
+.view-pricing-tables .pricing-table .views-field-title a:hover {
+  color: $base;
+}
+.view-pricing-tables .pricing-table .pricing-table-body .svg-inline--fa {
+  color: $base;
+}
+.view-pricing-tables .pricing-table a.button {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+  background-color: $secondary;
+}
+.view-pricing-tables .pricing-table a.button:hover,
+.view-pricing-tables .pricing-table a.button:focus {
+  background: transparent;
+  background-color: $dark;
+}
+
+/* components: view promoted posts carousel */
+.view-promoted-posts-carousel a.button,
+.view-promoted-posts-carousel .button > a {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+}
+.view-promoted-posts-carousel a.button:hover,
+.view-promoted-posts-carousel a.button:focus,
+.view-promoted-posts-carousel .button > a:hover,
+.view-promoted-posts-carousel .button > a:focus {
+  background: $dark;
+}
+
+/* components: view team members carousel */
+.region--light-typography .view-team-members-carousel .text-container .views-field-title a {
+  color: $base;
+}
+
+/* components: view team members masonry */
+.view-team-members-masonry .masonry-grid-item .overlay__text:after {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+}
+
+/* components: views */
+.view > .more-link a {
+  border-color: $base;
+}
+.col-12 .view > .more-link a {
+  background: $secondary;
+  background: -webkit-linear-gradient(left, $secondary 0%, $base 100%);
+  background: -o-linear-gradient(left, $secondary 0%, $base 100%);
+  background: linear-gradient(to right, $secondary 0%, $base 100%);
+  background-color: $secondary;
+}
+.col-12 .view > .more-link a:hover,
+.col-12 .view > .more-link a:focus {
+  background: transparent;
+  background-color: $dark;
+}

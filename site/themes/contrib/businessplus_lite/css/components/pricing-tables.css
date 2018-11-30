@@ -1,0 +1,275 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's pricing tables.
+ */
+.pricing-tables {
+  position: relative;
+  padding-top: 30px;
+}
+.pricing-tables .pricing-table {
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  margin: 0 0 40px 0;
+  padding:0 0 95px 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  position: relative;
+}
+.region--light-typography .pricing-tables .pricing-table {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.pricing-tables .pricing-table-header {
+  color: #ffffff;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.region--light-typography .pricing-tables .pricing-table-header {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.pricing-tables .pricing-table-title {
+  font-weight: 400;
+  font-size: 14px;
+  padding: 18px 0 2px;
+}
+.pricing-tables .pricing-table-title a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.pricing-tables .pricing-table-title a:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+.pricing-tables .pricing-table-price {
+  padding: 0 0 20px 0;
+  font-weight: 700;
+  font-size: 40px;
+}
+.pricing-tables .pricing-table .item-list>ul {
+  list-style: none;
+  margin: 0;
+}
+.pricing-tables .pricing-table .item-list li {
+  margin: 0;
+}
+.pricing-tables .pricing-table .pricing-table-item {
+  padding:15px 20px;
+  margin:0;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #f3f3f3;
+}
+.pricing-tables .pricing-table li:last-child .pricing-table-item {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #f3f3f3;
+}
+.pricing-tables .pricing-table li:nth-child(2n) .pricing-table-item {
+  background-color: #fafafa;
+}
+.region--light-typography .pricing-tables .pricing-table .pricing-table-item {
+  border-top-color: rgba(255, 255, 255, 0.05);
+}
+.region--light-typography .pricing-tables .pricing-table li:last-child .pricing-table-item {
+  border-bottom-color: rgba(255, 255, 255, 0.11);
+}
+.region--light-typography .pricing-tables .pricing-table li:nth-child(2n) .pricing-table-item {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.pricing-tables .pricing-table-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  padding: 0 0 15px;
+}
+
+/*styles*/
+/*blue*/
+.pricing-table--blue {
+  border-color: #0288d0;
+}
+.pricing-table--blue .pricing-table-header {
+  background-color: #0288d0;
+}
+.pricing-table--blue .views-field-field-mt-most-popular {
+  background-color: #08a7fd;
+}
+.pricing-table--blue a.button:hover,
+.pricing-table--blue a.button:focus {
+  background-color: #08a7fd;
+  border-color: #08a7fd;
+  color: #ffffff;
+}
+
+/*gold*/
+.pricing-table--gold {
+  border-color: #79725d;
+}
+.pricing-table--gold .pricing-table-header {
+  background-color: #79725d;
+}
+.pricing-table--gold .views-field-field-mt-most-popular {
+  background-color: #948C75;
+}
+.pricing-table--gold a.button:hover,
+.pricing-table--gold a.button:focus {
+  background-color: #948C75;
+  border-color: #948C75;
+  color: #ffffff;
+}
+
+/*gray*/
+.pricing-table--gray {
+  border-color: #252525;
+}
+.pricing-table--gray .pricing-table-header {
+  background-color: #252525;
+}
+.pricing-table--gray .views-field-field-mt-most-popular {
+  background-color: #767676;
+}
+.pricing-table--gray a.button:hover,
+.pricing-table--gray a.button:focus {
+  background-color: #767676;
+  border-color: #767676;
+  color: #ffffff;
+}
+
+/*green*/
+.pricing-table--green {
+  border-color: #378b3a;
+}
+.pricing-table--green .pricing-table-header {
+  background-color: #378b3a;
+}
+.pricing-table--green .views-field-field-mt-most-popular {
+  background-color: #46af49;
+}
+.pricing-table--green a.button:hover,
+.pricing-table--green a.button:focus {
+  background-color: #46af49;
+  border-color: #46af49;
+  color: #ffffff;
+}
+
+/*khaki*/
+.pricing-table--khaki {
+  border-color: #74741b;
+}
+.pricing-table--khaki .pricing-table-header {
+  background-color: #74741b;
+}
+.pricing-table--khaki .views-field-field-mt-most-popular {
+  background-color: #9E9D24;
+}
+.pricing-table--khaki a.button:hover,
+.pricing-table--khaki a.button:focus {
+  background-color: #9E9D24;
+  border-color: #9E9D24;
+  color: #ffffff;
+}
+
+/*lime*/
+.pricing-table--lime {
+  border-color: #99cc00;
+}
+.pricing-table--lime .pricing-table-header {
+  background-color: #99cc00;
+}
+.pricing-table--lime .views-field-field-mt-most-popular {
+  background-color: #91c200;
+}
+.pricing-table--lime a.button:hover,
+.pricing-table--lime a.button:focus {
+  background-color: #91c200;
+  border-color: #91c200;
+  color: #ffffff;
+}
+
+/*night-blue*/
+.pricing-table--night-blue {
+  border-color: #537f92;
+}
+.pricing-table--night-blue .pricing-table-header {
+  background-color: #537f92;
+}
+.pricing-table--night-blue .views-field-field-mt-most-popular {
+  background-color: #6c99ac;
+}
+.pricing-table--night-blue a.button:hover,
+.pricing-table--night-blue a.button:focus {
+  background-color: #6c99ac;
+  border-color: #6c99ac;
+  color: #ffffff;
+}
+
+/*orange*/
+.pricing-table--orange {
+  border-color: #ff6e00;
+}
+.pricing-table--orange .pricing-table-header {
+  background-color: #ff6e00;
+}
+.pricing-table--orange .views-field-field-mt-most-popular {
+  background-color: #ff8b33;
+}
+.pricing-table--orange a.button:hover,
+.pricing-table--orange a.button:focus {
+  background-color: #ff8b33;
+  border-color: #ff8b33;
+  color: #ffffff;
+}
+
+/*pink*/
+.pricing-table--pink {
+  border-color: #d14785;
+}
+.pricing-table--pink .pricing-table-header {
+  background-color: #d14785;
+}
+.pricing-table--pink .views-field-field-mt-most-popular {
+  background-color: #db70a0;
+}
+.pricing-table--pink a.button:hover,
+.pricing-table--pink a.button:focus {
+  background-color: #db70a0;
+  border-color: #db70a0;
+  color: #ffffff;
+}
+
+/*purple*/
+.pricing-table--purple {
+  border-color: #5b3488;
+}
+.pricing-table--purple .pricing-table-header {
+  background-color: #5b3488;
+}
+.pricing-table--purple .views-field-field-mt-most-popular {
+  background-color: #4f2d76;
+}
+.pricing-table--purple a.button:hover,
+.pricing-table--purple a.button:focus {
+  background-color: #4f2d76;
+  border-color: #4f2d76;
+  color: #ffffff;
+}
+
+/*red*/
+.pricing-table--red {
+  border-color: #d2131d;
+}
+.pricing-table--red .pricing-table-header {
+  background-color: #d2131d;
+}
+.pricing-table--red .views-field-field-mt-most-popular {
+  background-color: #bb111a;
+}
+.pricing-table--red a.button:hover,
+.pricing-table--red a.button:focus {
+  background-color: #bb111a;
+  border-color: #bb111a;
+  color: #ffffff;
+}

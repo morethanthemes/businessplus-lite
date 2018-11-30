@@ -1,0 +1,112 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's owl carousels.
+ */
+.owl-carousel {
+  margin: 0;
+  padding: 0;
+}
+.owl-carousel .owl-item li {
+  list-style: none;
+}
+
+/* Styling Next and Prev buttons */
+.owl-nav {
+  width: 100%;
+  position: relative;
+  height: 60px;
+}
+.owl-nav div {
+  display: inline-block;
+  position: absolute;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  font-size: 50px;
+  top: 0;
+  width: 55px;
+  height: 55px;
+  text-align: center;
+}
+.owl-nav div:hover {
+  text-decoration: none;
+}
+.region--light-typography .owl-nav div {
+  color: #ffffff;
+}
+.region--light-typography .owl-nav div:hover {
+  color: #ffffff;
+}
+.owl-nav div:after {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 50px;
+  left: 50%;
+  top: 0;
+  text-align: center;
+  line-height: 55px;
+  width: 20px;
+  margin-left: -10px;
+}
+.owl-nav .owl-prev {
+  margin-left: -70px;
+  left: 50%;
+}
+.owl-nav .owl-prev:after {
+  content: "\f104";
+}
+.owl-nav .owl-next {
+  right: 50%;
+  left: auto;
+  margin-right: -70px;
+}
+.owl-nav .owl-next:after {
+  content: "\f105";
+}
+
+/* Styling pager */
+.owl-dots {
+  text-align: center;
+  margin-top: 20px;
+}
+.owl-nav ~ .owl-dots {
+  margin-top: 0;
+}
+.owl-dot {
+  display: inline-block;
+  zoom: 1;
+}
+.owl-dot span {
+  display: block;
+  width: 20px;
+  height: 5px;
+  margin: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #c2c2c2;
+  background-color: #c2c2c2;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+/*pager at colored regions*/
+.region--light-typography .owl-dot span {
+  border-color: #ffffff;
+  background-color: #ffffff;
+  opacity: 0.8;
+}
+.region--light-typography .owl-dot.active span,
+.region--light-typography .owl-dot:hover span {
+  border-color: #ffffff;
+  background-color: #ffffff;
+  opacity: 1;
+}

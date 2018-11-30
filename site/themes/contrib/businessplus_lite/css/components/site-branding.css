@@ -1,0 +1,146 @@
+/**
+ * @file
+ * Visual styles for the site branding block in Business+ Lite.
+ */
+@media (min-width: 992px) {
+  .header-container .container-fluid .logo-and-site-name-wrapper {
+    padding-left: 20px;
+  }
+}
+.logo {
+  float: left;
+  margin-right: 10px;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.logo-centered {
+  float: none;
+  text-align: center;
+}
+.logo-centered .site-branding__logo {
+  display: block;
+  margin-bottom: 10px;
+}
+.logo:hover {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.site-name a {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  text-decoration: none;
+}
+.region--light-typography .site-name a {
+  color: #ffffff;
+}
+.site-name a:hover {
+  text-decoration: none;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.site-slogan {
+  font-size: 11px;
+  line-height: 1.30;
+  padding: 0;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+.headings-wide-spacing-enabled .site-slogan {
+  letter-spacing: 0.25em;
+}
+@media (max-width:767px) {
+  .logo img {
+    max-height: 65px;
+  }
+  .site-name {
+    padding-top: 8px;
+    display: inline-block;
+  }
+  .site-slogan {
+    display: none;
+  }
+}
+
+/*site branding at full width regions*/
+.col-12 .logo-and-site-name-wrapper {
+  margin: 0 0 15px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .col-12 .logo {
+    margin: 0 auto;
+    float: none;
+  }
+}
+.col-12 .site-branding__logo {
+  display: block;
+  margin-bottom: 10px;
+}
+.col-12 .site-name a {
+  font-size: 32px;
+  margin-bottom: 5px;
+  display: block;
+}
+.col-12 .site-slogan {
+  color: inherit;
+}
+
+/* Site Branding @slideout region*/
+.slideout__section .logo-and-site-name-wrapper {
+  margin: 0 0 15px;
+}
+.slideout__section .logo {
+  display: block;
+  float: none;
+  margin: 0 auto;
+  text-align: center;
+}
+.slideout__section .logo a {
+  margin: 0 auto;
+  display: inline-block;
+}
+.slideout__section .site-name a {
+  margin-bottom: 5px;
+  display: block;
+  text-align: center;
+}
+.slideout__section .site-slogan {
+  color: inherit;
+  text-align: center;
+}
+
+/* Site Branding @footer*/
+.footer__section .logo-and-site-name-wrapper {
+  margin: 0 0 15px;
+}
+@media (max-width: 767px) {
+  .footer__section .logo-and-site-name-wrapper {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
+.footer__section .site-name a {
+  margin-bottom: 5px;
+  display: block;
+}
+.footer__section .site-slogan {
+  color: inherit;
+}
+
+/* Site Branding @subfooter*/
+.region--dark-typography .subfooter__section .site-slogan {
+  color: #a5a5a5;
+}

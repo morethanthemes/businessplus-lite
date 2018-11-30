@@ -1,0 +1,123 @@
+/**
+ * @file
+ * Visual styles for highlights in Business+ Lite.
+ */
+.highlights {
+  margin: 60px 0 30px;
+}
+.highlight {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.highlight--bordered:before {
+  content: "";
+  width: 1px;
+  height: 100%;
+  left: -15px;
+  top: 0;
+  position: absolute;
+  background-color: #dfdfdf;
+}
+.highlight-head {
+  font-size: 100px;
+  font-weight: 600;
+  line-height: 1;
+}
+.highlight-head:after {
+  content: "+";
+}
+.highlight-body {
+  font-size: 18px;
+  font-weight: 400;
+}
+.headings-wide-spacing-enabled .highlight-body {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/*highoights @colored regions*/
+.region--light-typography .highlight--bordered:before {
+  background-color: #ffffff;
+}
+
+/*highlights style 2*/
+.highlight-2 {
+  text-align: center;
+  padding: 5px 0 40px;
+}
+.highlight-2-head {
+  display: block;
+  margin: 0 auto;
+  font-size: 40px;
+  margin-bottom: 25px;
+  font-weight: 300;
+  background-color: #f4f4f4;
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+}
+.region--gray-background .highlight-2-head {
+  background-color: #ffffff;
+}
+.region--light-typography .highlight-2-head {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.highlight-2-body {
+  font-size: 12px;
+  font-weight: 600;
+}
+.headings-wide-spacing-enabled .highlight-2-body {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/*highlights grid*/
+.highlights-grid {
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+.highlights-grid-item {
+  padding: 30px 0;
+}
+.region--dark-typography .highlights-grid,
+.region--dark-typography .highlights-grid-item {
+  border-color: #e4e4e4;
+}
+.region--light-typography .highlights-grid,
+.region--light-typography .highlights-grid-item {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.highlights-grid-item .svg-inline--fa {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+.highlights-grid-item h5 {
+  margin: 0;
+}
+.highlights-grid-item p {
+  font-size: 16px;
+  padding-bottom: 0;
+}
+.region--dark-typography .highlights-grid-item p {
+  color: #949494
+}
+@media (min-width: 576px) {
+  .highlights-grid-item.border-right {
+    border-right-width: 1px;
+    border-right-style: solid;
+  }
+  .highlights-grid-item.border-bottom {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+}
+@media (max-width: 575px) {
+  .highlights-grid-item {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+}

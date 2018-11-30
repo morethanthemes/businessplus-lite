@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2200px" height="105px" viewBox="0 0 2200 105" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>banner-separator</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="header-bg-repeat-x__medium" transform="translate(0.000000, -433.000000)" fill="#FFFFFF">
+            <g id="banner-separator" transform="translate(0.000000, 433.000000)">
+                <path d="M0,98.134343 C211.250444,98.134343 344.63623,0 702.458496,0 C1255.55145,0 1770.61472,96.3188299 2200,98.0284074 L2200,105 L0,105.064453 L0,98.134343 Z" fill-rule="nonzero"></path>
+                <path d="M606.708155,2.4465332 C436.094208,15.2607422 362.120819,33.6240234 281.955193,52.4823196 C201.789567,71.3406157 122.990306,92.2408777 46.0287896,96.5497366 C28.5281332,97.6130779 14.6221433,98.1049555 5.20298001,98.1049555 C96.9530678,89.5319824 165.822892,26.2717306 305.955567,11.9631369 C446.088243,-2.34545686 605.29861,2.4465332 606.708155,2.4465332 Z" id="Path-2" fill-opacity="0.35"></path>
+            </g>
+        </g>
+    </g>
+</svg>

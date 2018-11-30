@@ -1,0 +1,20 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's separators.
+ */
+.separator {
+  width: 60px;
+  height: 5px;
+  margin: 20px 0;
+  display: block;
+  border-radius: 10px;
+}
+.separator--gray {
+  background-color: #e4e8ed;
+}
+.separator--white {
+  background-color: #ffffff;
+}
+.separator--black {
+  background-color: #232323;
+}

@@ -1,0 +1,17 @@
+/**
+ * @file
+ * Use this CSS file to override base CSS rules
+ */
+
+/* Set default font weight to 300 for better typography in high-density screens */
+/*body {
+  font-weight: 300;
+}*/
+.path-frontpage .main-content {
+  background-image: none;
+}
+.path-frontpage .featured-top {
+  background-image: url(../../images/frontpage-content-background.png);
+  background-repeat: repeat;
+  background-position: 50% 50%;
+}

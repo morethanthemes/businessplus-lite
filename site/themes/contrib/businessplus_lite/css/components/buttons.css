@@ -1,0 +1,180 @@
+/**
+ * @file
+ * Styles for Business+ Lite's buttons.
+ */
+a.button,
+.button > a,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 16px 30px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1;
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin: 10px 0;
+  text-align: center;
+  background-color: transparent;
+}
+a.button.button--small,
+.button.button--small > a {
+  font-size: 14px;
+  padding: 10px 20px;
+  border-width: 1px 0;
+  text-transform: none;
+}
+a.button.button--outline,
+.button.button--outline > a {
+  background: transparent;
+  border-width: 2px;
+}
+a.button.button--outline:hover,
+.button.button--outline > a:hover,
+a.button.button--outline:focus,
+.button.button--outline > a:focus {
+  color: #ffffff;
+}
+.region--light-typography a.button.button--outline,
+.region--light-typography .button.button--outline > a {
+  background-color: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.region--dark-background a.button.button--outline:hover,
+.region--dark-background .button.button--outline > a:hover
+.region--dark-background a.button.button--outline:focus,
+.region--dark-background .button.button--outline > a:focus {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+.headings-wide-spacing-enabled a.button,
+.headings-wide-spacing-enabled .button > a,
+.headings-wide-spacing-enabled input[type="submit"],
+.headings-wide-spacing-enabled input[type="reset"],
+.headings-wide-spacing-enabled input[type="button"] {
+  letter-spacing: 0.25em;
+}
+input[type="submit"] + input[type="submit"],
+.button + .button {
+  margin-left: 20px;
+}
+@media (max-width: 767px) {
+  .text-center .button + .button {
+    margin-right: 5px;
+  }
+  .text-center .button {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+}
+a.button:hover,
+a.button:focus,
+.button > a:hover,
+.button > a:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="reset"]:hover,
+input[type="reset"]:focus,
+input[type="button"]:hover,
+input[type="button"]:focus {
+  color: #ffffff;
+}
+.region--dark-background a.button:hover,
+.region--dark-background a.button:focus,
+.region--dark-background .button > a:hover,
+.region--dark-background .button > a:focus,
+.region--dark-background input[type="submit"]:hover,
+.region--dark-background input[type="submit"]:focus,
+.region--dark-background input[type="reset"]:hover,
+.region--dark-background input[type="reset"]:focus,
+.region--dark-background input[type="button"]:hover,
+.region--dark-background input[type="button"]:focus {
+  color: #424242;
+  background: #ffffff;
+}
+.region--colored-background a.button,
+.region--colored-background a.button,
+.region--colored-background .button > a,
+.region--colored-background .button > a,
+.region--colored-background input[type="submit"],
+.region--colored-background input[type="submit"],
+.region--colored-background input[type="reset"],
+.region--colored-background input[type="reset"],
+.region--colored-background input[type="button"],
+.region--colored-background input[type="button"] {
+  color: #424242;
+  background: #ffffff;
+}
+.region--colored-background a.button:hover,
+.region--colored-background a.button:focus,
+.region--colored-background .button > a:hover,
+.region--colored-background .button > a:focus,
+.region--colored-background input[type="submit"]:hover,
+.region--colored-background input[type="submit"]:focus,
+.region--colored-background input[type="reset"]:hover,
+.region--colored-background input[type="reset"]:focus,
+.region--colored-background input[type="button"]:hover,
+.region--colored-background input[type="button"]:focus {
+  color: #ffffff;
+}
+span.button-operator {
+  margin: 0 10px 0 5px;
+}
+a.button .svg-inline--fa {
+  margin-right: 10px;
+}
+a.button--no-margins {
+  margin: 0;
+}
+
+/*Buttons hover style 2*/
+a.button.button--hover-style-2,
+.button.button--hover-style-2 > a {
+  position: relative;
+  z-index: 1;
+  border-width: 0;
+}
+a.button.button--hover-style-2:hover,
+.button.button--hover-style-2 > a:hover {
+  background: transparent;
+}
+a.button.button--hover-style-2:before,
+.button.button--hover-style-2 > a:before {
+  content:"";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  border-radius: 50px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+a.button.button--hover-style-2:hover:before,
+a.button.button--hover-style-2:focus:before,
+.button.button--hover-style-2 > a:hover:before,
+.button.button--hover-style-2 > a:focus:before {
+  transform: scaleX(1);
+}
+.region--dark-background a.button.button--hover-style-2:before,
+.region--dark-background .button.button--hover-style-2 > a:before {
+  background-color: #ffffff;
+}

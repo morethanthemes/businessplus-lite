@@ -1,0 +1,180 @@
+{#
+/**
+ * @file
+ * Business+ Lites's theme implementation to display a Article node.
+ */
+#}
+
+{% extends "node.html.twig" %}
+{% block node_side %}
+  {% if mt_setting.reading_time or mt_setting.share_links or mt_setting.font_resize or mt_setting.post_progress or mt_setting.print_button %}
+    <div class="node__side">
+        {% if mt_setting.reading_time %}
+          {{ attach_library('businessplus_lite/reading-time') }}
+          <div class="reading-time">
+            {% if minutes < 1 %}
+              {% trans %}
+                1<div class="reading-time__text">min read</div>
+              {% endtrans %}
+            {% else %}
+              {% trans %}
+                {{ minutes }}<div class="reading-time__text">min read</div>
+              {% endtrans %}
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if mt_setting.affix_side %}
+          {{ attach_library('businessplus_lite/node-side-affix') }}
+          <div id="affix">
+        {% endif %}
+        {% if mt_setting.font_resize %}
+          {{ attach_library('businessplus_lite/font-resize') }}
+          <div class="content-font-settings">
+              <div class="font-resize">
+                <a href="#" id="decfont">A-</a>
+                <a href="#" id="incfont">A+</a>
+              </div>
+          </div>
+        {% endif %}
+        {% if mt_setting.post_progress %}
+          {{ attach_library('businessplus_lite/post-progress') }}
+          <div class="post-progress">
+            <div class="post-progress__value"></div>
+            <div class="post-progress__text">{% trans %}read{% endtrans %}</div>
+            <div class="post-progress__bar"></div>
+          </div>
+        {% endif %}
+        {% if mt_setting.share_links_print_position == "node-side" and (mt_setting.share_links or mt_setting.print_button) %}
+          {{ attach_library('businessplus_lite/share-links') }}
+          <div class="share-links">
+            <ul>
+              {% if mt_setting.share_links %}
+                <li class="facebook{{ (mt_setting.print_button) ? ' print-button-enabled' : '' }}">
+                  <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('entity.node.canonical', {'node': node.id}) }}&t={{node.label | url_encode(true)}}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                      <i class="fab fa-facebook"><span class="sr-only">facebook</span></i>
+                  </a>
+                </li>
+                <li class="twitter{{ (mt_setting.print_button) ? ' print-button-enabled' : '' }}">
+                  <a href="http://twitter.com/share?text={{node.label | url_encode(true)}}&url={{ url('entity.node.canonical', {'node': node.id}) }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                      <i class="fab fa-twitter"><span class="sr-only">twitter</span></i>
+                  </a>
+                </li>
+                <li class="email{{ (mt_setting.print_button) ? ' print-button-enabled' : '' }}">
+                  <a href="mailto:?Subject={{node.label | url_encode(true)}}&amp;Body={{ url('entity.node.canonical', {'node': node.id}) }}">
+                      <i class="far fa-envelope"><span class="sr-only">envelope</span></i>
+                  </a>
+                </li>
+              {% endif %}
+              {% if mt_setting.print_button %}
+                <li class="print{{ (mt_setting.share_links) ? ' share-links-enabled' : '' }}">
+                  <div class="print">
+                    <a href="javascript:window.print()" class="print-button">
+                      <i class="fas fa-print"><span class="sr-only">print</span></i>
+                    </a>
+                  </div>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        {% endif %}
+        {% if mt_setting.affix_side %}
+          </div>
+        {% endif %}
+        {% if mt_setting.share_links_print_position == "bottom" and (mt_setting.share_links or mt_setting.print_button) %}
+          {{ attach_library('businessplus_lite/share-links') }}
+          {{ attach_library('businessplus_lite/fixed-share-links') }}
+          <div class="share-links">
+            <ul>
+              {% if mt_setting.share_links %}
+                <li class="facebook{{ (mt_setting.print_button) ? ' print-button-enabled' : '' }}">
+                  <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('entity.node.canonical', {'node': node.id}) }}&t={{node.label | url_encode(true)}}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                      <i class="fab fa-facebook"><span class="sr-only">facebook</span></i>
+                  </a>
+                </li>
+                <li class="twitter{{ (mt_setting.print_button) ? ' print-button-enabled' : '' }}">
+                  <a href="http://twitter.com/share?text={{node.label | url_encode(true)}}&url={{ url('entity.node.canonical', {'node': node.id}) }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                      <i class="fab fa-twitter"><span class="sr-only">twitter</span></i>
+                  </a>
+                </li>
+                <li class="email{{ (mt_setting.print_button) ? ' print-button-enabled' : '' }}">
+                  <a href="mailto:?Subject={{node.label | url_encode(true)}}&amp;Body={{ url('entity.node.canonical', {'node': node.id}) }}">
+                      <i class="far fa-envelope"><span class="sr-only">envelope</span></i>
+                  </a>
+                </li>
+              {% endif %}
+              {% if mt_setting.print_button %}
+                <li class="print{{ (mt_setting.share_links) ? ' share-links-enabled' : '' }}">
+                  <div class="print">
+                    <a href="javascript:window.print()" class="print-button">
+                      <i class="fas fa-print"><span class="sr-only">print</span></i>
+                    </a>
+                  </div>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        {% endif %}
+    </div>
+  {% endif %}
+{% endblock %}
+{% block meta_area %}
+  {{ title_prefix }}
+  {% if not page %}
+    <h2{{ title_attributes.addClass('node__title') }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+  {{ content.field_mt_subheader_body }}
+  {% if display_submitted or (node.comment and comment_count > 0) %}
+    <div class="node__meta">
+      {% if display_submitted %}
+        <span class="node__meta-item">
+          {{ date }}
+        </span>
+        <span{{ author_attributes.addClass('node__meta-user node__meta-item') }}>
+          {% trans %} By {{ author_name }}{% endtrans %}
+        </span>
+        {{ metadata }}
+      {% endif %}
+      {% if node.comment and comment_count > 0 %}
+        <div class="node__meta-item node__meta-comments">
+          {% trans %}
+            1 comment
+          {% plural comment_count %}
+            {{ comment_count }} comments
+          {% endtrans %}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endblock %}
+{% block content %}
+  {{ attach_library('businessplus_lite/node-article') }}
+  <div class="node__main-content-section">
+    {{ content|without('comment', 'links', 'field_mt_subheader_body', 'field_mt_banner_image') }}
+  </div>
+  {% if author_picture or node.Owner.field_mt_full_name.value or node.Owner.field_mt_signature.value %}
+    <div class="node__user-info clearfix">
+      {% if author_picture %}
+        <div class="user-picture">
+          <div{{ author_attributes.removeClass('node__meta-user node__meta-item') }}>
+            {{ author_picture }}
+          </div>
+        </div>
+      {% endif %}
+      {% if node.Owner.field_mt_full_name.value %}
+        <div class="user-full-name">
+          {{ node.Owner.field_mt_full_name.value }}
+        </div>
+      {% endif %}
+      {% if node.Owner.field_mt_signature.value %}
+        <div class="user-signature">
+          {{ node.Owner.field_mt_signature.value }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+  {{ content.links }}
+  {{ content.comment }}
+{% endblock %}

@@ -1,0 +1,21 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's language switcher.
+ */
+.block-language ul {
+  padding-left: 0;
+  list-style: none;
+}
+.block-language ul li {
+  padding: 5px 0 5px 20px;
+  position: relative;
+}
+.block-language ul li:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f0da";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  font-size: 14px
+}

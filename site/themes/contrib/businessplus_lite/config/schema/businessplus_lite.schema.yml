@@ -1,0 +1,5 @@
+# Schema for the configuration files of the Business+ Lite theme.
+
+businessplus_lite.settings:
+  type: theme_settings
+  label: 'Business+ Lite settings'

@@ -1,0 +1,14 @@
+/**
+ * @file
+ * Visual styles for Magazine+'s reading time component.
+ */
+.reading-time {
+  font-size: 15px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.reading-time__text {
+  font-weight: 400;
+  color: #505050;
+}

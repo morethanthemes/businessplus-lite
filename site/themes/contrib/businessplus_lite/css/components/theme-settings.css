@@ -1,0 +1,13 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's theme settings.
+ */
+.theme-settings-title {
+  font-weight: bold;
+}
+.theme-settings-title--premium-link {
+  font-size: 32px;
+  line-height: 1.4;
+  text-align: center;
+  padding: 50px 0;
+}

@@ -1,0 +1,93 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's inverted header.
+ */
+@media (min-width: 768px) {
+  /*layout*/
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header .header-top__container {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /*typography*/
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header .header-top__section,
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header .header {
+    color: #ffffff;
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header .header {
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header .header-top__section a,
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header .header a {
+    color: #ffffff;
+  }
+
+  /*site branding block*/
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header .site-slogan {
+    color: #ffffff;
+  }
+
+  /*menus*/
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ul.menu > li > a,
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ul.menu > li > span {
+    color: #ffffff;
+  }
+  .inverted-header-enabled:not(.onscroll) .header-container ul.menu > li > a:hover,
+  .inverted-header-enabled:not(.onscroll) .header-container .region--dark-typography ul.menu > li > a.is-active,
+  .inverted-header-enabled:not(.onscroll) .header-container .region--dark-typography ul.menu > li.active-trail > a {
+    color: #ffffff;
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ul.menu ul li > a,
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ul.menu ul li > span {
+    color: #575757;
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ul.menu > li > a:hover,
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ul.menu > li > span:hover {
+    color: #ffffff;
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ul.sf-menu > li > a .sf-sub-indicator:after {
+    color: #ffffff;
+  }
+
+  /*dropdowns*/
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header .dropdown-trigger {
+    border-color: rgba(255, 255, 255, 0.5)
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header .dropdown-menu {
+    background-color: transparent;
+    padding: 20px 0 0 0;
+    box-shadow: none;
+  }
+
+  /*forms*/
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header input.form-search {
+    background-color: transparent;
+    color: #ffffff;
+    box-shadow: none;
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ::-webkit-input-placeholder {
+    color: #ffffff;
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header :-moz-placeholder {
+    color: #ffffff;
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ::-moz-placeholder {
+    color: #ffffff;
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header :-ms-input-placeholder {
+    color: #ffffff;
+  }
+
+  /*icons list*/
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ul.icons-list.icons-list--bordered li a {
+    border-color: rgba(255, 255, 255, 0.50);
+  }
+  .inverted-header-enabled:not(.onscroll) .js-transparent-header ul.icons-list.icons-list--bordered li a:hover {
+    border-color: rgba(255, 255, 255, 1);
+    color: #ffffff;
+  }
+
+  /*on page scroll*/
+  .inverted-header-enabled.onscroll .js-transparent-header .header {
+    background-color: rgba(255, 255, 255, 0.95)!important;
+  }
+}

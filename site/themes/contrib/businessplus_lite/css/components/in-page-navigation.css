@@ -1,0 +1,25 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's in page navigation.
+ */
+body.in-page-navigation-active {
+  position: relative;
+}
+.header-container ul.in-page-navigation li a {
+  margin: 0 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent;
+  padding: 15px 15px 17px;
+}
+.header-container .region--light-typography ul.in-page-navigation li a.active,
+.header-container .region--light-typography ul.in-page-navigation li a:focus,
+.header-container .region--light-typography ul.in-page-navigation li a:hover {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ffffff;
+  background-color: #ffffff;
+  border-radius: 5px;
+  color: #424242;
+  opacity: 1;
+}

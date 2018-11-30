@@ -1,0 +1,61 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's subscribe forms.
+ */
+/*subscribe form*/
+.subscribe-form-text {
+  font-size: 22px;
+  padding-bottom: 0;
+}
+.subscribe-form .form-group {
+  display: block;
+  margin-bottom: 0;
+}
+.subscribe-form .form-item,
+.subscribe-form .form-actions {
+  margin: 0;
+}
+.subscribe-form input.form-text {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: 18px;
+  margin: 0;
+  min-height: 56px;
+}
+.subscribe-form input[type="submit"] {
+  margin: 0;
+  padding: 14px 15px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+@media (max-width: 575px) {
+  .subscribe-form {
+    margin-bottom: 50px;
+  }
+}
+
+/*subscribe full width*/
+.subscribe-full-width h4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.subscribe-full-width .form-text {
+  margin-top: 0;
+}
+.subscribe-full-width input[type="submit"] {
+  padding: 15px 25px;
+}
+.subscribe-full-width h4 .svg-inline--fa {
+  margin-right: 10px;
+}
+@media (min-width: 768px) {
+  .subscribe-full-width input[type="submit"] {
+    margin: 0;
+  }
+}
+@media (min-width: 992px) {
+  .subscribe-full-width h4 {
+    text-align: left;
+    margin: 15px 0;
+  }
+}

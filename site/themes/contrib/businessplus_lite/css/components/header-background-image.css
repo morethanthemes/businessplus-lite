@@ -1,0 +1,42 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's front page background.
+ */
+@media (min-width: 768px) {
+  .header-background-image-enabled:not(.onscroll) .header-container .header {
+    background-image: url(../../images/background-image-header.jpg);
+    background-position: 50% 50%;
+    border-bottom-color: transparent;
+    border-bottom-width: 0;
+  }
+  .header-background-image-enabled:not(.onscroll) .header-container .header:after {
+    background-color: rgba(0, 0, 0, 0.7);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .header-background-image-enabled:not(.onscroll) .header-container .sticky-wrapper {
+    position: relative;
+  }
+  .header-background-image-enabled:not(.fixed-header-enabled) .header-container .header {
+    position: relative;
+  }
+  .header-background-image-enabled:not(.onscroll) .header-container .header__container {
+    z-index: 1;
+  }
+  .header-background-image-enabled .background-image-area .header-container .header {
+    background-image: none;
+  }
+  .header-background-image-enabled .background-image-area .header-container .header:after {
+    background-color: transparent;
+  }
+  .header-background-image-enabled .header-container .region--light-typography .sf-menu > li a.is-active,
+  .header-background-image-enabled .header-container .region--light-typography .sf-menu > li.active-trail > a,
+  .header-background-image-enabled .header-container .region--light-typography .sf-menu > li.sfHover > a,
+  .header-background-image-enabled .header-container .region--light-typography .sf-menu > li > a:hover {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,62 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's node component.
+ */
+
+/*Node*/
+.node--view-mode-teaser {
+  padding: 0 0 30px 0;
+  margin-bottom: 40px;
+}
+.node__header {
+  padding: 0 0 5px;
+}
+.node__header .field--name-user-picture {
+  padding: 0 0 5px 0;
+  max-width: 55px;
+}
+.node__title {
+  font-size: 30px;
+  margin-top: 0px;
+}
+.node--view-mode-teaser .node__header h2 {
+  margin-bottom: 20px;
+}
+.node__links {
+  margin-top: 35px;
+}
+.node--view-mode-teaser .node__links {
+  margin-top: 15px;
+}
+.node__container {
+  position: relative;
+}
+.feed-icon {
+  display: block;
+  margin: 0px 0 60px;
+}
+
+/*Post submitted info*/
+.node__header .profile {
+  display: inline-block;
+  margin-right: 40px;
+}
+.node__header .profile img {
+  max-width: 40px;
+}
+.node__meta {
+  font-size: 14px;
+  margin: 0 0 10px;
+  display: inline-block;
+}
+.node__submitted-info ~ .comments-count__counter:before {
+  content: "-";
+}
+
+/* node statistics */
+.path-frontpage ul li.statistics-counter {
+  display: none;
+}
+.node--view-mode-teaser ul li.statistics-counter {
+  display: none;
+}

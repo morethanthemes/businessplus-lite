@@ -1,0 +1,426 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's icons list.
+ */
+ul.icons-list {
+  list-style: none;
+  margin: 0 -15px;
+  padding: 0;
+}
+ul.icons-list li {
+  display: inline-block;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+ul.icons-list li a {
+  display: block;
+}
+ul.icons-list li a:hover {
+  text-decoration: none;
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.header-top__section ul.icons-list li a {
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  -ms-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+ul.icons-list li .svg-inline--fa {
+  font-size: 23px;
+}
+ul.icons-list--small li .svg-inline--fa {
+  font-size: 16px;
+}
+ul.icons-list--large li .svg-inline--fa {
+  font-size: 28px;
+}
+ul.icons-list--extra-large li .svg-inline--fa {
+  font-size: 55px;
+}
+ul.icons-list.icons-list--bordered {
+  margin: 0 -5px;
+}
+ul.icons-list.icons-list--bordered li {
+  display: inline-block;
+  margin: 4px 5px;
+}
+ul.icons-list.icons-list--bordered li a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  color: #575757;
+  border-width: 1px;
+  border-color: #575757;
+  border-style: solid;
+}
+ul.icons-list.icons-list--bordered li .svg-inline--fa {
+  height: 100%;
+}
+ul.icons-list.icons-list--bordered li a:hover {
+  text-decoration: none;
+  -ms-transform: none;
+  -webkit-transform: none;
+  transform: none;
+}
+ul.icons-list.icons-list--bordered.icons-list--large li a {
+  width: 65px;
+  height: 65px;
+}
+ul.icons-list.icons-list--bordered.icons-list--extra-large li a {
+  width: 80px;
+  height: 80px;
+}
+ul.icons-list.icons-list--bordered.icons-list--extra-large li .svg-inline--fa {
+  font-size: 40px;
+}
+ul.icons-list.icons-list--no-margin {
+  font-size: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+ul.icons-list.icons-list--no-margin li {
+  margin: 0;
+}
+
+/*colored icons list*/
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-facebook {
+  border-color: #2f4b87;
+  background-color: #2f4b87;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-facebook {
+  border-color: #2f4b87;
+  background-color: #2f4b87;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-twitter {
+  border-color: #1da1f2;
+  background-color: #1da1f2;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-twitter {
+  border-color: #1da1f2;
+  background-color: #1da1f2;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-behance {
+  border-color: #1769ff;
+  background-color: #1769ff;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-behance {
+  border-color: #1769ff;
+  background-color: #1769ff;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-dribbble {
+  border-color: #ea4c89;
+  background-color: #ea4c89;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-dribbble {
+  border-color: #ea4c89;
+  background-color: #ea4c89;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-instagram {
+  border-color: #f56040;
+  background-color: #f56040;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-instagram {
+  border-color: #f56040;
+  background-color: #f56040;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-vimeo {
+  border-color: #1ab7ea;
+  background-color: #1ab7ea;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-vimeo {
+  border-color: #1ab7ea;
+  background-color: #1ab7ea;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-youtube {
+  border-color: #cd201f;
+  background-color: #cd201f;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-youtube {
+  border-color: #cd201f;
+  background-color: #cd201f;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-googleplus {
+  border-color: #d34836;
+  background-color: #d34836;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-googleplus {
+  border-color: #d34836;
+  background-color: #d34836;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-linkedin {
+  border-color: #0084bf;
+  background-color: #0084bf;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-linkedin {
+  border-color: #0084bf;
+  background-color: #0084bf;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-facebook:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-facebook:hover {
+  opacity: 0.9;
+  color: #ffffff;
+  border-color: transparent;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-twitter:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-twitter:hover {
+  opacity: 0.9;
+  color: #ffffff;
+  border-color: transparent;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-behance:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-behance:hover {
+  opacity: 0.9;
+  color: #ffffff;
+  border-color: transparent;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-dribbble:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-dribbble:hover {
+  opacity: 0.9;
+  color: #ffffff;
+  border-color: transparent;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-instagram:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-instagram:hover {
+  opacity: 0.9;
+  color: #ffffff;
+  border-color: transparent;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-vimeo:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-vimeo:hover {
+  opacity: 0.9;
+  color: #ffffff;
+  border-color: transparent;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-youtube:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-youtube:hover {
+  opacity: 0.9;
+  color: #ffffff;
+  border-color: transparent;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-googleplus:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-googleplus:hover {
+  opacity: 0.9;
+  color: #ffffff;
+  border-color: transparent;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-linkedin:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-linkedin:hover {
+  opacity: 0.9;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/*colored icons list inverted*/
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-facebook {
+  border-color: transparent;
+  color: #2f4b87;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-facebook {
+  border-color: #2f4b87;
+  background-color: #2f4b87;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-twitter {
+  border-color: transparent;
+  color: #1da1f2;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-twitter {
+  border-color: #1da1f2;
+  background-color: #1da1f2;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-behance {
+  border-color: transparent;
+  color: #1769ff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-behance {
+  border-color: #1769ff;
+  background-color: #1769ff;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-dribbble {
+  border-color: transparent;
+  color: #ea4c89;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-dribbble {
+  border-color: #ea4c89;
+  background-color: #ea4c89;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-instagram {
+  border-color: transparent;
+  color: #f56040;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-instagram {
+  border-color: #f56040;
+  background-color: #f56040;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-vimeo {
+  border-color: transparent;
+  color: #1ab7ea;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-vimeo {
+  border-color: #1ab7ea;
+  background-color: #1ab7ea;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-youtube {
+  border-color: transparent;
+  color: #cd201f;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-youtube {
+  border-color: #cd201f;
+  background-color: #cd201f;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-googleplus {
+  border-color: transparent;
+  color: #d34836;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-googleplus {
+  border-color: #d34836;
+  background-color: #d34836;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-linkedin {
+  border-color: transparent;
+  color: #0084bf;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-linkedin {
+  border-color: #0084bf;
+  background-color: #0084bf;
+  color: #ffffff;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-facebook:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-facebook:hover {
+  background-color: #2f4b87;
+  border-color: #2f4b87;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-facebook:hover {
+  opacity: 0.85;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-twitter:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-twitter:hover {
+  background-color: #1da1f2;
+  border-color: #1da1f2;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-twitter:hover {
+  opacity: 0.85;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-behance:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-behance:hover {
+  background-color: #1769ff;
+  border-color: #1769ff;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-behance:hover {
+  opacity: 0.85;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-dribbble:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-dribbble:hover {
+  background-color: #ea4c89;
+  border-color: #ea4c89;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-dribbble:hover {
+  opacity: 0.85;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-instagram:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-instagram:hover {
+  background-color: #f56040;
+  border-color: #f56040;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-instagram:hover {
+  opacity: 0.85;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-vimeo:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-vimeo:hover {
+  background-color: #1ab7ea;
+  border-color: #1ab7ea;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-vimeo:hover {
+  opacity: 0.85;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-youtube:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-youtube:hover {
+  background-color: #cd201f;
+  border-color: #cd201f;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-youtube:hover {
+  opacity: 0.85;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-googleplus:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-googleplus:hover {
+  background-color: #d34836;
+  border-color: #d34836;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-googleplus:hover {
+  opacity: 0.85;
+}
+.region--dark-typography .icons-list.icons-list--bordered li .background-color-inverted-linkedin:hover,
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-linkedin:hover {
+  background-color: #0084bf;
+  border-color: #0084bf;
+  color: #ffffff;
+}
+.region--light-typography .icons-list.icons-list--bordered li .background-color-inverted-linkedin:hover {
+  opacity: 0.85;
+}
+
+/*icons list @colored-region*/
+.region--light-typography ul.icons-list li a {
+  color: #ffffff;
+}
+.region--light-typography ul.icons-list li a:hover {
+  color: #ffffff;
+}
+.region--light-typography ul.icons-list.icons-list--bordered li a {
+  border-color: rgba(255, 255, 255, 0.50);
+}
+.region--light-typography ul.icons-list.icons-list--bordered li a:hover {
+  border-color: rgba(255, 255, 255, 0.20);
+}
+
+/*icons list at footer top region*/
+.footer-top__section.footer-top-second .icons-list {
+  text-align: right;
+}
+@media (max-width: 991px) {
+  .footer-top__section.footer-top-second .icons-list {
+    text-align: center;
+  } 
+}
+
+/*icons list at header top region*/
+.header-top__section ul.icons-list li .svg-inline--fa {
+  font-size: 20px;
+}

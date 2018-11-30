@@ -1,0 +1,137 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's contact info block.
+ */
+.contact-info .icon {
+  width: 90px;
+  height: 90px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  margin: 0 auto 30px;
+  text-align: center;
+  display: block;
+  color: #575757;
+  background: #ebebeb;
+}
+.contact-info .icon .svg-inline--fa {
+  font-size: 30px;
+  width: 100%;
+  height: 100%;
+  line-height: 92px;
+}
+.contact-info ul,
+ul.contact-info {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+.contact-info li {
+  overflow-wrap: break-word;
+  padding: 0 0 0 30px;
+  margin: 0 0 20px 0;
+  position: relative;
+}
+.contact-info li > .svg-inline--fa {
+  color: #878787;
+  position: absolute;
+  left: 0;
+  top: 5px;
+  font-size: 16px;
+  width: 22px;
+  text-align: left;
+}
+.slideout__section .contact-info li {
+  padding: 0 0 25px 25px;
+  min-height: 0;
+  position: relative;
+}
+.slideout__section .contact-info li > .svg-inline--fa {
+  top: 5px;
+  font-size: 15px;
+  line-height: 1;
+  width: 20px;
+  height: auto;
+  text-align: left;
+  color: #878787;
+  background-color: transparent;
+}
+
+/*colored regions*/
+.region--light-typography .contact-info .icon {
+  background-color: #ffffff;
+  color: #575757;
+}
+.region--light-typography .contact-info li .svg-inline--fa {
+  color: #ffffff;
+}
+.region--light-typography .slideout__section .contact-info li .svg-inline--fa {
+  background-color: transparent;
+}
+.region--light-typography.region--dark-background .slideout__section .contact-info li .svg-inline--fa,
+.region--light-typography.region--black-background .slideout__section .contact-info li .svg-inline--fa,
+.region--light-typography.region--colored-background .slideout__section .contact-info li .svg-inline--fa {
+  color: #ffffff;
+}
+
+/*contact info items grid*/
+.block + .block .contact-info-items-grid {
+  border-top-style: solid;
+  border-width: 2px;
+  border-color: #f2f4f6;
+  margin-top: 45px;
+  padding-top: 50px;
+}
+.contact-info-items-grid .contact-info-item {
+  min-height: 160px;
+  padding-top: 30px;
+}
+.contact-info-items-grid .contact-info-item.contact-info-item--bordered {
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #f2f4f6;
+}
+.contact-info-items-grid .contact-info-item__icon {
+  font-size: 50px;
+  margin-bottom: 15px;
+  line-height: 1;
+}
+.contact-info-items-grid .contact-info-item__text {
+  font-size: 20px;
+  line-height: 1.2;
+}
+.region--dark-typography .contact-info-items-grid .contact-info-item__icon {
+  color: #e6e6e6;
+}
+.region--light-typography .contact-info-items-grid .contact-info-item.contact-info-item--bordered,
+.region--light-typography .block + .block .contact-info-items-grid {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/*company info (header top)*/
+.company-info {
+  padding-top: 10px;
+}
+@media (max-width: 767px) {
+  .company-info {
+    padding-bottom: 10px;
+  }
+}
+
+/*company info (footer top)*/
+.contact-info__text-primary {
+  font-size: 40px;
+  margin: 0 0 10px 0;
+}
+.contact-info__text-secondary {
+  font-size: 30px;
+  margin: 10px 0 10px 0;
+}
+@media (max-width: 575px) {
+  .contact-info__text-primary {
+    font-size: 24px;
+  }
+  .contact-info__text-secondary {
+    font-size: 20px;
+  }
+}

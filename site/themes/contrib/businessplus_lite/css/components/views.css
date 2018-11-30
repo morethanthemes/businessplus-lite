@@ -1,0 +1,105 @@
+/**
+ * @file
+ * Visual styles for Business+'s views.
+ */
+.views-field-title a {
+  display: block;
+}
+
+/*more links*/
+.view > .more-link a {
+  margin: 0 0 10px 0px;
+  display: inline-block;
+  background-color: transparent;
+  padding:0;
+  text-align: left;
+  border: none;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 18px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+.region--dark-typography .view > .more-link a {
+  color: #000000;
+}
+.region--dark-background .view > .more-link a,
+.region--colored-background .view > .more-link a {
+  border-color: #000000;
+}
+.region--dark-typography .view > .more-link a:hover {
+  color: #000000;
+  border-color: transparent;
+}
+.region--light-typography .view > .more-link a {
+  border-color: #ffffff;
+}
+.region--light-typography .view > .more-link a:hover {
+  border-color: transparent;
+}
+.headings-wide-spacing-enabled .view > .more-link a {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.col-12 .view > .more-link {
+  text-align: center;
+}
+.col-12 .view > .more-link a {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 16px 30px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1;
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin: 10px 0;
+  text-align: center;
+  background-color: transparent;
+}
+.col-12 .view > .more-link a:hover,
+.col-12 .view > .more-link a:focus {
+  color: #ffffff;
+}
+.col-12 .view > .more-link a:after {
+  content: "";
+}
+.region--dark-background .col-12 .view > .more-link a:hover,
+.region--dark-background .col-12 .view > .more-link a:focus {
+  background: #ffffff;
+  color: #424242;
+}
+.region--colored-background .col-12 .view > .more-link a {
+  background: #ffffff;
+  color: #424242;
+}
+.region--colored-background .col-12 .view > .more-link a:hover,
+.region--colored-background .col-12 .view > .more-link a:focus {
+  color: #ffffff;
+}
+
+/*more links @sidebars and footer regions*/
+.footer__section .view > .more-link a {
+  margin: 10px 0 0;
+  text-transform: none;
+}
+
+/*clear grid floats*/
+.view.row .view-content:before,
+.view.row .view-content:after {
+  display: table;
+  content: " ";
+}
+.view.row .view-content:after {
+  clear: both;
+}

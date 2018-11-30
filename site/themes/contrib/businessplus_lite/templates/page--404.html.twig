@@ -1,0 +1,26 @@
+{% extends "page.html.twig" %}
+{% block main_content %}
+  <div {{ main_content_id ? ('id="' ~ main_content_id ~ '"') | raw : ''}} class="clearfix main-content region--dark-typography region--white-background  {{ main_content_separator }}">
+    <div class="container">
+      <div class="clearfix main-content__container">
+        <div class="row">
+          <section class="col-12 col-xl-8 ml-xl-auto mr-xl-auto">
+            {# main #}
+            <div class="clearfix main-content__section{{ (main_content_animations == "enabled") ? ' mt-no-opacity' : '' }}{{ (main_content_blocks_paddings) ? ' region--no-block-paddings' : '' }}{{ (main_content_region_paddings) ? ' region--no-paddings' : '' }}"
+              {% if main_content_animations == "enabled" %}
+                data-animate-effect="{{ main_content_animation_effect }}"
+              {% endif %}>
+              <h1 class="title page-title">{{ 'Whooops!'|t }}</h1>
+              <div class="text-center">{{ 'The page you are looking for was either removed or no longer exists.'|t }}</div>
+                <div class="text-center mt-5">
+                  <a class="button" href="{{ url('<front>') }}">{{ 'Go Home'|t }}</a>
+                </div>
+              </div>
+            </div>
+            {# EOF:main #}
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

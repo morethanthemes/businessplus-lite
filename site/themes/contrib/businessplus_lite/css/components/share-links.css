@@ -1,0 +1,68 @@
+/**
+ * @file
+ * Visual styles for Magazine+'s share links component.
+ */
+.share-links {
+  margin-bottom: 20px;
+  width: 100%;
+}
+.share-links ul {
+  list-style: none;
+  padding-left: 0;
+}
+.share-links ul li {
+  margin-bottom: 10px;
+  white-space: normal;
+}
+.share-links ul li .svg-inline--fa {
+  margin-right: 0;
+}
+.share-links ul li a {
+  line-height: 1;
+  white-space: normal;
+  display: block;
+  text-align: center;
+  padding: 15px 0;
+  background-color: #f4f4f4;
+  font-size: 14px;
+}
+.share-links ul li a:hover {
+  color: #ffffff;
+}
+
+/*fixed share links*/
+.js-share-links-fixed .main-content__section {
+  position: relative;
+  z-index: 1;
+}
+.js-share-links-fixed .share-links {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0;
+  z-index: 10;
+}
+.js-share-links-fixed .share-links ul {
+  margin-bottom: 0;
+  width: 100%;
+  font-size: 0;
+}
+.js-share-links-fixed .share-links ul li {
+  display: inline-block;
+  width: 33.33333%;
+  margin-bottom: 0;
+}
+.js-share-links-fixed .share-links ul li.print {
+  width: 100%;
+}
+.js-share-links-fixed .share-links ul li.print-button-enabled,
+.js-share-links-fixed .share-links ul li.share-links-enabled {
+  width: 25%;
+}
+.js-share-links-fixed .share-links ul li a {
+  padding: 25px 0;
+  font-size: 20px;
+}
+.js-share-links-fixed .share-links ul li a:hover {
+  color: #ffffff;
+}

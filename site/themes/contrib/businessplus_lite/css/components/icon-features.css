@@ -1,0 +1,57 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's icon features.
+ */
+.feature {
+  margin: 25px 0;
+}
+.feature__icon {
+  width: 165px;
+  height: 100px;
+  display: block;
+  text-align: center;
+  margin: 0 0 20px;
+  border-color: transparent;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+.feature__icon:before {
+  content: "";
+  width: 90px;
+  height: 90px;
+  -webkit-transform: skew(-20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
+  background-color: #f3f3f3;
+  position: absolute;
+  top: 0px;
+  left: 13px;
+  z-index: -1;
+  border-radius: 10px;
+}
+@media (max-width: 767px) {
+  .feature__icon {
+    margin: 0 auto 20px;
+  }
+}
+.region--light-typography .feature__icon:before {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.feature__icon .field--name-field-mt-if-fa-icon,
+.feature__icon .fontawesome-icons,
+.feature__icon .fontawesome-icon,
+.feature__icon .svg-inline--fa {
+  height: 100%;
+}
+.feature__title {
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.feature__image {
+  margin-bottom: 30px;
+}

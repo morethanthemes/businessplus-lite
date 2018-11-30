@@ -1,0 +1,94 @@
+/**
+ * @file
+ * Visual styles for taxonomy terms in Business+ Lite.
+ */
+.field--entity-reference-target-type-taxonomy-term,
+.field--entity-reference-target-type-taxonomy-term.field__item {
+  margin: 20px 0;
+  position: relative;
+  padding-left: 30px;
+  padding-top: 8px;
+}
+.field--entity-reference-target-type-taxonomy-term:before,
+.field--entity-reference-target-type-taxonomy-term.field__item:before {
+  content: "\f3fa";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  left: 1px;
+  padding-left: 0px;
+  font-size: 16px;
+  position: absolute;
+  top: 17px;
+}
+.field--entity-reference-target-type-taxonomy-term.field--label-hidden:before,
+.field--entity-reference-target-type-taxonomy-term.field--label-hidden.field__item:before {
+  top: 10px;
+}
+.field--entity-reference-target-type-taxonomy-term.field--label-inline:before,
+.field--entity-reference-target-type-taxonomy-term.field--label-inline.field__item:before {
+  top: 12px;
+}
+
+/*taxonomy terms icon when label is above*/
+.field--label-above.field--entity-reference-target-type-taxonomy-term {
+  padding-left: 0;
+}
+.field--label-above.field--entity-reference-target-type-taxonomy-term:before {
+  content: "";
+  font-family: "";
+}
+.field--label-above.field--entity-reference-target-type-taxonomy-term .field__label {
+  position: relative;
+}
+.field--label-above.field--entity-reference-target-type-taxonomy-term .field__label:before {
+  content: "\f3fa";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  padding-right: 10px;
+  margin-left: 1px;
+}
+
+/*taxonomy terms icon when label is inline*/
+.field--label-inline.field--entity-reference-target-type-taxonomy-term .field__items:before,
+.field--label-inline.field--entity-reference-target-type-taxonomy-term > .field__item:before {
+  top: 20px;
+}
+.field--label-inline.field--entity-reference-target-type-taxonomy-term .field__label {
+  position: relative;
+  top: 3px;
+}
+
+/*taxonomy terms*/
+.field--entity-reference-target-type-taxonomy-term + .field--entity-reference-target-type-taxonomy-term {
+  margin-top: 0;
+}
+.field--entity-reference-target-type-taxonomy-term .field__item {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 2px 5px 0;
+}
+.field--entity-reference-target-type-taxonomy-term.field--label-inline .field__item {
+  margin: 3px 2px 3px 0;
+}
+.field--entity-reference-target-type-taxonomy-term .field__item a,
+.field--entity-reference-target-type-taxonomy-term.field__item a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 16px;
+}
+.field--entity-reference-target-type-taxonomy-term .field__item a:hover,
+.field--entity-reference-target-type-taxonomy-term.field__item a:hover {
+  text-decoration: underline;
+}
+.field--entity-reference-target-type-taxonomy-term .field__item a:after {
+  content: ",";
+}
+.field--entity-reference-target-type-taxonomy-term .field__item:last-child a:after {
+  content: "";
+}
+.field--name-field-mt-affiliation-image {
+  margin-bottom: 30px;
+}
+.vocabulary-mt-affiliations {
+  margin-bottom: 50px;
+}

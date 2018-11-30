@@ -1,0 +1,68 @@
+/**
+ * @file
+ * Visual styles for Business+ Lite's scroll to top button.
+ */
+.to-top {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 45px;
+  height: 45px;
+  color: #ffffff;
+  border-width: 0px;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  transition: all 0.4s;
+  z-index: 100;
+}
+.to-top:hover {
+  background-color: #ffffff;
+}
+.page-container-border-enabled .to-top {
+  right: 30px;
+  bottom: 20px;
+}
+.to-top.show {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.to-top .svg-inline--fa {
+  height: 100%;
+  font-size: 16px;
+}
+@media (min-width: 992px) {
+  .to-top {
+    width: 55px;
+    height: 55px;
+    right: 30px;
+    bottom: 30px;
+  }
+  .page-container-border-enabled .to-top {
+    right: 45px;
+    bottom: 30px;
+  }
+  .to-top .svg-inline--fa {
+    font-size: 24px;
+  }
+}

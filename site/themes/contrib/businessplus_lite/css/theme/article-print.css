@@ -1,0 +1,40 @@
+.page-node-type-article .pre-header,
+.page-node-type-article .header-container,
+.page-node-type-article .banner,
+.page-node-type-article .highlighted-top,
+.page-node-type-article .highlighted,
+.page-node-type-article .content-top,
+.page-node-type-article .content-top-highlighted,
+.page-node-type-article .media-background,
+.page-node-type-article .content-bottom,
+.page-node-type-article .featured-top,
+.page-node-type-article .featured,
+.page-node-type-article .featured-bottom,
+.page-node-type-article .sub-featured,
+.page-node-type-article .footer-top,
+.page-node-type-article .footer,
+.page-node-type-article .footer-bottom,
+.page-node-type-article .subfooter,
+.page-node-type-article #toolbar,
+.page-node-type-article .block-local-tasks-block,
+.page-node-type-article .field--type-comment,
+.page-node-type-article aside,
+.page-node-type-article .slideout,
+.page-node-type-article .slideout-toggle {
+  display: none!important;
+}
+.page-node-type-article .main-content .col-md-8 {
+  width: 100%;
+}
+.page-node-type-article .node__side {
+  display: none!important;
+}
+.page-node-type-article .main-content__section {
+  padding-top: 0;
+}
+.page-node-type-article blockquote {
+  border: none;
+}
+a.image-popup[href]:after {
+  content: none;
+}
