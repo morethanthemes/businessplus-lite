@@ -160,9 +160,6 @@
   overflow-y: hidden;
   min-height: 270px;
 }
-.path-frontpage .banner {
-  padding: 30px 0;
-}
 .banner:after {
   position: absolute;
   background-image: url(../../images/banner-separator.svg);
@@ -176,10 +173,6 @@
   background: url(../../images/banner-separator.svg) repeat-x center top, -webkit-linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,0) 100px, rgba(255,255,255,1) 100px, rgba(255,255,255,1) 100%);
   background: url(../../images/banner-separator.svg) repeat-x center top, -o-linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,0) 100px, rgba(255,255,255,1) 100px, rgba(255,255,255,1) 100%);
   background: url(../../images/banner-separator.svg) repeat-x center top, linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,0) 100px, rgba(255,255,255,1) 100px, rgba(255,255,255,1) 100%);
-}
-.path-frontpage .banner:after {
-  height: 100%;
-  top: 0;
 }
 .banner__container {
   position: relative;

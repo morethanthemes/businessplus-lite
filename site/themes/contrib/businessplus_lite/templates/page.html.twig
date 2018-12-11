@@ -70,11 +70,6 @@
  * @see html.html.twig
  */
 #}
-<style>
-  .path-frontpage .banner:after {
-    top: {{ front_page_banner_separator_position }}px;
-  }
-</style>
 {% if page.slideout %}
   {# slideout #}
   <div class="clearfix slideout {{ slideout_background_color }}{{ (slideout_blocks_paddings) ? ' region--no-block-paddings' : '' }}{{ (slideout_region_paddings) ? ' region--no-paddings' : '' }}">

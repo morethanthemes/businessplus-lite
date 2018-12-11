@@ -220,10 +220,6 @@ function businessplus_lite_preprocess_page(&$variables) {
     $variables['#attached']['library'][] = 'businessplus_lite/slideout-init';
   }
 
-  // Front Page banner separator position
-  $front_page_banner_separator_position = (int) theme_get_setting('front_page_banner_separator_position');
-  $variables['front_page_banner_separator_position'] = $front_page_banner_separator_position;
-
   // Insert variables into the page template.
 
   // Header Top Highlighted
