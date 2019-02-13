@@ -146,7 +146,7 @@ function businessplus_lite_preprocess_html(&$variables) {
   }
 
   // Add page-node-id class to body
-  if ($node = \Drupal::request()->attributes->get('node')) {
+  if ($node = \Drupal::request()->attributes->get('node') && $node instanceof \Drupal\node\NodeInterface) {
     $variables['attributes']['class'][] = 'page-node-' . $node->id();
   }
 
@@ -691,7 +691,7 @@ function businessplus_lite_preprocess_page(&$variables) {
 
 function businessplus_lite_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   // Add content type suggestions.
-  if ($node = \Drupal::request()->attributes->get('node')) {
+  if ($node = \Drupal::request()->attributes->get('node') && $node instanceof \Drupal\node\NodeInterface) {
     array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
   }
 
