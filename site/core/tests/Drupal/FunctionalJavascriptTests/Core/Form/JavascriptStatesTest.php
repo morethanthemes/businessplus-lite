@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\FunctionalJavascriptTests\Core\Form;
 
 use Drupal\filter\Entity\FilterFormat;
@@ -85,6 +87,10 @@ class JavascriptStatesTest extends WebDriverTestBase {
     $this->assertNotEmpty($textfield_invisible_element);
     $textfield_required_element = $page->findField('textfield_required_when_checkbox_trigger_checked');
     $this->assertNotEmpty($textfield_required_element);
+    $textfield_readonly_element = $page->findField('textfield_readonly_when_checkbox_trigger_checked');
+    $this->assertNotEmpty($textfield_readonly_element);
+    $textarea_readonly_element = $page->findField('textarea_readonly_when_checkbox_trigger_checked');
+    $this->assertNotEmpty($textarea_readonly_element);
     $details = $this->assertSession()->elementExists('css', '#edit-details-expanded-when-checkbox-trigger-checked');
     $textfield_in_details = $details->findField('textfield_in_details');
     $this->assertNotEmpty($textfield_in_details);
@@ -98,6 +104,7 @@ class JavascriptStatesTest extends WebDriverTestBase {
     $this->assertNotEmpty($text_format_invisible_value);
     $text_format_invisible_format = $page->findField('text_format_invisible_when_checkbox_trigger_checked[format]');
     $this->assertNotEmpty($text_format_invisible_format);
+    $link = $page->findLink('Link states test');
 
     $checkboxes_all_checked_element_value1 = $page->findField('checkboxes_all_checked_when_checkbox_trigger_checked[value1]');
     $this->assertNotEmpty($checkboxes_all_checked_element_value1);
@@ -151,6 +158,8 @@ class JavascriptStatesTest extends WebDriverTestBase {
     $this->assertFalse($details->hasAttribute('open'));
     $this->assertFalse($textfield_in_details->isVisible());
     $this->assertFalse($textfield_required_element->hasAttribute('required'));
+    $this->assertFalse($textfield_readonly_element->hasAttribute('readonly'));
+    $this->assertFalse($textarea_readonly_element->hasAttribute('readonly'));
     $this->assertFalse($checkbox_checked_element->isChecked());
     $this->assertTrue($checkbox_unchecked_element->isChecked());
     $this->assertFalse($checkbox_visible_element->isVisible());
@@ -174,12 +183,16 @@ class JavascriptStatesTest extends WebDriverTestBase {
     $this->assertFalse($radios_all_disabled_value2->hasAttribute('disabled'));
     $this->assertFalse($radios_some_disabled_value1->hasAttribute('disabled'));
     $this->assertFalse($radios_some_disabled_value2->hasAttribute('disabled'));
+    // Check if the link is visible.
+    $this->assertTrue($link->isVisible());
 
     // Change state: check the checkbox.
     $trigger->check();
     // Verify triggered state.
     $this->assertFalse($textfield_invisible_element->isVisible());
     $this->assertEquals('required', $textfield_required_element->getAttribute('required'));
+    $this->assertTrue($textfield_readonly_element->hasAttribute('readonly'));
+    $this->assertTrue($textarea_readonly_element->hasAttribute('readonly'));
     $this->assertTrue($details->hasAttribute('open'));
     $this->assertTrue($textfield_in_details->isVisible());
     $this->assertTrue($checkbox_checked_element->isChecked());
@@ -211,6 +224,8 @@ class JavascriptStatesTest extends WebDriverTestBase {
     // Only value1 should be disabled, value 2 should remain enabled.
     $this->assertTrue($radios_some_disabled_value1->hasAttribute('disabled'));
     $this->assertFalse($radios_some_disabled_value2->hasAttribute('disabled'));
+    // The link shouldn't be visible.
+    $this->assertFalse($link->isVisible());
 
     // Change state: uncheck the checkbox.
     $trigger->uncheck();
@@ -219,6 +234,8 @@ class JavascriptStatesTest extends WebDriverTestBase {
     $this->assertFalse($details->hasAttribute('open'));
     $this->assertFalse($textfield_in_details->isVisible());
     $this->assertFalse($textfield_required_element->hasAttribute('required'));
+    $this->assertFalse($textfield_readonly_element->hasAttribute('readonly'));
+    $this->assertFalse($textarea_readonly_element->hasAttribute('readonly'));
     $this->assertFalse($checkbox_checked_element->isChecked());
     $this->assertTrue($checkbox_unchecked_element->isChecked());
     $this->assertFalse($checkbox_visible_element->isVisible());
@@ -242,6 +259,8 @@ class JavascriptStatesTest extends WebDriverTestBase {
     $this->assertFalse($radios_all_disabled_value2->hasAttribute('disabled'));
     $this->assertFalse($radios_some_disabled_value1->hasAttribute('disabled'));
     $this->assertFalse($radios_some_disabled_value2->hasAttribute('disabled'));
+    // Check if the link is turned back to visible state.
+    $this->assertTrue($link->isVisible());
   }
 
   /**

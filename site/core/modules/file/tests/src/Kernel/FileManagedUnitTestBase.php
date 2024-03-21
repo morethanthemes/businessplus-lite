@@ -23,7 +23,7 @@ abstract class FileManagedUnitTestBase extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     // Clear out any hook calls.
     file_test_reset();
@@ -97,7 +97,7 @@ abstract class FileManagedUnitTestBase extends KernelTestBase {
         $message = new FormattableMarkup('hook_file_@name was expected to be called %expected times but was called %actual times.', ['@name' => $hook, '%expected' => $expected_count, '%actual' => $actual_count]);
       }
     }
-    $this->assertEquals($expected_count, $actual_count, $message);
+    $this->assertEquals($expected_count, $actual_count, (string) $message);
   }
 
   /**

@@ -404,12 +404,14 @@ function &libraries_info($name = NULL) {
     $libraries = [];
     // Gather information from hook_libraries_info().
     $module_handler = \Drupal::moduleHandler();
-    foreach ($module_handler->getImplementations('libraries_info') as $module) {
-      foreach ($module_handler->invoke($module, 'libraries_info') as $machine_name => $properties) {
+    $hook = 'libraries_info';
+    $module_handler->invokeAllWith($hook, function (callable $hook, string $module) use ($module_handler, &$libraries) {
+
+      foreach ((array) $module_handler->invoke($module, 'libraries_info') as $machine_name => $properties) {
         $properties['module'] = $module;
         $libraries[$machine_name] = $properties;
       }
-    }
+    });
     // Gather information from hook_libraries_info() in enabled themes.
     // @see drupal_alter()
     global $theme, $base_theme_info;

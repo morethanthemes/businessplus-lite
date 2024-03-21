@@ -1,8 +1,8 @@
-(function ($, Drupal, drupalSettings) {
+(function ($, Drupal, drupalSettings, once) {
   Drupal.behaviors.mtowlCarouselFeaturesSlideshow = {
     attach: function (context, settings) {
-      $(context).find('.mt-features-slideshow').once('mtowlCarouselFeaturesSlideshowInit').each(function() {
-        $(this).owlCarousel({
+      once('mtowlCarouselFeaturesSlideshowInit', ".mt-features-slideshow", context).forEach(function(item) {
+        $(item).owlCarousel({
           items: 1,
           responsive:{
             0:{
@@ -34,4 +34,4 @@
       });
     }
   };
-})(jQuery, Drupal, drupalSettings);
+})(jQuery, Drupal, drupalSettings, once);

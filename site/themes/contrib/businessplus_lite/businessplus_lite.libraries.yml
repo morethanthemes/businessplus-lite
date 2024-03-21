@@ -162,7 +162,7 @@ waypoints:
   dependencies:
     - core/jquery
     - core/drupal
-    - core/jquery.once
+    - core/once
 
 waypoints-sticky:
   version: 4.0.1
@@ -195,7 +195,7 @@ magnific-popup:
   dependencies:
     - core/jquery
     - core/drupal
-    - core/jquery.once
+    - core/once
 
 magnific-popup-field-image-init:
   version: VERSION
@@ -233,7 +233,7 @@ flexslider-in-page-init:
     - businessplus_lite/flexslider-global
     - core/drupalSettings
     - core/drupal
-    - core/jquery.once
+    - core/once
 
 owl-carousel:
   version: 2.2.1
@@ -254,7 +254,7 @@ owl-carousel-global:
   dependencies:
     - businessplus_lite/owl-carousel
     - core/drupal
-    - core/jquery.once
+    - core/once
 
 owl-carousel-testimonials-init:
   version: VERSION
@@ -322,7 +322,7 @@ tooltip:
   dependencies:
     - core/jquery
     - core/drupal
-    - core/jquery.once
+    - core/once
 
 node:
   version: VERSION

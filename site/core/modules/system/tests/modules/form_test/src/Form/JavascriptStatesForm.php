@@ -4,6 +4,7 @@ namespace Drupal\form_test\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * Builds a simple form to test states.
@@ -127,6 +128,24 @@ class JavascriptStatesForm extends FormBase {
       '#title' => 'Textfield required when checkbox trigger checked',
       '#states' => [
         'required' => [
+          ':input[name="checkbox_trigger"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['textfield_readonly_when_checkbox_trigger_checked'] = [
+      '#type' => 'textfield',
+      '#title' => 'Textfield readonly when checkbox trigger checked',
+      '#states' => [
+        'readonly' => [
+          ':input[name="checkbox_trigger"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['textarea_readonly_when_checkbox_trigger_checked'] = [
+      '#type' => 'textarea',
+      '#title' => 'Textarea readonly when checkbox trigger checked',
+      '#states' => [
+        'readonly' => [
           ':input[name="checkbox_trigger"]' => ['checked' => TRUE],
         ],
       ],
@@ -526,6 +545,18 @@ class JavascriptStatesForm extends FormBase {
         ],
       ],
     ];
+
+    $form['link'] = [
+      '#type' => 'link',
+      '#title' => 'Link states test',
+      '#url' => Url::fromRoute('<front>'),
+      '#states' => [
+        'visible' => [
+          ':input[name="checkbox_trigger"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+
     return $form;
   }
 

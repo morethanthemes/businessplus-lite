@@ -20,7 +20,6 @@ services:
       - '@config.factory'
       - '@serialization.json'
       - '@http_client'
-      - '@serialization.json'
   # If you instead want to check your library definitions into version control
   # and use YAML for them instead of JSON, you can place the following service
   # definition in your site's services.yml file:
