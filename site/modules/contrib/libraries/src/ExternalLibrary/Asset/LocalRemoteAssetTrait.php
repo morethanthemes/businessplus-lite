@@ -42,8 +42,8 @@ trait LocalRemoteAssetTrait {
     /** @var \Drupal\libraries\ExternalLibrary\Local\LocalLibraryInterface|\Drupal\libraries\ExternalLibrary\Remote\RemoteLibraryInterface $this */
     if ($this->isInstalled()) {
       // LocalLibraryInterface::getLocalPath() returns the path relative to the
-      // app root. In order for the core core asset system to register the path
-      // as relative to the app root, a leading slash is required.
+      // app root. In order for the core asset system to register the path as
+      // relative to the app root, a leading slash is required.
       /** @see \Drupal\Core\Asset\LibraryDiscoveryParser::buildByExtension() */
       return '/' . $this->getLocalPath();
     }
@@ -51,7 +51,9 @@ trait LocalRemoteAssetTrait {
       return $this->getRemoteUrl();
     }
     else {
-      // @todo Throw an exception.
+      throw new \Exception(
+        "Library path isn't set and library doesn't have remote url."
+      );
     }
   }
 

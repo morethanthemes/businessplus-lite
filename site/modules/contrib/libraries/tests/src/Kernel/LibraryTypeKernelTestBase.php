@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\libraries\Kernel;
 
+use Prophecy\PhpUnit\ProphecyTrait;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\libraries\ExternalLibrary\Exception\LibraryDefinitionNotFoundException;
@@ -14,6 +15,7 @@ use Drupal\libraries\ExternalLibrary\Type\LibraryTypeInterface;
  */
 abstract class LibraryTypeKernelTestBase extends KernelTestBase {
 
+  use ProphecyTrait;
   /**
    * The external library manager.
    *
@@ -38,7 +40,7 @@ abstract class LibraryTypeKernelTestBase extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['libraries', 'libraries_test'];
+  protected static $modules = ['libraries', 'libraries_test'];
 
   /**
    * Gets the ID of the library type that is being tested.
@@ -50,7 +52,7 @@ abstract class LibraryTypeKernelTestBase extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     /** @var \Drupal\Core\Extension\ModuleHandlerInterface $module_handler */

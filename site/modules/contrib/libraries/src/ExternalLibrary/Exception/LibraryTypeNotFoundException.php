@@ -8,7 +8,7 @@ use Drupal\libraries\ExternalLibrary\Utility\LibraryIdAccessorInterface;
 /**
  * Provides an exception for a library definition without a type declaration.
  */
-class LibraryTypeNotFoundException extends \RuntimeException implements LibraryAccessorInterface {
+class LibraryTypeNotFoundException extends \RuntimeException implements LibraryIdAccessorInterface {
 
   use LibraryIdAccessorTrait;
 

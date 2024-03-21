@@ -15,7 +15,7 @@ class GlobalLocatorTest extends LibraryTypeKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     // Assign our test stream (which points to the test php lib) to the asset
     // scheme. This gives us a scheme to work with in the test that is not

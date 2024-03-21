@@ -2,6 +2,7 @@
 
 namespace Drupal\libraries\Plugin\libraries\Locator;
 
+use Drupal\Core\StreamWrapper\LocalStream;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
 use Drupal\libraries\ExternalLibrary\Local\LocalLibraryInterface;
@@ -73,7 +74,7 @@ class UriLocator implements LocatorInterface, ContainerFactoryPluginInterface {
   public function locate(LocalLibraryInterface $library) {
     /** @var \Drupal\Core\StreamWrapper\LocalStream $stream_wrapper */
     $stream_wrapper = $this->streamWrapperManager->getViaUri($this->uri);
-    assert('$stream_wrapper instanceof \Drupal\Core\StreamWrapper\LocalStream');
+    assert($stream_wrapper instanceof LocalStream);
     // Calling LocalStream::getDirectoryPath() explicitly avoids the realpath()
     // usage in LocalStream::getLocalPath(), which breaks if Libraries API is
     // symbolically linked into the Drupal installation.

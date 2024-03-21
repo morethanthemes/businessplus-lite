@@ -23,6 +23,13 @@ class PhpFileLibraryType extends LibraryTypeBase implements LibraryLoadingListen
   protected $phpFileLoader;
 
   /**
+   * A list of already loaded libraries.
+   *
+   * @var \Drupal\libraries\ExternalLibrary\LibraryInterface[]
+   */
+  protected $loadedLibraries = [];
+
+  /**
    * Constructs the PHP file library type.
    *
    * @param string $plugin_id
@@ -63,9 +70,12 @@ class PhpFileLibraryType extends LibraryTypeBase implements LibraryLoadingListen
    */
   public function onLibraryLoad(LibraryInterface $library) {
     /** @var \Drupal\libraries\ExternalLibrary\PhpFile\PhpFileLibraryInterface $library */
-    // @todo Prevent loading a library multiple times.
-    foreach ($library->getPhpFiles() as $file) {
-      $this->phpFileLoader->load($file);
+    // Check if library was already loaded to prevent loading it multiple times.
+    if (!in_array($library, $this->loadedLibraries)) {
+      foreach ($library->getPhpFiles() as $file) {
+        $this->phpFileLoader->load($file);
+      }
+      $this->loadedLibraries[] = $library;
     }
   }
 

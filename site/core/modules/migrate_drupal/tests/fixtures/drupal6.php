@@ -1,5 +1,5 @@
 <?php
-// @codingStandardsIgnoreFile
+// phpcs:ignoreFile
 /**
  * @file
  * A database agnostic dump for testing purposes.
@@ -1222,13 +1222,13 @@ $connection->insert('boxes')
 ))
 ->values(array(
   'bid' => '1',
-  'body' => '<h3>My first custom block body</h3>',
+  'body' => '<h3>My first content block body</h3>',
   'info' => 'My block 1',
   'format' => '2',
 ))
 ->values(array(
   'bid' => '2',
-  'body' => '<h3>My second custom block body</h3>',
+  'body' => '<h3>My second content block body</h3>',
   'info' => 'My block 2',
   'format' => '2',
 ))
@@ -2274,6 +2274,20 @@ $connection->insert('content_field_image')
   'field_image_list' => '1',
   'field_image_data' => 'a:2:{s:3:"alt";s:0:"";s:5:"title";s:0:"";}',
 ))
+->values(array(
+  'vid' => '5',
+  'nid' => '1',
+  'field_image_fid' => '2',
+  'field_image_list' => '1',
+  'field_image_data' => 'a:2:{s:3:"alt";s:0:"";s:5:"title";s:0:"";}',
+))
+->values(array(
+  'vid' => '2001',
+  'nid' => '1',
+  'field_image_fid' => '2',
+  'field_image_list' => '1',
+  'field_image_data' => 'a:2:{s:3:"alt";s:0:"";s:5:"title";s:0:"";}',
+))
 ->execute();
 $connection->schema()->createTable('content_field_multivalue', array(
   'fields' => array(
@@ -2337,6 +2351,89 @@ $connection->insert('content_field_multivalue')
   'delta' => '1',
 ))
 ->execute();
+$connection->schema()->createTable('content_field_node_reference', array(
+  'fields' => array(
+    'vid' => array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'size' => 'normal',
+      'default' => '0',
+      'unsigned' => TRUE,
+    ),
+    'nid' => array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'size' => 'normal',
+      'default' => '0',
+      'unsigned' => TRUE,
+    ),
+    'delta' => array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'size' => 'normal',
+      'default' => '0',
+      'unsigned' => TRUE,
+    ),
+    'field_node_reference_nid' => array(
+      'type' => 'int',
+      'not null' => FALSE,
+      'size' => 'normal',
+      'unsigned' => TRUE,
+    ),
+  ),
+  'primary key' => array(
+    'vid',
+    'delta',
+  ),
+  'indexes' => array(
+    'nid' => array(
+      'nid',
+    ),
+    'field_node_reference_nid' => array(
+      'field_node_reference_nid',
+    ),
+  ),
+  'mysql_character_set' => 'utf8',
+));
+
+$connection->insert('content_field_node_reference')
+->fields(array(
+  'vid',
+  'nid',
+  'delta',
+  'field_node_reference_nid',
+))
+->values(array(
+  'vid' => '1',
+  'nid' => '1',
+  'delta' => '0',
+  'field_node_reference_nid' => NULL,
+))
+->values(array(
+  'vid' => '2',
+  'nid' => '1',
+  'delta' => '0',
+  'field_node_reference_nid' => NULL,
+))
+->values(array(
+  'vid' => '3',
+  'nid' => '2',
+  'delta' => '0',
+  'field_node_reference_nid' => '1',
+))
+->values(array(
+  'vid' => '5',
+  'nid' => '2',
+  'delta' => '0',
+  'field_node_reference_nid' => NULL,
+))
+->values(array(
+  'vid' => '12',
+  'nid' => '9',
+  'delta' => '0',
+  'field_node_reference_nid' => '2',
+))
+->execute();
 $connection->schema()->createTable('content_field_test', array(
   'fields' => array(
     'vid' => array(
@@ -2390,12 +2487,6 @@ $connection->insert('content_field_test')
   'field_test_format' => '1',
 ))
 ->values(array(
-  'vid' => '2',
-  'nid' => '1',
-  'field_test_value' => 'This is a shared text field',
-  'field_test_format' => '1',
-))
-->values(array(
   'vid' => '3',
   'nid' => '2',
   'field_test_value' => NULL,
@@ -2403,14 +2494,20 @@ $connection->insert('content_field_test')
 ))
 ->values(array(
   'vid' => '5',
-  'nid' => '2',
-  'field_test_value' => NULL,
-  'field_test_format' => NULL,
+  'nid' => '1',
+  'field_test_value' => 'This is a shared text field',
+  'field_test_format' => '1',
 ))
 ->values(array(
   'vid' => '12',
   'nid' => '9',
   'field_test_value' => 'text for default value',
+  'field_test_format' => '1',
+))
+->values(array(
+  'vid' => '2001',
+  'nid' => '1',
+  'field_test_value' => 'This is a shared text field',
   'field_test_format' => '1',
 ))
 ->execute();
@@ -2470,12 +2567,17 @@ $connection->insert('content_field_test_text_single_checkbox')
 ))
 ->values(array(
   'vid' => '5',
-  'nid' => '2',
-  'field_test_text_single_checkbox_value' => NULL,
+  'nid' => '1',
+  'field_test_text_single_checkbox_value' => '0',
 ))
 ->values(array(
   'vid' => '12',
   'nid' => '9',
+  'field_test_text_single_checkbox_value' => '0',
+))
+->values(array(
+  'vid' => '2001',
+  'nid' => '1',
   'field_test_text_single_checkbox_value' => '0',
 ))
 ->execute();
@@ -2534,10 +2636,10 @@ $connection->insert('content_field_test_two')
   'field_test_two_value' => '10',
 ))
 ->values(array(
-  'vid' => '2',
+  'vid' => '1',
   'nid' => '1',
-  'delta' => '0',
-  'field_test_two_value' => NULL,
+  'delta' => '1',
+  'field_test_two_value' => '20',
 ))
 ->values(array(
   'vid' => '3',
@@ -2547,9 +2649,15 @@ $connection->insert('content_field_test_two')
 ))
 ->values(array(
   'vid' => '5',
-  'nid' => '2',
+  'nid' => '1',
   'delta' => '0',
-  'field_test_two_value' => NULL,
+  'field_test_two_value' => '10',
+))
+->values(array(
+  'vid' => '5',
+  'nid' => '1',
+  'delta' => '1',
+  'field_test_two_value' => '20',
 ))
 ->values(array(
   'vid' => '12',
@@ -2558,10 +2666,99 @@ $connection->insert('content_field_test_two')
   'field_test_two_value' => NULL,
 ))
 ->values(array(
-  'vid' => '1',
+  'vid' => '2001',
+  'nid' => '1',
+  'delta' => '0',
+  'field_test_two_value' => '10',
+))
+->values(array(
+  'vid' => '2001',
   'nid' => '1',
   'delta' => '1',
   'field_test_two_value' => '20',
+))
+->execute();
+$connection->schema()->createTable('content_field_user_reference', array(
+  'fields' => array(
+    'vid' => array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'size' => 'normal',
+      'default' => '0',
+      'unsigned' => TRUE,
+    ),
+    'nid' => array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'size' => 'normal',
+      'default' => '0',
+      'unsigned' => TRUE,
+    ),
+    'delta' => array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'size' => 'normal',
+      'default' => '0',
+      'unsigned' => TRUE,
+    ),
+    'field_user_reference_uid' => array(
+      'type' => 'int',
+      'not null' => FALSE,
+      'size' => 'normal',
+      'unsigned' => TRUE,
+    ),
+  ),
+  'primary key' => array(
+    'vid',
+    'delta',
+  ),
+  'indexes' => array(
+    'nid' => array(
+      'nid',
+    ),
+    'field_user_reference_uid' => array(
+      'field_user_reference_uid',
+    ),
+  ),
+  'mysql_character_set' => 'utf8',
+));
+
+$connection->insert('content_field_user_reference')
+->fields(array(
+  'vid',
+  'nid',
+  'delta',
+  'field_user_reference_uid',
+))
+->values(array(
+  'vid' => '1',
+  'nid' => '1',
+  'delta' => '0',
+  'field_user_reference_uid' => NULL,
+))
+->values(array(
+  'vid' => '2',
+  'nid' => '1',
+  'delta' => '0',
+  'field_user_reference_uid' => NULL,
+))
+->values(array(
+  'vid' => '3',
+  'nid' => '2',
+  'delta' => '0',
+  'field_user_reference_uid' => NULL,
+))
+->values(array(
+  'vid' => '5',
+  'nid' => '2',
+  'delta' => '0',
+  'field_user_reference_uid' => NULL,
+))
+->values(array(
+  'vid' => '12',
+  'nid' => '9',
+  'delta' => '0',
+  'field_user_reference_uid' => NULL,
 ))
 ->execute();
 $connection->schema()->createTable('content_group', array(
@@ -2767,6 +2964,18 @@ $connection->insert('content_node_field')
   'locked' => '0',
 ))
 ->values(array(
+  'field_name' => 'field_company_4',
+  'type' => 'nodereference',
+  'global_settings' => 'a:1:{s:19:"referenceable_types";a:10:{s:7:"company";s:7:"company";s:7:"article";i:0;s:8:"employee";i:0;s:5:"forum";i:0;s:10:"test_event";i:0;s:9:"test_page";i:0;s:11:"test_planet";i:0;s:10:"test_story";i:0;s:7:"sponsor";i:0;s:5:"story";i:0;}}',
+  'required' => '0',
+  'multiple' => '0',
+  'db_storage' => '1',
+  'module' => 'nodereference',
+  'db_columns' => 'a:1:{s:3:"nid";a:4:{s:4:"type";s:3:"int";s:8:"unsigned";b:1;s:8:"not null";b:0;s:5:"index";b:1;}}',
+  'active' => '1',
+  'locked' => '0',
+))
+->values(array(
   'field_name' => 'field_multivalue',
   'type' => 'number_decimal',
   'global_settings' => 'a:9:{s:6:"prefix";s:0:"";s:6:"suffix";s:0:"";s:3:"min";s:0:"";s:3:"max";s:0:"";s:14:"allowed_values";s:0:"";s:18:"allowed_values_php";s:0:"";s:9:"precision";s:2:"10";s:5:"scale";s:1:"2";s:7:"decimal";s:1:".";}',
@@ -2775,6 +2984,30 @@ $connection->insert('content_node_field')
   'db_storage' => '0',
   'module' => 'number',
   'db_columns' => 'a:1:{s:5:"value";a:5:{s:4:"type";s:7:"numeric";s:9:"precision";s:2:"10";s:5:"scale";s:1:"2";s:8:"not null";b:0;s:8:"sortable";b:1;}}',
+  'active' => '1',
+  'locked' => '0',
+))
+->values(array(
+  'field_name' => 'field_node_reference',
+  'type' => 'nodereference',
+  'global_settings' => 'a:1:{s:19:"referenceable_types";a:9:{s:7:"article";i:0;s:7:"company";i:0;s:8:"employee";i:0;s:10:"test_event";i:0;s:9:"test_page";i:0;s:11:"test_planet";i:0;s:10:"test_story";i:0;s:7:"sponsor";i:0;s:5:"story";i:0;}}',
+  'required' => '0',
+  'multiple' => '1',
+  'db_storage' => '0',
+  'module' => 'nodereference',
+  'db_columns' => 'a:1:{s:3:"nid";a:4:{s:4:"type";s:3:"int";s:8:"unsigned";b:1;s:8:"not null";b:0;s:5:"index";b:1;}}',
+  'active' => '1',
+  'locked' => '0',
+))
+->values(array(
+  'field_name' => 'field_node_reference_2',
+  'type' => 'nodereference',
+  'global_settings' => 'a:1:{s:19:"referenceable_types";a:9:{s:7:"article";s:7:"article";s:7:"company";i:0;s:8:"employee";i:0;s:10:"test_event";i:0;s:9:"test_page";i:0;s:11:"test_planet";i:0;s:10:"test_story";i:0;s:7:"sponsor";i:0;s:5:"story";i:0;}}',
+  'required' => '0',
+  'multiple' => '0',
+  'db_storage' => '1',
+  'module' => 'nodereference',
+  'db_columns' => 'a:1:{s:3:"nid";a:4:{s:4:"type";s:3:"int";s:8:"unsigned";b:1;s:8:"not null";b:0;s:5:"index";b:1;}}',
   'active' => '1',
   'locked' => '0',
 ))
@@ -2799,6 +3032,18 @@ $connection->insert('content_node_field')
   'db_storage' => '1',
   'module' => 'nodereference',
   'db_columns' => 'a:1:{s:3:"nid";a:4:{s:4:"type";s:3:"int";s:8:"unsigned";b:1;s:8:"not null";b:0;s:5:"index";b:1;}}',
+  'active' => '1',
+  'locked' => '0',
+))
+->values(array(
+  'field_name' => 'field_sync',
+  'type' => 'email',
+  'global_settings' => 'a:0:{}',
+  'required' => '0',
+  'multiple' => '0',
+  'db_storage' => '1',
+  'module' => 'email',
+  'db_columns' => 'a:1:{s:5:"email";a:4:{s:4:"type";s:7:"varchar";s:6:"length";i:255;s:8:"not null";b:0;s:8:"sortable";b:1;}}',
   'active' => '1',
   'locked' => '0',
 ))
@@ -3054,6 +3299,30 @@ $connection->insert('content_node_field')
   'active' => '1',
   'locked' => '0',
 ))
+->values(array(
+  'field_name' => 'field_user_reference',
+  'type' => 'userreference',
+  'global_settings' => 'a:2:{s:19:"referenceable_roles";a:4:{i:2;i:0;i:3;i:0;i:4;i:0;i:5;i:0;}s:20:"referenceable_status";s:0:"";}',
+  'required' => '0',
+  'multiple' => '1',
+  'db_storage' => '0',
+  'module' => 'userreference',
+  'db_columns' => 'a:1:{s:3:"uid";a:4:{s:4:"type";s:3:"int";s:8:"unsigned";b:1;s:8:"not null";b:0;s:5:"index";b:1;}}',
+  'active' => '1',
+  'locked' => '0',
+))
+->values(array(
+  'field_name' => 'field_user_reference_2',
+  'type' => 'userreference',
+  'global_settings' => 'a:2:{s:19:"referenceable_roles";a:4:{i:3;i:3;i:2;i:0;i:4;i:0;i:5;i:0;}s:20:"referenceable_status";s:1:"1";}',
+  'required' => '0',
+  'multiple' => '0',
+  'db_storage' => '1',
+  'module' => 'userreference',
+  'db_columns' => 'a:1:{s:3:"uid";a:4:{s:4:"type";s:3:"int";s:8:"unsigned";b:1;s:8:"not null";b:0;s:5:"index";b:1;}}',
+  'active' => '1',
+  'locked' => '0',
+))
 ->execute();
 $connection->schema()->createTable('content_node_field_instance', array(
   'fields' => array(
@@ -3184,6 +3453,18 @@ $connection->insert('content_node_field_instance')
   'widget_active' => '1',
 ))
 ->values(array(
+  'field_name' => 'field_company_4',
+  'type_name' => 'employee',
+  'weight' => '36',
+  'label' => 'Company 4',
+  'widget_type' => 'nodereference_url',
+  'widget_settings' => 'a:7:{s:18:"autocomplete_match";s:8:"contains";s:4:"size";s:2:"60";s:13:"default_value";a:1:{i:0;a:2:{s:3:"nid";N;s:14:"_error_element";s:50:"default_value_widget][field_company_4][0][nid][nid";}}s:17:"default_value_php";N;s:9:"node_link";a:5:{s:6:"teaser";i:0;s:4:"full";i:1;s:5:"title";s:14:"Company create";s:11:"hover_title";s:0:"";s:11:"destination";s:4:"node";}s:8:"fallback";s:12:"autocomplete";s:13:"edit_fallback";i:1;}',
+  'display_settings' => 'a:5:{s:5:"label";a:2:{s:6:"format";s:5:"above";s:7:"exclude";i:0;}i:5;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:6:"teaser";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:4:"full";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}i:4;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}}',
+  'description' => '',
+  'widget_module' => 'nodereference',
+  'widget_active' => '1',
+))
+->values(array(
   'field_name' => 'field_multivalue',
   'type_name' => 'test_planet',
   'weight' => '2',
@@ -3193,6 +3474,30 @@ $connection->insert('content_node_field_instance')
   'display_settings' => 'a:6:{s:6:"weight";i:2;s:6:"parent";s:0:"";s:5:"label";a:1:{s:6:"format";s:5:"above";}s:6:"teaser";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:4:"full";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}i:4;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}}',
   'description' => 'An example multi-valued decimal field.',
   'widget_module' => 'number',
+  'widget_active' => '1',
+))
+->values(array(
+  'field_name' => 'field_node_reference',
+  'type_name' => 'story',
+  'weight' => '21',
+  'label' => 'Node reference',
+  'widget_type' => 'nodereference_autocomplete',
+  'widget_settings' => 'a:4:{s:18:"autocomplete_match";s:8:"contains";s:4:"size";s:2:"60";s:13:"default_value";a:1:{i:0;a:2:{s:3:"nid";N;s:14:"_error_element";s:55:"default_value_widget][field_node_reference][0][nid][nid";}}s:17:"default_value_php";N;}',
+  'display_settings' => 'a:5:{s:5:"label";a:2:{s:6:"format";s:5:"above";s:7:"exclude";i:0;}i:5;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:6:"teaser";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:4:"full";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}i:4;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}}',
+  'description' => '',
+  'widget_module' => 'nodereference',
+  'widget_active' => '1',
+))
+->values(array(
+  'field_name' => 'field_node_reference_2',
+  'type_name' => 'story',
+  'weight' => '23',
+  'label' => 'Node reference 2',
+  'widget_type' => 'nodereference_select',
+  'widget_settings' => 'a:4:{s:18:"autocomplete_match";s:8:"contains";s:4:"size";i:60;s:13:"default_value";a:1:{i:0;a:1:{s:3:"nid";s:0:"";}}s:17:"default_value_php";N;}',
+  'display_settings' => 'a:5:{s:5:"label";a:2:{s:6:"format";s:5:"above";s:7:"exclude";i:0;}i:5;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:6:"teaser";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:4:"full";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}i:4;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}}',
+  'description' => '',
+  'widget_module' => 'nodereference',
   'widget_active' => '1',
 ))
 ->values(array(
@@ -3217,6 +3522,18 @@ $connection->insert('content_node_field_instance')
   'display_settings' => 'a:5:{s:5:"label";a:2:{s:6:"format";s:5:"above";s:7:"exclude";i:0;}i:5;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:6:"teaser";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:4:"full";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}i:4;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}}',
   'description' => '',
   'widget_module' => 'nodereference',
+  'widget_active' => '1',
+))
+->values(array(
+  'field_name' => 'field_sync',
+  'type_name' => 'employee',
+  'weight' => '35',
+  'label' => 'email_sync',
+  'widget_type' => 'email_textfield',
+  'widget_settings' => 'a:3:{s:4:"size";s:2:"60";s:13:"default_value";a:1:{i:0;a:1:{s:5:"email";s:0:"";}}s:17:"default_value_php";N;}',
+  'display_settings' => 'a:7:{s:5:"label";a:2:{s:6:"format";s:5:"above";s:7:"exclude";i:0;}i:5;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:6:"teaser";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:4:"full";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}i:4;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}i:2;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}i:3;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}}',
+  'description' => '',
+  'widget_module' => 'email',
   'widget_active' => '1',
 ))
 ->values(array(
@@ -3495,6 +3812,30 @@ $connection->insert('content_node_field_instance')
   'widget_module' => 'number',
   'widget_active' => '1',
 ))
+->values(array(
+  'field_name' => 'field_user_reference',
+  'type_name' => 'story',
+  'weight' => '20',
+  'label' => 'User reference',
+  'widget_type' => 'userreference_autocomplete',
+  'widget_settings' => 'a:5:{s:18:"autocomplete_match";s:8:"contains";s:4:"size";s:2:"60";s:12:"reverse_link";i:0;s:13:"default_value";a:1:{i:0;a:2:{s:3:"uid";N;s:14:"_error_element";s:55:"default_value_widget][field_user_reference][0][uid][uid";}}s:17:"default_value_php";N;}',
+  'display_settings' => 'a:5:{s:5:"label";a:2:{s:6:"format";s:5:"above";s:7:"exclude";i:0;}i:5;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:6:"teaser";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:4:"full";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}i:4;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}}',
+  'description' => '',
+  'widget_module' => 'userreference',
+  'widget_active' => '1',
+))
+->values(array(
+  'field_name' => 'field_user_reference_2',
+  'type_name' => 'story',
+  'weight' => '21',
+  'label' => 'User reference 2',
+  'widget_type' => 'userreference_select',
+  'widget_settings' => 'a:5:{s:18:"autocomplete_match";s:8:"contains";s:4:"size";i:60;s:12:"reverse_link";i:0;s:13:"default_value";a:1:{i:0;a:1:{s:3:"uid";s:0:"";}}s:17:"default_value_php";N;}',
+  'display_settings' => 'a:5:{s:5:"label";a:2:{s:6:"format";s:5:"above";s:7:"exclude";i:0;}i:5;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:6:"teaser";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}s:4:"full";a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}i:4;a:2:{s:6:"format";s:7:"default";s:7:"exclude";i:0;}}',
+  'description' => '',
+  'widget_module' => 'userreference',
+  'widget_active' => '1',
+))
 ->execute();
 $connection->schema()->createTable('content_type_employee', array(
   'fields' => array(
@@ -3530,6 +3871,17 @@ $connection->schema()->createTable('content_type_employee', array(
       'size' => 'normal',
       'unsigned' => TRUE,
     ),
+    'field_company_4_nid' => array(
+      'type' => 'int',
+      'not null' => FALSE,
+      'size' => 'normal',
+      'unsigned' => TRUE,
+    ),
+    'field_sync_email' => array(
+      'type' => 'varchar',
+      'not null' => FALSE,
+      'length' => '255',
+    ),
   ),
   'primary key' => array(
     'vid',
@@ -3547,6 +3899,9 @@ $connection->schema()->createTable('content_type_employee', array(
     'field_company_3_nid' => array(
       'field_company_3_nid',
     ),
+    'field_company_4_nid' => array(
+      'field_company_4_nid',
+    ),
   ),
   'mysql_character_set' => 'utf8',
 ));
@@ -3558,6 +3913,8 @@ $connection->insert('content_type_employee')
   'field_commander_uid',
   'field_company_2_nid',
   'field_company_3_nid',
+  'field_company_4_nid',
+  'field_sync_email',
 ))
 ->values(array(
   'vid' => '21',
@@ -3565,6 +3922,8 @@ $connection->insert('content_type_employee')
   'field_commander_uid' => '8',
   'field_company_2_nid' => '15',
   'field_company_3_nid' => '16',
+  'field_company_4_nid' => '16',
+  'field_sync_email' => NULL,
 ))
 ->values(array(
   'vid' => '2002',
@@ -3572,6 +3931,8 @@ $connection->insert('content_type_employee')
   'field_commander_uid' => NULL,
   'field_company_2_nid' => NULL,
   'field_company_3_nid' => NULL,
+  'field_company_4_nid' => NULL,
+  'field_sync_email' => 'jsmith@example.com',
 ))
 ->values(array(
   'vid' => '2003',
@@ -3579,6 +3940,8 @@ $connection->insert('content_type_employee')
   'field_commander_uid' => NULL,
   'field_company_2_nid' => NULL,
   'field_company_3_nid' => NULL,
+  'field_company_4_nid' => NULL,
+  'field_sync_email' => 'jsmith@example.com',
 ))
 ->execute();
 $connection->schema()->createTable('content_type_page', array(
@@ -3829,6 +4192,18 @@ $connection->schema()->createTable('content_type_story', array(
       'not null' => FALSE,
       'size' => 'big',
     ),
+    'field_user_reference_2_uid' => array(
+      'type' => 'int',
+      'not null' => FALSE,
+      'size' => 'normal',
+      'unsigned' => TRUE,
+    ),
+    'field_node_reference_2_nid' => array(
+      'type' => 'int',
+      'not null' => FALSE,
+      'size' => 'normal',
+      'unsigned' => TRUE,
+    ),
   ),
   'primary key' => array(
     'vid',
@@ -3836,6 +4211,12 @@ $connection->schema()->createTable('content_type_story', array(
   'indexes' => array(
     'nid' => array(
       'nid',
+    ),
+    'field_user_reference_2_uid' => array(
+      'field_user_reference_2_uid',
+    ),
+    'field_node_reference_2_nid' => array(
+      'field_node_reference_2_nid',
     ),
   ),
   'mysql_character_set' => 'utf8',
@@ -3873,6 +4254,8 @@ $connection->insert('content_type_story')
   'field_test_datestamp_value2',
   'field_test_datetime_value2',
   'field_test_string_selectlist_value',
+  'field_user_reference_2_uid',
+  'field_node_reference_2_nid',
 ))
 ->values(array(
   'nid' => '1',
@@ -3905,38 +4288,8 @@ $connection->insert('content_type_story')
   'field_test_datestamp_value2' => NULL,
   'field_test_datetime_value2' => NULL,
   'field_test_string_selectlist_value' => NULL,
-))
-->values(array(
-  'nid' => '1',
-  'vid' => '2',
-  'uid' => '1',
-  'field_test_three_value' => '42.42',
-  'field_test_identical1_value' => '1',
-  'field_test_identical2_value' => '1',
-  'field_test_link_url' => 'https://www.drupal.org/project/drupal',
-  'field_test_link_title' => 'Drupal project page',
-  'field_test_link_attributes' => 's:32:"a:1:{s:6:"target";s:6:"_blank";}";',
-  'field_test_date_value' => '2013-01-02T04:05:00',
-  'field_test_datestamp_value' => '1391357160',
-  'field_test_datetime_value' => '2015-03-04 06:07:00',
-  'field_test_email_email' => 'PrincessRuwenne@example.com',
-  'field_test_filefield_fid' => NULL,
-  'field_test_filefield_list' => NULL,
-  'field_test_filefield_data' => NULL,
-  'field_test_four_value' => NULL,
-  'field_test_integer_selectlist_value' => NULL,
-  'field_test_float_single_checkbox_value' => NULL,
-  'field_test_decimal_radio_buttons_value' => NULL,
-  'field_test_phone_value' => NULL,
-  'field_test_exclude_unset_value' => NULL,
-  'field_test_exclude_unset_format' => NULL,
-  'field_test_imagefield_fid' => NULL,
-  'field_test_imagefield_list' => NULL,
-  'field_test_imagefield_data' => NULL,
-  'field_test_text_single_checkbox2_value' => NULL,
-  'field_test_datestamp_value2' => NULL,
-  'field_test_datetime_value2' => NULL,
-  'field_test_string_selectlist_value' => NULL,
+  'field_user_reference_2_uid' => NULL,
+  'field_node_reference_2_nid' => NULL,
 ))
 ->values(array(
   'nid' => '2',
@@ -3969,38 +4322,42 @@ $connection->insert('content_type_story')
   'field_test_datestamp_value2' => NULL,
   'field_test_datetime_value2' => NULL,
   'field_test_string_selectlist_value' => NULL,
+  'field_user_reference_2_uid' => NULL,
+  'field_node_reference_2_nid' => NULL,
 ))
 ->values(array(
-  'nid' => '2',
+  'nid' => '1',
   'vid' => '5',
   'uid' => '1',
-  'field_test_three_value' => '23.20',
+  'field_test_three_value' => '42.42',
   'field_test_identical1_value' => '1',
   'field_test_identical2_value' => '1',
-  'field_test_link_url' => 'http://groups.drupal.org/',
-  'field_test_link_title' => 'Drupal Groups',
-  'field_test_link_attributes' => 's:6:"a:0:{}";',
-  'field_test_date_value' => NULL,
-  'field_test_datestamp_value' => NULL,
-  'field_test_datetime_value' => NULL,
-  'field_test_email_email' => NULL,
-  'field_test_filefield_fid' => NULL,
-  'field_test_filefield_list' => NULL,
-  'field_test_filefield_data' => NULL,
+  'field_test_link_url' => 'https://www.drupal.org/project/drupal',
+  'field_test_link_title' => 'Drupal project page',
+  'field_test_link_attributes' => 's:32:"a:1:{s:6:"target";s:6:"_blank";}";',
+  'field_test_date_value' => '2013-01-02T04:05:00',
+  'field_test_datestamp_value' => '1391357160',
+  'field_test_datetime_value' => '2015-03-04 06:07:00',
+  'field_test_email_email' => 'PrincessRuwenne@example.com',
+  'field_test_filefield_fid' => '5',
+  'field_test_filefield_list' => '1',
+  'field_test_filefield_data' => 'a:1:{s:11:"description";s:4:"desc";}',
   'field_test_four_value' => NULL,
-  'field_test_integer_selectlist_value' => NULL,
-  'field_test_float_single_checkbox_value' => NULL,
+  'field_test_integer_selectlist_value' => '3412',
+  'field_test_float_single_checkbox_value' => '3',
   'field_test_decimal_radio_buttons_value' => NULL,
   'field_test_phone_value' => NULL,
-  'field_test_exclude_unset_value' => NULL,
-  'field_test_exclude_unset_format' => NULL,
+  'field_test_exclude_unset_value' => 'This is a field with exclude unset.',
+  'field_test_exclude_unset_format' => '1',
   'field_test_imagefield_fid' => NULL,
   'field_test_imagefield_list' => NULL,
   'field_test_imagefield_data' => NULL,
-  'field_test_text_single_checkbox2_value' => NULL,
+  'field_test_text_single_checkbox2_value' => 'Hello',
   'field_test_datestamp_value2' => NULL,
   'field_test_datetime_value2' => NULL,
   'field_test_string_selectlist_value' => NULL,
+  'field_user_reference_2_uid' => NULL,
+  'field_node_reference_2_nid' => NULL,
 ))
 ->values(array(
   'nid' => '9',
@@ -4033,6 +4390,42 @@ $connection->insert('content_type_story')
   'field_test_datestamp_value2' => '1391357160',
   'field_test_datetime_value2' => '2015-03-04 06:07:00',
   'field_test_string_selectlist_value' => NULL,
+  'field_user_reference_2_uid' => NULL,
+  'field_node_reference_2_nid' => NULL,
+))
+->values(array(
+  'nid' => '1',
+  'vid' => '2001',
+  'uid' => '1',
+  'field_test_three_value' => '42.42',
+  'field_test_identical1_value' => '1',
+  'field_test_identical2_value' => '1',
+  'field_test_link_url' => 'https://www.drupal.org/project/drupal',
+  'field_test_link_title' => 'Drupal project page',
+  'field_test_link_attributes' => 's:32:"a:1:{s:6:"target";s:6:"_blank";}";',
+  'field_test_date_value' => '2013-01-02T04:05:00',
+  'field_test_datestamp_value' => '1391357160',
+  'field_test_datetime_value' => '2015-03-04 06:07:00',
+  'field_test_email_email' => 'PrincessRuwenne@example.com',
+  'field_test_filefield_fid' => '5',
+  'field_test_filefield_list' => '1',
+  'field_test_filefield_data' => 'a:1:{s:11:"description";s:4:"desc";}',
+  'field_test_four_value' => NULL,
+  'field_test_integer_selectlist_value' => '3412',
+  'field_test_float_single_checkbox_value' => '3',
+  'field_test_decimal_radio_buttons_value' => NULL,
+  'field_test_phone_value' => NULL,
+  'field_test_exclude_unset_value' => 'This is a field with exclude unset.',
+  'field_test_exclude_unset_format' => '1',
+  'field_test_imagefield_fid' => NULL,
+  'field_test_imagefield_list' => NULL,
+  'field_test_imagefield_data' => NULL,
+  'field_test_text_single_checkbox2_value' => 'Hello',
+  'field_test_datestamp_value2' => NULL,
+  'field_test_datetime_value2' => NULL,
+  'field_test_string_selectlist_value' => NULL,
+  'field_user_reference_2_uid' => NULL,
+  'field_node_reference_2_nid' => NULL,
 ))
 ->execute();
 $connection->schema()->createTable('content_type_test_page', array(
@@ -8320,7 +8713,7 @@ $connection->insert('files')
   'fid' => '1',
   'uid' => '1',
   'filename' => 'Image1.png',
-  'filepath' => 'core/modules/simpletest/files/image-1.png',
+  'filepath' => 'core/tests/fixtures/files/image-1.png',
   'filemime' => 'image/png',
   'filesize' => '39325',
   'status' => '1',
@@ -8330,7 +8723,7 @@ $connection->insert('files')
   'fid' => '2',
   'uid' => '1',
   'filename' => 'Image2.jpg',
-  'filepath' => 'core/modules/simpletest/files/image-2.jpg',
+  'filepath' => 'core/tests/fixtures/files/image-2.jpg',
   'filemime' => 'image/jpeg',
   'filesize' => '1831',
   'status' => '1',
@@ -8340,7 +8733,7 @@ $connection->insert('files')
   'fid' => '3',
   'uid' => '1',
   'filename' => 'Image-test.gif',
-  'filepath' => 'core/modules/simpletest/files/image-test.gif',
+  'filepath' => 'core/tests/fixtures/files/image-test.gif',
   'filemime' => 'image/jpeg',
   'filesize' => '183',
   'status' => '1',
@@ -8350,7 +8743,7 @@ $connection->insert('files')
   'fid' => '5',
   'uid' => '1',
   'filename' => 'html-1.txt',
-  'filepath' => 'core/modules/simpletest/files/html-1.txt',
+  'filepath' => 'core/tests/fixtures/files/html-1.txt',
   'filemime' => 'text/plain',
   'filesize' => '24',
   'status' => '1',
@@ -8677,6 +9070,16 @@ $connection->insert('history')
   'uid',
   'nid',
   'timestamp',
+))
+->values(array(
+  'uid' => '1',
+  'nid' => '1',
+  'timestamp' => '1549874910',
+))
+->values(array(
+  'uid' => '1',
+  'nid' => '2',
+  'timestamp' => '1549874910',
 ))
 ->values(array(
   'uid' => '1',
@@ -10062,6 +10465,22 @@ $connection->insert('i18n_strings')
   'objectindex' => '14',
   'format' => '0',
 ))
+->values(array(
+  'lid' => '1695',
+  'objectid' => 'profile_count_trees',
+  'type' => 'field',
+  'property' => 'title',
+  'objectindex' => '0',
+  'format' => '0',
+))
+->values(array(
+  'lid' => '1696',
+  'objectid' => 'profile_count_trees',
+  'type' => 'field',
+  'property' => 'options',
+  'objectindex' => '0',
+  'format' => '0',
+))
 ->execute();
 $connection->schema()->createTable('i18n_variable', array(
   'fields' => array(
@@ -10586,6 +11005,14 @@ $connection->insert('imagecache_action')
   'action' => 'imagecache_rotate',
   'data' => 'a:3:{s:7:"degrees";s:2:"55";s:6:"random";i:0;s:7:"bgcolor";s:0:"";}',
 ))
+  ->values(array(
+  'actionid' => '7',
+  'presetid' => '2',
+  'weight' => '0',
+  'module' => 'imagecache',
+  'action' => '',
+  'data' => 'a:3:{s:7:"degrees";s:2:"55";s:6:"random";i:0;s:7:"bgcolor";s:0:"";}',
+  ))
 ->execute();
 $connection->schema()->createTable('imagecache_preset', array(
   'fields' => array(
@@ -14491,7 +14918,7 @@ $connection->insert('locales_source')
   'lid' => '525',
   'location' => 'block:1:body',
   'textgroup' => 'blocks',
-  'source' => '<h3>My first custom block body</h3>',
+  'source' => '<h3>My first content block body</h3>',
   'version' => '1',
 ))
 ->values(array(
@@ -14505,7 +14932,7 @@ $connection->insert('locales_source')
   'lid' => '527',
   'location' => 'block:2:body',
   'textgroup' => 'blocks',
-  'source' => '<h3>My second custom block body</h3>',
+  'source' => '<h3>My second content block body</h3>',
   'version' => '1',
 ))
 ->values(array(
@@ -22649,6 +23076,20 @@ $connection->insert('locales_source')
   'source' => 'The home of Captain Christopher Pike.',
   'version' => '1',
 ))
+->values(array(
+  'lid' => '1695',
+  'location' => 'field:profile_:title',
+  'textgroup' => 'profile',
+  'source' => 'Number of trees',
+  'version' => '1',
+))
+->values(array(
+  'lid' => '1696',
+  'location' => 'field:profile_:options',
+  'textgroup' => 'profile',
+  'source' => "10\r\n20\r\n50\r\n100\r\n1000",
+  'version' => '1',
+))
 ->execute();
 $connection->schema()->createTable('locales_target', array(
   'fields' => array(
@@ -26862,7 +27303,7 @@ $connection->insert('locales_target')
 ))
 ->values(array(
   'lid' => '525',
-  'translation' => '<h3>fr - My first custom block body</h3>',
+  'translation' => '<h3>fr - My first content block body</h3>',
   'language' => 'fr',
   'plid' => '0',
   'plural' => '0',
@@ -27749,6 +28190,14 @@ $connection->insert('locales_target')
   'i18n_status' => '0',
 ))
 ->values(array(
+  'lid' => '1696',
+  'translation' => "fr - 10\r\nfr - 20\r\nfr - 50\r\nfr - 100\r\nfr - 1000",
+  'language' => 'fr',
+  'plid' => '0',
+  'plural' => '0',
+  'i18n_status' => '0',
+))
+->values(array(
   'lid' => '66',
   'translation' => 'zu - CCK - Aucune Intégration aux Vues',
   'language' => 'zu',
@@ -27790,7 +28239,7 @@ $connection->insert('locales_target')
 ))
 ->values(array(
   'lid' => '525',
-  'translation' => '<h3>zu - My first custom block body</h3>',
+  'translation' => '<h3>zu - My first content block body</h3>',
   'language' => 'zu',
   'plid' => '0',
   'plural' => '0',
@@ -33090,8 +33539,8 @@ $connection->insert('menu_links')
   'menu_name' => 'navigation',
   'mlid' => '411',
   'plid' => '0',
-  'link_path' => 'core/modules/simpletest/files/imagecache',
-  'router_path' => 'core/modules/simpletest/files/imagecache',
+  'link_path' => 'core/tests/fixtures/files/imagecache',
+  'router_path' => 'core/tests/fixtures/files/imagecache',
   'link_title' => '',
   'options' => 'a:0:{}',
   'module' => 'system',
@@ -34427,6 +34876,222 @@ $connection->insert('menu_links')
   'customized' => '1',
   'p1' => '139',
   'p2' => '459',
+  'p3' => '0',
+  'p4' => '0',
+  'p5' => '0',
+  'p6' => '0',
+  'p7' => '0',
+  'p8' => '0',
+  'p9' => '0',
+  'updated' => '0',
+))
+->values(array(
+  'menu_name' => 'navigation',
+  'mlid' => '464',
+  'plid' => '158',
+  'link_path' => 'node/add/page',
+  'router_path' => 'node/add/page',
+  'link_title' => 'Page',
+  'options' => "a:1:{s:10:\"attributes\";a:1:{s:5:\"title\";s:296:\"A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.\";}}",
+  'module' => 'system',
+  'hidden' => '0',
+  'external' => '0',
+  'has_children' => '0',
+  'expanded' => '0',
+  'weight' => '0',
+  'depth' => '2',
+  'customized' => '0',
+  'p1' => '158',
+  'p2' => '464',
+  'p3' => '0',
+  'p4' => '0',
+  'p5' => '0',
+  'p6' => '0',
+  'p7' => '0',
+  'p8' => '0',
+  'p9' => '0',
+  'updated' => '0',
+))
+->values(array(
+  'menu_name' => 'navigation',
+  'mlid' => '465',
+  'plid' => '157',
+  'link_path' => 'admin/content/node-type/page',
+  'router_path' => 'admin/content/node-type/page',
+  'link_title' => 'Page',
+  'options' => 'a:0:{}',
+  'module' => 'system',
+  'hidden' => '-1',
+  'external' => '0',
+  'has_children' => '0',
+  'expanded' => '0',
+  'weight' => '0',
+  'depth' => '3',
+  'customized' => '0',
+  'p1' => '144',
+  'p2' => '157',
+  'p3' => '465',
+  'p4' => '0',
+  'p5' => '0',
+  'p6' => '0',
+  'p7' => '0',
+  'p8' => '0',
+  'p9' => '0',
+  'updated' => '0',
+))
+->values(array(
+  'menu_name' => 'navigation',
+  'mlid' => '466',
+  'plid' => '0',
+  'link_path' => 'admin/content/node-type/page/delete',
+  'router_path' => 'admin/content/node-type/page/delete',
+  'link_title' => 'Delete',
+  'options' => 'a:0:{}',
+  'module' => 'system',
+  'hidden' => '-1',
+  'external' => '0',
+  'has_children' => '0',
+  'expanded' => '0',
+  'weight' => '0',
+  'depth' => '1',
+  'customized' => '0',
+  'p1' => '466',
+  'p2' => '0',
+  'p3' => '0',
+  'p4' => '0',
+  'p5' => '0',
+  'p6' => '0',
+  'p7' => '0',
+  'p8' => '0',
+  'p9' => '0',
+  'updated' => '0',
+))
+->values(array(
+  'menu_name' => 'navigation',
+  'mlid' => '467',
+  'plid' => '0',
+  'link_path' => 'admin/content/node-type/employee/fields/field_company_2/remove',
+  'router_path' => 'admin/content/node-type/employee/fields/field_company_2/remove',
+  'link_title' => 'Remove field',
+  'options' => 'a:0:{}',
+  'module' => 'system',
+  'hidden' => '-1',
+  'external' => '0',
+  'has_children' => '0',
+  'expanded' => '0',
+  'weight' => '0',
+  'depth' => '1',
+  'customized' => '0',
+  'p1' => '467',
+  'p2' => '0',
+  'p3' => '0',
+  'p4' => '0',
+  'p5' => '0',
+  'p6' => '0',
+  'p7' => '0',
+  'p8' => '0',
+  'p9' => '0',
+  'updated' => '0',
+))
+->values(array(
+  'menu_name' => 'navigation',
+  'mlid' => '468',
+  'plid' => '0',
+  'link_path' => 'admin/content/node-type/employee/fields/field_company_3/remove',
+  'router_path' => 'admin/content/node-type/employee/fields/field_company_3/remove',
+  'link_title' => 'Remove field',
+  'options' => 'a:0:{}',
+  'module' => 'system',
+  'hidden' => '-1',
+  'external' => '0',
+  'has_children' => '0',
+  'expanded' => '0',
+  'weight' => '0',
+  'depth' => '1',
+  'customized' => '0',
+  'p1' => '468',
+  'p2' => '0',
+  'p3' => '0',
+  'p4' => '0',
+  'p5' => '0',
+  'p6' => '0',
+  'p7' => '0',
+  'p8' => '0',
+  'p9' => '0',
+  'updated' => '0',
+))
+->values(array(
+  'menu_name' => 'navigation',
+  'mlid' => '469',
+  'plid' => '0',
+  'link_path' => 'admin/content/node-type/page/fields/field_reference/remove',
+  'router_path' => 'admin/content/node-type/page/fields/field_reference/remove',
+  'link_title' => 'Remove field',
+  'options' => 'a:0:{}',
+  'module' => 'system',
+  'hidden' => '-1',
+  'external' => '0',
+  'has_children' => '0',
+  'expanded' => '0',
+  'weight' => '0',
+  'depth' => '1',
+  'customized' => '0',
+  'p1' => '469',
+  'p2' => '0',
+  'p3' => '0',
+  'p4' => '0',
+  'p5' => '0',
+  'p6' => '0',
+  'p7' => '0',
+  'p8' => '0',
+  'p9' => '0',
+  'updated' => '0',
+))
+->values(array(
+  'menu_name' => 'navigation',
+  'mlid' => '470',
+  'plid' => '0',
+  'link_path' => 'admin/content/node-type/page/fields/field_reference_2/remove',
+  'router_path' => 'admin/content/node-type/page/fields/field_reference_2/remove',
+  'link_title' => 'Remove field',
+  'options' => 'a:0:{}',
+  'module' => 'system',
+  'hidden' => '-1',
+  'external' => '0',
+  'has_children' => '0',
+  'expanded' => '0',
+  'weight' => '0',
+  'depth' => '1',
+  'customized' => '0',
+  'p1' => '470',
+  'p2' => '0',
+  'p3' => '0',
+  'p4' => '0',
+  'p5' => '0',
+  'p6' => '0',
+  'p7' => '0',
+  'p8' => '0',
+  'p9' => '0',
+  'updated' => '0',
+))
+->values(array(
+  'menu_name' => 'navigation',
+  'mlid' => '471',
+  'plid' => '0',
+  'link_path' => 'admin/content/node-type/story/fields/field_test_string_selectlist/remove',
+  'router_path' => 'admin/content/node-type/story/fields/field_test_string_selectlist/remove',
+  'link_title' => 'Remove field',
+  'options' => 'a:0:{}',
+  'module' => 'system',
+  'hidden' => '-1',
+  'external' => '0',
+  'has_children' => '0',
+  'expanded' => '0',
+  'weight' => '0',
+  'depth' => '1',
+  'customized' => '0',
+  'p1' => '471',
+  'p2' => '0',
   'p3' => '0',
   'p4' => '0',
   'p5' => '0',
@@ -37202,6 +37867,94 @@ $connection->insert('menu_router')
   'file' => 'sites/all/modules/cck/includes/content.admin.inc',
 ))
 ->values(array(
+  'path' => 'admin/content/node-type/employee/fields/field_company_2',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:23:"content_field_edit_form";i:1;s:8:"employee";i:2;s:15:"field_company_2";}',
+  'fit' => '63',
+  'number_parts' => '6',
+  'tab_parent' => 'admin/content/node-type/employee/fields',
+  'tab_root' => 'admin/content/node-type/employee',
+  'title' => 'Company 2',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '128',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/employee/fields/field_company_2/remove',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:25:"content_field_remove_form";i:1;s:8:"employee";i:2;s:15:"field_company_2";}',
+  'fit' => '127',
+  'number_parts' => '7',
+  'tab_parent' => '',
+  'tab_root' => 'admin/content/node-type/employee/fields/field_company_2/remove',
+  'title' => 'Remove field',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '4',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/employee/fields/field_company_3',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:23:"content_field_edit_form";i:1;s:8:"employee";i:2;s:15:"field_company_3";}',
+  'fit' => '63',
+  'number_parts' => '6',
+  'tab_parent' => 'admin/content/node-type/employee/fields',
+  'tab_root' => 'admin/content/node-type/employee',
+  'title' => 'Company 3',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '128',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/employee/fields/field_company_3/remove',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:25:"content_field_remove_form";i:1;s:8:"employee";i:2;s:15:"field_company_3";}',
+  'fit' => '127',
+  'number_parts' => '7',
+  'tab_parent' => '',
+  'tab_root' => 'admin/content/node-type/employee/fields/field_company_3/remove',
+  'title' => 'Remove field',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '4',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
   'path' => 'admin/content/node-type/forum',
   'load_functions' => '',
   'to_arg_functions' => '',
@@ -37378,13 +38131,277 @@ $connection->insert('menu_router')
   'file' => 'sites/all/modules/cck/includes/content.admin.inc',
 ))
 ->values(array(
+  'path' => 'admin/content/node-type/page',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => "a:2:{i:0;s:14:\"node_type_form\";i:1;O:8:\"stdClass\":14:{s:4:\"type\";s:4:\"page\";s:4:\"name\";s:4:\"Page\";s:6:\"module\";s:4:\"node\";s:11:\"description\";s:296:\"A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.\";s:4:\"help\";s:0:\"\";s:9:\"has_title\";s:1:\"1\";s:11:\"title_label\";s:5:\"Title\";s:8:\"has_body\";s:1:\"1\";s:10:\"body_label\";s:4:\"Body\";s:14:\"min_word_count\";s:1:\"0\";s:6:\"custom\";s:1:\"1\";s:8:\"modified\";s:1:\"1\";s:6:\"locked\";s:1:\"0\";s:9:\"orig_type\";s:4:\"page\";}}",
+  'fit' => '15',
+  'number_parts' => '4',
+  'tab_parent' => '',
+  'tab_root' => 'admin/content/node-type/page',
+  'title' => 'Page',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '4',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'modules/node/content_types.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/delete',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => "a:2:{i:0;s:24:\"node_type_delete_confirm\";i:1;O:8:\"stdClass\":14:{s:4:\"type\";s:4:\"page\";s:4:\"name\";s:4:\"Page\";s:6:\"module\";s:4:\"node\";s:11:\"description\";s:296:\"A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.\";s:4:\"help\";s:0:\"\";s:9:\"has_title\";s:1:\"1\";s:11:\"title_label\";s:5:\"Title\";s:8:\"has_body\";s:1:\"1\";s:10:\"body_label\";s:4:\"Body\";s:14:\"min_word_count\";s:1:\"0\";s:6:\"custom\";s:1:\"1\";s:8:\"modified\";s:1:\"1\";s:6:\"locked\";s:1:\"0\";s:9:\"orig_type\";s:4:\"page\";}}",
+  'fit' => '31',
+  'number_parts' => '5',
+  'tab_parent' => '',
+  'tab_root' => 'admin/content/node-type/page/delete',
+  'title' => 'Delete',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '4',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'modules/node/content_types.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/display',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:2:{i:0;s:29:"content_display_overview_form";i:1;s:4:"page";}',
+  'fit' => '31',
+  'number_parts' => '5',
+  'tab_parent' => 'admin/content/node-type/page',
+  'tab_root' => 'admin/content/node-type/page',
+  'title' => 'Display fields',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '128',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '2',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/display/basic',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:29:"content_display_overview_form";i:1;s:4:"page";i:2;s:5:"basic";}',
+  'fit' => '63',
+  'number_parts' => '6',
+  'tab_parent' => 'admin/content/node-type/page/display',
+  'tab_root' => 'admin/content/node-type/page',
+  'title' => 'Basic',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '136',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/display/print',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:29:"content_display_overview_form";i:1;s:4:"page";i:2;s:5:"print";}',
+  'fit' => '63',
+  'number_parts' => '6',
+  'tab_parent' => 'admin/content/node-type/page/display',
+  'tab_root' => 'admin/content/node-type/page',
+  'title' => 'Print',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '128',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '1',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/display/rss',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:29:"content_display_overview_form";i:1;s:4:"page";i:2;s:3:"rss";}',
+  'fit' => '63',
+  'number_parts' => '6',
+  'tab_parent' => 'admin/content/node-type/page/display',
+  'tab_root' => 'admin/content/node-type/page',
+  'title' => 'RSS',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '128',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '1',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/edit',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => "a:2:{i:0;s:14:\"node_type_form\";i:1;O:8:\"stdClass\":14:{s:4:\"type\";s:4:\"page\";s:4:\"name\";s:4:\"Page\";s:6:\"module\";s:4:\"node\";s:11:\"description\";s:296:\"A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.\";s:4:\"help\";s:0:\"\";s:9:\"has_title\";s:1:\"1\";s:11:\"title_label\";s:5:\"Title\";s:8:\"has_body\";s:1:\"1\";s:10:\"body_label\";s:4:\"Body\";s:14:\"min_word_count\";s:1:\"0\";s:6:\"custom\";s:1:\"1\";s:8:\"modified\";s:1:\"1\";s:6:\"locked\";s:1:\"0\";s:9:\"orig_type\";s:4:\"page\";}}",
+  'fit' => '31',
+  'number_parts' => '5',
+  'tab_parent' => 'admin/content/node-type/page',
+  'tab_root' => 'admin/content/node-type/page',
+  'title' => 'Edit',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '136',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'modules/node/content_types.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/fields',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:2:{i:0;s:27:"content_field_overview_form";i:1;s:4:"page";}',
+  'fit' => '31',
+  'number_parts' => '5',
+  'tab_parent' => 'admin/content/node-type/page',
+  'tab_root' => 'admin/content/node-type/page',
+  'title' => 'Manage fields',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '128',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '1',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/fields/field_reference',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:23:"content_field_edit_form";i:1;s:4:"page";i:2;s:15:"field_reference";}',
+  'fit' => '63',
+  'number_parts' => '6',
+  'tab_parent' => 'admin/content/node-type/page/fields',
+  'tab_root' => 'admin/content/node-type/page',
+  'title' => 'Reference',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '128',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/fields/field_reference/remove',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:25:"content_field_remove_form";i:1;s:4:"page";i:2;s:15:"field_reference";}',
+  'fit' => '127',
+  'number_parts' => '7',
+  'tab_parent' => '',
+  'tab_root' => 'admin/content/node-type/page/fields/field_reference/remove',
+  'title' => 'Remove field',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '4',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/fields/field_reference_2',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:23:"content_field_edit_form";i:1;s:4:"page";i:2;s:17:"field_reference_2";}',
+  'fit' => '63',
+  'number_parts' => '6',
+  'tab_parent' => 'admin/content/node-type/page/fields',
+  'tab_root' => 'admin/content/node-type/page',
+  'title' => 'Reference',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '128',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/page/fields/field_reference_2/remove',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:25:"content_field_remove_form";i:1;s:4:"page";i:2;s:17:"field_reference_2";}',
+  'fit' => '127',
+  'number_parts' => '7',
+  'tab_parent' => '',
+  'tab_root' => 'admin/content/node-type/page/fields/field_reference_2/remove',
+  'title' => 'Remove field',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '4',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
   'path' => 'admin/content/node-type/sponsor',
   'load_functions' => '',
   'to_arg_functions' => '',
   'access_callback' => 'user_access',
   'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
   'page_callback' => 'drupal_get_form',
-  'page_arguments' => 'a:2:{i:0;s:14:"node_type_form";i:1;O:8:"stdClass":14:{s:4:"type";s:7:"sponsor";s:4:"name";s:7:"Sponsor";s:6:"module";s:4:"node";s:11:"description";s:17:"Sponsor node type";s:4:"help";s:0:"";s:9:"has_title";s:1:"1";s:11:"title_label";s:4:"Name";s:8:"has_body";s:1:"0";s:10:"body_label";s:4:"Body";s:14:"min_word_count";s:1:"0";s:6:"custom";s:1:"0";s:8:"modified";s:1:"0";s:6:"locked";s:1:"0";s:9:"orig_type";s:0:"";}}',
+  'page_arguments' => 'a:2:{i:0;s:14:"node_type_form";i:1;O:8:"stdClass":14:{s:4:"type";s:7:"sponsor";s:4:"name";s:7:"Sponsor";s:6:"module";s:4:"node";s:11:"description";s:17:"Sponsor node type";s:4:"help";s:0:"";s:9:"has_title";s:1:"1";s:11:"title_label";s:4:"Name";s:8:"has_body";s:1:"1";s:10:"body_label";s:4:"Body";s:14:"min_word_count";s:1:"0";s:6:"custom";s:1:"0";s:8:"modified";s:1:"1";s:6:"locked";s:1:"0";s:9:"orig_type";s:0:"";}}',
   'fit' => '15',
   'number_parts' => '4',
   'tab_parent' => '',
@@ -37406,7 +38423,7 @@ $connection->insert('menu_router')
   'access_callback' => 'user_access',
   'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
   'page_callback' => 'drupal_get_form',
-  'page_arguments' => 'a:2:{i:0;s:24:"node_type_delete_confirm";i:1;O:8:"stdClass":14:{s:4:"type";s:7:"sponsor";s:4:"name";s:7:"Sponsor";s:6:"module";s:4:"node";s:11:"description";s:17:"Sponsor node type";s:4:"help";s:0:"";s:9:"has_title";s:1:"1";s:11:"title_label";s:4:"Name";s:8:"has_body";s:1:"0";s:10:"body_label";s:4:"Body";s:14:"min_word_count";s:1:"0";s:6:"custom";s:1:"0";s:8:"modified";s:1:"0";s:6:"locked";s:1:"0";s:9:"orig_type";s:0:"";}}',
+  'page_arguments' => 'a:2:{i:0;s:24:"node_type_delete_confirm";i:1;O:8:"stdClass":14:{s:4:"type";s:7:"sponsor";s:4:"name";s:7:"Sponsor";s:6:"module";s:4:"node";s:11:"description";s:17:"Sponsor node type";s:4:"help";s:0:"";s:9:"has_title";s:1:"1";s:11:"title_label";s:4:"Name";s:8:"has_body";s:1:"1";s:10:"body_label";s:4:"Body";s:14:"min_word_count";s:1:"0";s:6:"custom";s:1:"0";s:8:"modified";s:1:"1";s:6:"locked";s:1:"0";s:9:"orig_type";s:0:"";}}',
   'fit' => '31',
   'number_parts' => '5',
   'tab_parent' => '',
@@ -37516,7 +38533,7 @@ $connection->insert('menu_router')
   'access_callback' => 'user_access',
   'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
   'page_callback' => 'drupal_get_form',
-  'page_arguments' => 'a:2:{i:0;s:14:"node_type_form";i:1;O:8:"stdClass":14:{s:4:"type";s:7:"sponsor";s:4:"name";s:7:"Sponsor";s:6:"module";s:4:"node";s:11:"description";s:17:"Sponsor node type";s:4:"help";s:0:"";s:9:"has_title";s:1:"1";s:11:"title_label";s:4:"Name";s:8:"has_body";s:1:"0";s:10:"body_label";s:4:"Body";s:14:"min_word_count";s:1:"0";s:6:"custom";s:1:"0";s:8:"modified";s:1:"0";s:6:"locked";s:1:"0";s:9:"orig_type";s:0:"";}}',
+  'page_arguments' => 'a:2:{i:0;s:14:"node_type_form";i:1;O:8:"stdClass":14:{s:4:"type";s:7:"sponsor";s:4:"name";s:7:"Sponsor";s:6:"module";s:4:"node";s:11:"description";s:17:"Sponsor node type";s:4:"help";s:0:"";s:9:"has_title";s:1:"1";s:11:"title_label";s:4:"Name";s:8:"has_body";s:1:"1";s:10:"body_label";s:4:"Body";s:14:"min_word_count";s:1:"0";s:6:"custom";s:1:"0";s:8:"modified";s:1:"1";s:6:"locked";s:1:"0";s:9:"orig_type";s:0:"";}}',
   'fit' => '31',
   'number_parts' => '5',
   'tab_parent' => 'admin/content/node-type/sponsor',
@@ -38434,6 +39451,50 @@ $connection->insert('menu_router')
   'file' => 'sites/all/modules/cck/includes/content.admin.inc',
 ))
 ->values(array(
+  'path' => 'admin/content/node-type/story/fields/field_test_string_selectlist',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:23:"content_field_edit_form";i:1;s:5:"story";i:2;s:28:"field_test_string_selectlist";}',
+  'fit' => '63',
+  'number_parts' => '6',
+  'tab_parent' => 'admin/content/node-type/story/fields',
+  'tab_root' => 'admin/content/node-type/story',
+  'title' => 'String Select List Field',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '128',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
+  'path' => 'admin/content/node-type/story/fields/field_test_string_selectlist/remove',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'user_access',
+  'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
+  'page_callback' => 'drupal_get_form',
+  'page_arguments' => 'a:3:{i:0;s:25:"content_field_remove_form";i:1;s:5:"story";i:2;s:28:"field_test_string_selectlist";}',
+  'fit' => '127',
+  'number_parts' => '7',
+  'tab_parent' => '',
+  'tab_root' => 'admin/content/node-type/story/fields/field_test_string_selectlist/remove',
+  'title' => 'Remove field',
+  'title_callback' => 't',
+  'title_arguments' => '',
+  'type' => '4',
+  'block_callback' => '',
+  'description' => '',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'sites/all/modules/cck/includes/content.admin.inc',
+))
+->values(array(
   'path' => 'admin/content/node-type/story/fields/field_test_text_single_checkbox',
   'load_functions' => '',
   'to_arg_functions' => '',
@@ -38792,7 +39853,7 @@ $connection->insert('menu_router')
   'access_callback' => 'user_access',
   'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
   'page_callback' => 'drupal_get_form',
-  'page_arguments' => "a:2:{i:0;s:14:\"node_type_form\";i:1;O:8:\"stdClass\":14:{s:4:\"type\";s:9:\"test_page\";s:4:\"name\";s:17:\"Migrate test page\";s:6:\"module\";s:4:\"node\";s:11:\"description\";s:296:\"A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.\";s:4:\"help\";s:0:\"\";s:9:\"has_title\";s:1:\"1\";s:11:\"title_label\";s:5:\"Title\";s:8:\"has_body\";s:1:\"1\";s:10:\"body_label\";s:28:\"This is the body field label\";s:14:\"min_word_count\";s:1:\"0\";s:6:\"custom\";s:1:\"1\";s:8:\"modified\";s:1:\"1\";s:6:\"locked\";s:1:\"0\";s:9:\"orig_type\";s:4:\"page\";}}",
+  'page_arguments' => "a:2:{i:0;s:14:\"node_type_form\";i:1;O:8:\"stdClass\":14:{s:4:\"type\";s:9:\"test_page\";s:4:\"name\";s:17:\"Migrate test page\";s:6:\"module\";s:4:\"node\";s:11:\"description\";s:296:\"A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.\";s:4:\"help\";s:0:\"\";s:9:\"has_title\";s:1:\"1\";s:11:\"title_label\";s:5:\"Title\";s:8:\"has_body\";s:1:\"1\";s:10:\"body_label\";s:28:\"This is the body field label\";s:14:\"min_word_count\";s:1:\"0\";s:6:\"custom\";s:1:\"1\";s:8:\"modified\";s:1:\"1\";s:6:\"locked\";s:1:\"0\";s:9:\"orig_type\";s:9:\"test_page\";}}",
   'fit' => '15',
   'number_parts' => '4',
   'tab_parent' => '',
@@ -38814,7 +39875,7 @@ $connection->insert('menu_router')
   'access_callback' => 'user_access',
   'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
   'page_callback' => 'drupal_get_form',
-  'page_arguments' => "a:2:{i:0;s:24:\"node_type_delete_confirm\";i:1;O:8:\"stdClass\":14:{s:4:\"type\";s:9:\"test_page\";s:4:\"name\";s:17:\"Migrate test page\";s:6:\"module\";s:4:\"node\";s:11:\"description\";s:296:\"A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.\";s:4:\"help\";s:0:\"\";s:9:\"has_title\";s:1:\"1\";s:11:\"title_label\";s:5:\"Title\";s:8:\"has_body\";s:1:\"1\";s:10:\"body_label\";s:28:\"This is the body field label\";s:14:\"min_word_count\";s:1:\"0\";s:6:\"custom\";s:1:\"1\";s:8:\"modified\";s:1:\"1\";s:6:\"locked\";s:1:\"0\";s:9:\"orig_type\";s:4:\"page\";}}",
+  'page_arguments' => "a:2:{i:0;s:24:\"node_type_delete_confirm\";i:1;O:8:\"stdClass\":14:{s:4:\"type\";s:9:\"test_page\";s:4:\"name\";s:17:\"Migrate test page\";s:6:\"module\";s:4:\"node\";s:11:\"description\";s:296:\"A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.\";s:4:\"help\";s:0:\"\";s:9:\"has_title\";s:1:\"1\";s:11:\"title_label\";s:5:\"Title\";s:8:\"has_body\";s:1:\"1\";s:10:\"body_label\";s:28:\"This is the body field label\";s:14:\"min_word_count\";s:1:\"0\";s:6:\"custom\";s:1:\"1\";s:8:\"modified\";s:1:\"1\";s:6:\"locked\";s:1:\"0\";s:9:\"orig_type\";s:9:\"test_page\";}}",
   'fit' => '31',
   'number_parts' => '5',
   'tab_parent' => '',
@@ -38924,7 +39985,7 @@ $connection->insert('menu_router')
   'access_callback' => 'user_access',
   'access_arguments' => 'a:1:{i:0;s:24:"administer content types";}',
   'page_callback' => 'drupal_get_form',
-  'page_arguments' => "a:2:{i:0;s:14:\"node_type_form\";i:1;O:8:\"stdClass\":14:{s:4:\"type\";s:9:\"test_page\";s:4:\"name\";s:17:\"Migrate test page\";s:6:\"module\";s:4:\"node\";s:11:\"description\";s:296:\"A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.\";s:4:\"help\";s:0:\"\";s:9:\"has_title\";s:1:\"1\";s:11:\"title_label\";s:5:\"Title\";s:8:\"has_body\";s:1:\"1\";s:10:\"body_label\";s:28:\"This is the body field label\";s:14:\"min_word_count\";s:1:\"0\";s:6:\"custom\";s:1:\"1\";s:8:\"modified\";s:1:\"1\";s:6:\"locked\";s:1:\"0\";s:9:\"orig_type\";s:4:\"page\";}}",
+  'page_arguments' => "a:2:{i:0;s:14:\"node_type_form\";i:1;O:8:\"stdClass\":14:{s:4:\"type\";s:9:\"test_page\";s:4:\"name\";s:17:\"Migrate test page\";s:6:\"module\";s:4:\"node\";s:11:\"description\";s:296:\"A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.\";s:4:\"help\";s:0:\"\";s:9:\"has_title\";s:1:\"1\";s:11:\"title_label\";s:5:\"Title\";s:8:\"has_body\";s:1:\"1\";s:10:\"body_label\";s:28:\"This is the body field label\";s:14:\"min_word_count\";s:1:\"0\";s:6:\"custom\";s:1:\"1\";s:8:\"modified\";s:1:\"1\";s:6:\"locked\";s:1:\"0\";s:9:\"orig_type\";s:9:\"test_page\";}}",
   'fit' => '31',
   'number_parts' => '5',
   'tab_parent' => 'admin/content/node-type/test-page',
@@ -40986,28 +42047,6 @@ $connection->insert('menu_router')
   'file' => 'sites/all/modules/i18n/i18n.admin.inc',
 ))
 ->values(array(
-  'path' => 'admin/settings/language/i18n/variables',
-  'load_functions' => '',
-  'to_arg_functions' => '',
-  'access_callback' => 'user_access',
-  'access_arguments' => 'a:1:{i:0;s:29:"administer site configuration";}',
-  'page_callback' => 'drupal_get_form',
-  'page_arguments' => 'a:1:{i:0;s:25:"i18n_admin_variables_form";}',
-  'fit' => '31',
-  'number_parts' => '5',
-  'tab_parent' => 'admin/settings/language/i18n',
-  'tab_root' => 'admin/settings/language',
-  'title' => 'Variables',
-  'title_callback' => 't',
-  'title_arguments' => '',
-  'type' => '128',
-  'block_callback' => '',
-  'description' => 'Multilingual variables.',
-  'position' => '',
-  'weight' => '0',
-  'file' => 'sites/all/modules/i18n/i18n.admin.inc',
-))
-->values(array(
   'path' => 'admin/settings/language/overview',
   'load_functions' => '',
   'to_arg_functions' => '',
@@ -42174,7 +43213,7 @@ $connection->insert('menu_router')
   'file' => 'sites/all/modules/cck/includes/content.node_form.inc',
 ))
 ->values(array(
-  'path' => 'core/modules/simpletest/files/imagecache',
+  'path' => 'core/tests/fixtures/files/imagecache',
   'load_functions' => '',
   'to_arg_functions' => '',
   'access_callback' => '_imagecache_menu_access_public_files',
@@ -42184,7 +43223,7 @@ $connection->insert('menu_router')
   'fit' => '31',
   'number_parts' => '5',
   'tab_parent' => '',
-  'tab_root' => 'core/modules/simpletest/files/imagecache',
+  'tab_root' => 'core/tests/fixtures/files/imagecache',
   'title' => '',
   'title_callback' => 't',
   'title_arguments' => '',
@@ -42917,6 +43956,28 @@ $connection->insert('menu_router')
   'type' => '6',
   'block_callback' => '',
   'description' => 'A <em>forum topic</em> is the initial post to a new discussion thread within a forum.',
+  'position' => '',
+  'weight' => '0',
+  'file' => 'modules/node/node.pages.inc',
+))
+->values(array(
+  'path' => 'node/add/page',
+  'load_functions' => '',
+  'to_arg_functions' => '',
+  'access_callback' => 'node_access',
+  'access_arguments' => 'a:2:{i:0;s:6:"create";i:1;s:4:"page";}',
+  'page_callback' => 'i18ncontent_node_add',
+  'page_arguments' => 'a:1:{i:0;i:2;}',
+  'fit' => '7',
+  'number_parts' => '3',
+  'tab_parent' => '',
+  'tab_root' => 'node/add/page',
+  'title' => 'Page',
+  'title_callback' => 'i18nstrings_title_callback',
+  'title_arguments' => 'a:2:{i:0;s:23:"nodetype:type:page:name";i:1;s:4:"Page";}',
+  'type' => '6',
+  'block_callback' => '',
+  'description' => "A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page.",
   'position' => '',
   'weight' => '0',
   'file' => 'modules/node/node.pages.inc',
@@ -43769,13 +44830,13 @@ $connection->insert('node')
 ))
 ->values(array(
   'nid' => '1',
-  'vid' => '1',
+  'vid' => '2001',
   'type' => 'story',
   'language' => '',
-  'title' => 'Test title',
+  'title' => 'Test title rev 3',
   'uid' => '1',
   'status' => '1',
-  'created' => '1388271197',
+  'created' => '1390095702',
   'changed' => '1420861423',
   'comment' => '0',
   'promote' => '0',
@@ -43806,7 +44867,7 @@ $connection->insert('node')
   'vid' => '4',
   'type' => 'test_planet',
   'language' => '',
-  'title' => 'Test planet title 3',
+  'title' => 'Test page title rev 4',
   'uid' => '1',
   'status' => '1',
   'created' => '1388271527',
@@ -43823,7 +44884,7 @@ $connection->insert('node')
   'vid' => '6',
   'type' => 'test_planet',
   'language' => '',
-  'title' => '',
+  'title' => 'Node 4',
   'uid' => '1',
   'status' => '1',
   'created' => '1388271527',
@@ -43840,7 +44901,7 @@ $connection->insert('node')
   'vid' => '7',
   'type' => 'test_planet',
   'language' => '',
-  'title' => '',
+  'title' => 'Node 5',
   'uid' => '1',
   'status' => '1',
   'created' => '1388271527',
@@ -43857,7 +44918,7 @@ $connection->insert('node')
   'vid' => '8',
   'type' => 'test_planet',
   'language' => '',
-  'title' => '',
+  'title' => 'Node 6',
   'uid' => '1',
   'status' => '1',
   'created' => '1388271527',
@@ -43874,7 +44935,7 @@ $connection->insert('node')
   'vid' => '9',
   'type' => 'test_planet',
   'language' => '',
-  'title' => '',
+  'title' => 'Node 7',
   'uid' => '1',
   'status' => '1',
   'created' => '1388271527',
@@ -43891,7 +44952,7 @@ $connection->insert('node')
   'vid' => '10',
   'type' => 'test_planet',
   'language' => '',
-  'title' => '',
+  'title' => 'Node 8',
   'uid' => '1',
   'status' => '1',
   'created' => '1388271527',
@@ -44587,7 +45648,7 @@ $connection->insert('node_revisions')
   'body' => 'test',
   'teaser' => 'test',
   'log' => '',
-  'timestamp' => '1420861423',
+  'timestamp' => '1390095702',
   'format' => '1',
 ))
 ->values(array(
@@ -44616,10 +45677,10 @@ $connection->insert('node_revisions')
   'nid' => '1',
   'vid' => '5',
   'uid' => '1',
-  'title' => 'Test title rev 3',
-  'body' => 'body test rev 3',
-  'teaser' => 'teaser test rev 3',
-  'log' => 'modified rev 3',
+  'title' => 'Test title rev 2',
+  'body' => 'body test rev 2',
+  'teaser' => 'teaser test rev 2',
+  'log' => 'modified rev 2',
   'timestamp' => '1390095703',
   'format' => '1',
 ))
@@ -44825,11 +45886,11 @@ $connection->insert('node_revisions')
   'nid' => '1',
   'vid' => '2001',
   'uid' => '2',
-  'title' => 'Test title rev 2',
-  'body' => 'body test rev 2',
-  'teaser' => 'teaser test rev 2',
-  'log' => 'modified rev 2',
-  'timestamp' => '1390095702',
+  'title' => 'Test title rev 3',
+  'body' => 'body test rev 3',
+  'teaser' => 'teaser test rev 3',
+  'log' => 'modified rev 3',
+  'timestamp' => '1420861423',
   'format' => '1',
 ))
 ->values(array(
@@ -45065,11 +46126,11 @@ $connection->insert('node_type')
   'help' => '',
   'has_title' => '1',
   'title_label' => 'Name',
-  'has_body' => '0',
+  'has_body' => '1',
   'body_label' => 'Body',
   'min_word_count' => '0',
   'custom' => '0',
-  'modified' => '0',
+  'modified' => '1',
   'locked' => '0',
   'orig_type' => '',
 ))
@@ -45152,6 +46213,22 @@ $connection->insert('node_type')
   'modified' => '1',
   'locked' => '0',
   'orig_type' => 'test_story',
+))
+->values(array(
+  'type' => 'a_thirty_two_character_type_name',
+  'name' => 'Test long name',
+  'module' => 'node',
+  'description' => '',
+  'help' => '',
+  'has_title' => '1',
+  'title_label' => 'Title',
+  'has_body' => '1',
+  'body_label' => 'Body',
+  'min_word_count' => '0',
+  'custom' => '1',
+  'modified' => '1',
+  'locked' => '0',
+  'orig_type' => '',
 ))
 ->execute();
 $connection->schema()->createTable('permission', array(
@@ -45449,6 +46526,21 @@ $connection->insert('profile_fields')
   'visibility' => '2',
   'autocomplete' => '0',
   'options' => '',
+))
+->values(array(
+  'fid' => '17',
+  'title' => 'Number of trees',
+  'name' => 'profile_count_trees',
+  'explanation' => '',
+  'category' => 'Personal information',
+  'page' => '',
+  'type' => 'selection',
+  'weight' => '0',
+  'required' => '0',
+  'register' => '0',
+  'visibility' => '2',
+  'autocomplete' => '0',
+  'options' => "10\r\n20\r\n50\r\n100\r\n1000",
 ))
 ->execute();
 $connection->schema()->createTable('profile_values', array(
@@ -46123,7 +47215,7 @@ $connection->insert('system')
   'name' => 'search',
   'type' => 'module',
   'owner' => '',
-  'status' => '0',
+  'status' => '1',
   'throttle' => '0',
   'bootstrap' => '0',
   'schema_version' => '-1',
@@ -46231,7 +47323,7 @@ $connection->insert('system')
   'name' => 'update',
   'type' => 'module',
   'owner' => '',
-  'status' => '0',
+  'status' => '1',
   'throttle' => '0',
   'bootstrap' => '0',
   'schema_version' => '-1',
@@ -46711,11 +47803,11 @@ $connection->insert('system')
   'name' => 'i18nsync',
   'type' => 'module',
   'owner' => '',
-  'status' => '0',
+  'status' => '1',
   'throttle' => '0',
   'bootstrap' => '0',
-  'schema_version' => '-1',
-  'weight' => '0',
+  'schema_version' => '0',
+  'weight' => '100',
   'info' => 'a:10:{s:4:"name";s:24:"Synchronize translations";s:11:"description";s:74:"Synchronizes taxonomy and fields accross translations of the same content.";s:12:"dependencies";a:1:{i:0;s:4:"i18n";}s:7:"package";s:13:"Multilanguage";s:4:"core";s:3:"6.x";s:7:"version";s:7:"6.x-1.4";s:7:"project";s:4:"i18n";s:9:"datestamp";s:10:"1270669810";s:10:"dependents";a:0:{}s:3:"php";s:5:"4.3.5";}',
 ))
 ->values(array(
@@ -47017,6 +48109,18 @@ $connection->insert('system')
   'schema_version' => '-1',
   'weight' => '0',
   'info' => 'a:13:{s:4:"name";s:10:"Pushbutton";s:11:"description";s:52:"Tabled, multi-column theme in blue and orange tones.";s:7:"version";s:4:"6.38";s:4:"core";s:3:"6.x";s:6:"engine";s:11:"phptemplate";s:7:"project";s:6:"drupal";s:9:"datestamp";s:10:"1456343372";s:7:"regions";a:5:{s:4:"left";s:12:"Left sidebar";s:5:"right";s:13:"Right sidebar";s:7:"content";s:7:"Content";s:6:"header";s:6:"Header";s:6:"footer";s:6:"Footer";}s:8:"features";a:10:{i:0;s:20:"comment_user_picture";i:1;s:7:"favicon";i:2;s:7:"mission";i:3;s:4:"logo";i:4;s:4:"name";i:5;s:17:"node_user_picture";i:6;s:6:"search";i:7;s:6:"slogan";i:8;s:13:"primary_links";i:9;s:15:"secondary_links";}s:11:"stylesheets";a:1:{s:3:"all";a:1:{s:9:"style.css";s:27:"themes/pushbutton/style.css";}}s:7:"scripts";a:1:{s:9:"script.js";s:27:"themes/pushbutton/script.js";}s:10:"screenshot";s:32:"themes/pushbutton/screenshot.png";s:3:"php";s:5:"4.3.5";}',
+))
+->values(array(
+  'filename' => 'sites/all/modules/nodereference_url/nodereference_url.module',
+  'name' => 'nodereference_url',
+  'type' => 'module',
+  'owner' => '',
+  'status' => '1',
+  'throttle' => '0',
+  'bootstrap' => '0',
+  'schema_version' => '6100',
+  'weight' => '0',
+  'info' => 'a:8:{s:4:"name";s:25:"Node Reference URL Widget";s:11:"description";s:99:"Adds an additional widget to the CCK Node Reference field that prepopulates a reference by the URL.";s:12:"dependencies";a:1:{i:0;s:13:"nodereference";}s:7:"package";s:3:"CCK";s:4:"core";s:3:"6.x";s:10:"dependents";a:0:{}s:7:"version";N;s:3:"php";s:5:"4.3.5";}',
 ))
 ->execute();
 $connection->schema()->createTable('term_data', array(
@@ -47370,7 +48474,27 @@ $connection->insert('term_node')
 ->values(array(
   'nid' => '1',
   'vid' => '2001',
+  'tid' => '1',
+))
+->values(array(
+  'nid' => '1',
+  'vid' => '2001',
+  'tid' => '2',
+))
+->values(array(
+  'nid' => '1',
+  'vid' => '2001',
   'tid' => '4',
+))
+->values(array(
+  'nid' => '21',
+  'vid' => '2002',
+  'tid' => '4',
+))
+->values(array(
+  'nid' => '18',
+  'vid' => '21',
+  'tid' => '5',
 ))
 ->values(array(
   'nid' => '1',
@@ -47381,6 +48505,26 @@ $connection->insert('term_node')
   'nid' => '19',
   'vid' => '22',
   'tid' => '8',
+))
+->values(array(
+  'nid' => '22',
+  'vid' => '2003',
+  'tid' => '9',
+))
+->values(array(
+  'nid' => '22',
+  'vid' => '2003',
+  'tid' => '14',
+))
+->values(array(
+  'nid' => '18',
+  'vid' => '21',
+  'tid' => '15',
+))
+->values(array(
+  'nid' => '21',
+  'vid' => '2002',
+  'tid' => '15',
 ))
 ->execute();
 $connection->schema()->createTable('term_relation', array(
@@ -47538,12 +48682,28 @@ $connection->insert('upload')
   'weight' => '1',
 ))
 ->values(array(
+  'fid' => '1',
+  'nid' => '1',
+  'vid' => '5',
+  'description' => 'file 1-1-1',
+  'list' => '0',
+  'weight' => '-1',
+))
+->values(array(
   'fid' => '3',
   'nid' => '12',
   'vid' => '15',
   'description' => 'file 12-15-3',
   'list' => '0',
   'weight' => '0',
+))
+->values(array(
+  'fid' => '1',
+  'nid' => '1',
+  'vid' => '2001',
+  'description' => 'file 1-1-1',
+  'list' => '0',
+  'weight' => '-1',
 ))
 ->execute();
 $connection->schema()->createTable('url_alias', array(
@@ -47817,8 +48977,8 @@ $connection->insert('users')
   'signature' => '',
   'signature_format' => '0',
   'created' => '0',
-  'access' => '1494966478',
-  'login' => '1494966280',
+  'access' => '1543973668',
+  'login' => '1543973668',
   'status' => '1',
   'timezone' => NULL,
   'language' => '',
@@ -47847,7 +49007,7 @@ $connection->insert('users')
   'status' => '1',
   'timezone' => '3600',
   'language' => 'fr',
-  'picture' => 'core/modules/simpletest/files/image-test.jpg',
+  'picture' => 'core/tests/fixtures/files/image-test.jpg',
   'init' => 'doe@example.com',
   'data' => 'a:2:{s:7:"contact";i:1;s:13:"form_build_id";s:48:"form-qu_DMjE-Vfg01arT5J4VbuBCkOgx_LeySJx4qrPOSuA";}',
   'timezone_name' => 'Europe/Berlin',
@@ -47872,7 +49032,7 @@ $connection->insert('users')
   'status' => '1',
   'timezone' => '7200',
   'language' => 'ro',
-  'picture' => 'core/modules/simpletest/files/image-test.png',
+  'picture' => 'core/tests/fixtures/files/image-test.png',
   'init' => 'roe@example.com',
   'data' => 'a:2:{s:7:"contact";i:0;s:13:"form_build_id";s:48:"form-1TxjbL2_1dEHIxEu2Db6OvEsSN1x9ILH1VCgnvsO6LE";}',
   'timezone_name' => 'Europe/Helsinki',
@@ -48173,7 +49333,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_controls_employee',
-  'value' => 'i:3;',
+  'value' => 's:1:"3";',
 ))
 ->values(array(
   'name' => 'comment_controls_page',
@@ -48181,7 +49341,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_controls_sponsor',
-  'value' => 'i:3;',
+  'value' => 's:1:"3";',
 ))
 ->values(array(
   'name' => 'comment_controls_story',
@@ -48213,7 +49373,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_default_mode_employee',
-  'value' => 'i:4;',
+  'value' => 's:1:"4";',
 ))
 ->values(array(
   'name' => 'comment_default_mode_page',
@@ -48221,7 +49381,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_default_mode_sponsor',
-  'value' => 'i:4;',
+  'value' => 's:1:"4";',
 ))
 ->values(array(
   'name' => 'comment_default_mode_story',
@@ -48253,7 +49413,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_default_order_employee',
-  'value' => 'i:1;',
+  'value' => 's:1:"1";',
 ))
 ->values(array(
   'name' => 'comment_default_order_page',
@@ -48261,7 +49421,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_default_order_sponsor',
-  'value' => 'i:1;',
+  'value' => 's:1:"1";',
 ))
 ->values(array(
   'name' => 'comment_default_order_story',
@@ -48293,7 +49453,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_default_per_page_employee',
-  'value' => 'i:50;',
+  'value' => 's:2:"50";',
 ))
 ->values(array(
   'name' => 'comment_default_per_page_page',
@@ -48301,7 +49461,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_default_per_page_sponsor',
-  'value' => 'i:50;',
+  'value' => 's:2:"50";',
 ))
 ->values(array(
   'name' => 'comment_default_per_page_story',
@@ -48324,6 +49484,10 @@ $connection->insert('variable')
   'value' => 'i:50;',
 ))
 ->values(array(
+  'name' => 'comment_employee',
+  'value' => 's:1:"2";',
+))
+->values(array(
   'name' => 'comment_form_location_article',
   'value' => 'i:0;',
 ))
@@ -48333,7 +49497,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_form_location_employee',
-  'value' => 'i:0;',
+  'value' => 's:1:"0";',
 ))
 ->values(array(
   'name' => 'comment_form_location_page',
@@ -48341,7 +49505,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_form_location_sponsor',
-  'value' => 'i:0;',
+  'value' => 's:1:"0";',
 ))
 ->values(array(
   'name' => 'comment_form_location_story',
@@ -48377,7 +49541,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_preview_employee',
-  'value' => 'i:1;',
+  'value' => 's:1:"1";',
 ))
 ->values(array(
   'name' => 'comment_preview_page',
@@ -48385,7 +49549,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_preview_sponsor',
-  'value' => 'i:1;',
+  'value' => 's:1:"1";',
 ))
 ->values(array(
   'name' => 'comment_preview_story',
@@ -48408,6 +49572,10 @@ $connection->insert('variable')
   'value' => 'i:1;',
 ))
 ->values(array(
+  'name' => 'comment_sponsor',
+  'value' => 's:1:"2";',
+))
+->values(array(
   'name' => 'comment_story',
   'value' => 's:1:"2";',
 ))
@@ -48421,7 +49589,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_subject_field_employee',
-  'value' => 'i:1;',
+  'value' => 's:1:"1";',
 ))
 ->values(array(
   'name' => 'comment_subject_field_page',
@@ -48429,7 +49597,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'comment_subject_field_sponsor',
-  'value' => 'i:1;',
+  'value' => 's:1:"1";',
 ))
 ->values(array(
   'name' => 'comment_subject_field_story',
@@ -48788,8 +49956,16 @@ $connection->insert('variable')
   'value' => 's:5:"never";',
 ))
 ->values(array(
+  'name' => 'event_nodeapi_employee',
+  'value' => 's:5:"never";',
+))
+->values(array(
   'name' => 'event_nodeapi_event',
   'value' => 's:3:"all";',
+))
+->values(array(
+  'name' => 'event_nodeapi_sponsor',
+  'value' => 's:5:"never";',
 ))
 ->values(array(
   'name' => 'event_timezone_display',
@@ -48813,7 +49989,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'file_directory_path',
-  'value' => 's:29:"core/modules/simpletest/files";',
+  'value' => 's:25:"core/tests/fixtures/files";',
 ))
 ->values(array(
   'name' => 'file_directory_temp',
@@ -48856,6 +50032,14 @@ $connection->insert('variable')
   'value' => 's:48:"form-jFw2agRukPxjG5dG-N6joZLyoxXmCoxTzua0HUciqK0";',
 ))
 ->values(array(
+  'name' => 'form_build_id_employee',
+  'value' => 's:48:"form-q42bJnZxCCHxcx5FjxjEOd8OaEAg9wnK8nX1hBjtT4M";',
+))
+->values(array(
+  'name' => 'form_build_id_sponsor',
+  'value' => 's:48:"form-1iWzOEGgEeoeGb7ywYWz4iUNal77IHPDVwqYj-a7ezQ";',
+))
+->values(array(
   'name' => 'forum_block_num_0',
   'value' => 's:1:"3";',
 ))
@@ -48884,12 +50068,48 @@ $connection->insert('variable')
   'value' => 'a:2:{i:0;i:1;i:1;i:2;}',
 ))
 ->values(array(
+  'name' => 'i18nsync_nodeapi_employee',
+  'value' => 'a:1:{i:0;s:10:"field_sync";}',
+))
+->values(array(
   'name' => 'i18ntaxonomy_vocabulary',
   'value' => 'a:4:{i:1;s:1:"3";i:2;s:1:"2";i:3;s:1:"3";i:5;s:1:"1";}',
 ))
 ->values(array(
   'name' => 'i18n_lock_node_article',
   'value' => 'i:1;',
+))
+->values(array(
+  'name' => 'i18n_lock_node_employee',
+  'value' => 'i:0;',
+))
+->values(array(
+  'name' => 'i18n_lock_node_sponsor',
+  'value' => 'i:0;',
+))
+->values(array(
+  'name' => 'i18n_newnode_current_employee',
+  'value' => 'i:0;',
+))
+->values(array(
+  'name' => 'i18n_newnode_current_sponsor',
+  'value' => 'i:0;',
+))
+->values(array(
+  'name' => 'i18n_node_employee',
+  'value' => 's:1:"1";',
+))
+->values(array(
+  'name' => 'i18n_node_sponsor',
+  'value' => 'i:1;',
+))
+->values(array(
+  'name' => 'i18n_required_node_employee',
+  'value' => 'i:0;',
+))
+->values(array(
+  'name' => 'i18n_required_node_sponsor',
+  'value' => 'i:0;',
 ))
 ->values(array(
   'name' => 'image_jpeg_quality',
@@ -48910,6 +50130,10 @@ $connection->insert('variable')
 ->values(array(
   'name' => 'language_content_type_employee',
   'value' => 's:1:"2";',
+))
+->values(array(
+  'name' => 'language_content_type_sponsor',
+  'value' => 's:1:"1";',
 ))
 ->values(array(
   'name' => 'language_count',
@@ -48968,8 +50192,16 @@ $connection->insert('variable')
   'value' => 'a:2:{i:0;s:6:"status";i:1;s:7:"promote";}',
 ))
 ->values(array(
+  'name' => 'node_options_employee',
+  'value' => 'a:2:{i:0;s:6:"status";i:1;s:7:"promote";}',
+))
+->values(array(
   'name' => 'node_options_forum',
   'value' => 'a:1:{i:0;s:6:"status";}',
+))
+->values(array(
+  'name' => 'node_options_sponsor',
+  'value' => 'a:2:{i:0;s:6:"status";i:1;s:7:"promote";}',
 ))
 ->values(array(
   'name' => 'node_options_test_event',
@@ -49422,7 +50654,7 @@ $connection->insert('vocabulary')
   'description' => 'description of vocabulary 3 (i=2)',
   'help' => '',
   'relations' => '1',
-  'hierarchy' => '2',
+  'hierarchy' => '0',
   'multiple' => '1',
   'required' => '0',
   'tags' => '0',
@@ -49450,7 +50682,7 @@ $connection->insert('vocabulary')
   'description' => 'description of vocabulary name much longer than thirty two characters',
   'help' => '',
   'relations' => '1',
-  'hierarchy' => '3',
+  'hierarchy' => '0',
   'multiple' => '1',
   'required' => '0',
   'tags' => '0',
@@ -49518,6 +50750,14 @@ $connection->insert('vocabulary_node_types')
 ->values(array(
   'vid' => '4',
   'type' => 'article',
+))
+->values(array(
+  'vid' => '3',
+  'type' => 'employee',
+))
+->values(array(
+  'vid' => '5',
+  'type' => 'employee',
 ))
 ->values(array(
   'vid' => '7',

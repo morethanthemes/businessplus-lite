@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\Core\StringTranslation;
 
 use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
@@ -25,14 +27,16 @@ class StringTranslationTraitTest extends UnitTestCase {
    * The mock under test that uses StringTranslationTrait.
    *
    * @var object
-   * @see PHPUnit_Framework_MockObject_Generator::getObjectForTrait()
+   * @see \PHPUnit\Framework\MockObject\Generator::getObjectForTrait()
    */
   protected $translation;
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
+    parent::setUp();
+
     $this->translation = $this->getObjectForTrait('\Drupal\Core\StringTranslation\StringTranslationTrait');
     $mock = $this->prophesize(TranslationInterface::class);
     $mock->translate(Argument::cetera())->shouldNotBeCalled();
@@ -49,7 +53,6 @@ class StringTranslationTraitTest extends UnitTestCase {
    */
   public function testT() {
     $method = $this->reflection->getMethod('t');
-    $method->setAccessible(TRUE);
 
     $result = $method->invoke($this->translation, 'something');
     $this->assertInstanceOf(TranslatableMarkup::class, $result);
@@ -61,7 +64,6 @@ class StringTranslationTraitTest extends UnitTestCase {
    */
   public function testFormatPlural() {
     $method = $this->reflection->getMethod('formatPlural');
-    $method->setAccessible(TRUE);
 
     $result = $method->invoke($this->translation, 2, 'apple', 'apples');
     $this->assertInstanceOf(PluralTranslatableMarkup::class, $result);

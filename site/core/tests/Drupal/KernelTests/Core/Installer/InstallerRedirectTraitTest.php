@@ -15,6 +15,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * @coversDefaultClass \Drupal\Core\Installer\InstallerRedirectTrait
  *
  * @group Installer
+ * @group #slow
  */
 class InstallerRedirectTraitTest extends KernelTestBase {
 
@@ -73,7 +74,7 @@ class InstallerRedirectTraitTest extends KernelTestBase {
     catch (\Exception $e) {
       // Mock the trait.
       $trait = $this->getMockBuilder(InstallerRedirectTrait::class)
-        ->setMethods(['isCli'])
+        ->onlyMethods(['isCli'])
         ->getMockForTrait();
 
       // Make sure that the method thinks we are not using the cli.
@@ -83,26 +84,24 @@ class InstallerRedirectTraitTest extends KernelTestBase {
 
       // Un-protect the method using reflection.
       $method_ref = new \ReflectionMethod($trait, 'shouldRedirectToInstaller');
-      $method_ref->setAccessible(TRUE);
 
       // Mock the database connection info.
       $db = $this->getMockForAbstractClass(Database::class);
       $property_ref = new \ReflectionProperty($db, 'databaseInfo');
-      $property_ref->setAccessible(TRUE);
       $property_ref->setValue($db, ['default' => $connection_info]);
 
       if ($connection) {
         // Mock the database connection.
         $connection = $this->getMockBuilder(Connection::class)
           ->disableOriginalConstructor()
-          ->setMethods(['schema'])
+          ->onlyMethods(['schema'])
           ->getMockForAbstractClass();
 
         if ($connection_info) {
           // Mock the database schema class.
           $schema = $this->getMockBuilder(Schema::class)
             ->disableOriginalConstructor()
-            ->setMethods(['tableExists'])
+            ->onlyMethods(['tableExists'])
             ->getMockForAbstractClass();
 
           $schema->expects($this->any())

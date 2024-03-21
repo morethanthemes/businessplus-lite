@@ -11,6 +11,7 @@ use Drupal\libraries\ExternalLibrary\Asset\AttachableAssetLibraryRegistrationInt
 use Drupal\libraries\ExternalLibrary\Utility\LibraryAccessorInterface;
 use Drupal\libraries\ExternalLibrary\Utility\LibraryIdAccessorInterface;
 use Symfony\Component\Yaml\Parser;
+use Drupal\Core\Extension\Dependency;
 
 /**
  * Implements hook_library_info_build().
@@ -107,7 +108,7 @@ function libraries_get_path($name, $base_path = FALSE) {
  * https://www.drupal.org/node/2170763
  */
 function libraries_get_libraries() {
-  $searchdir = array();
+  $searchdir = [];
   $config = DrupalKernel::findSitePath(\Drupal::request());
 
   // @todo core/libraries
@@ -115,8 +116,8 @@ function libraries_get_libraries() {
   // Similar to 'modules' and 'themes' directories inside an installation
   // profile, installation profiles may want to place libraries into a
   // 'libraries' directory.
-  if ($profile = drupal_get_profile()) {
-    $profile_path = drupal_get_path('profile', $profile);
+  if ($profile = \Drupal::installProfile()) {
+    $profile_path = \Drupal::service('extension.list.profile')->getPath($profile);
     $searchdir[] = "$profile_path/libraries";
   };
 
@@ -130,8 +131,8 @@ function libraries_get_libraries() {
   $searchdir[] = "$config/libraries";
 
   // Retrieve list of directories.
-  $directories = array();
-  $nomask = array('CVS');
+  $directories = [];
+  $nomask = ['CVS'];
   foreach ($searchdir as $dir) {
     if (is_dir($dir) && $handle = opendir($dir)) {
       while (FALSE !== ($file = readdir($handle))) {
@@ -167,24 +168,24 @@ function libraries_get_libraries() {
  * https://www.drupal.org/node/2170763
  */
 function libraries_scan_info_files() {
-  $profile = drupal_get_path('profile', drupal_get_profile());
+  $profile = \Drupal::service('extension.list.profile')->getPath(\Drupal::installProfile());
   $config = DrupalKernel::findSitePath(\Drupal::request());
 
   // Build a list of directories.
-  $directories = \Drupal::moduleHandler()->invokeAll('libraries_info_file_paths', $args = array());
+  $directories = \Drupal::moduleHandler()->invokeAll('libraries_info_file_paths', $args = []);
   $directories[] = "$profile/libraries";
   $directories[] = 'sites/all/libraries';
   $directories[] = 'libraries';
   $directories[] = "$config/libraries";
 
   // Scan for info files.
-  $files = array();
+  $files = [];
   foreach ($directories as $dir) {
     if (file_exists($dir)) {
-      $files = array_merge($files, file_scan_directory($dir, '@^[a-z0-9._-]+\.libraries\.info\.yml$@', array(
+      $files = array_merge($files, \Drupal::service('file_system')->scanDirectory($dir, '@^[a-z0-9._-]+\.libraries\.info\.yml$@', [
         'key' => 'name',
         'recurse' => FALSE,
-      )));
+      ]));
     }
   }
 
@@ -293,7 +294,7 @@ function libraries_traverse_library(&$library, $callback) {
 function libraries_prepare_files(&$library, $version = NULL, $variant = NULL) {
   // Both the 'files' property and the 'integration files' property contain file
   // declarations, and we want to make both consistent.
-  $file_types = array();
+  $file_types = [];
   if (isset($library['files'])) {
     $file_types[] = &$library['files'];
   }
@@ -305,12 +306,12 @@ function libraries_prepare_files(&$library, $version = NULL, $variant = NULL) {
   }
   foreach ($file_types as &$files) {
     // Go through all supported types of files.
-    foreach (array('js', 'css', 'php') as $type) {
+    foreach (['js', 'css', 'php'] as $type) {
       if (isset($files[$type])) {
         foreach ($files[$type] as $key => $value) {
           // Unset numeric keys and turn the respective values into keys.
           if (is_numeric($key)) {
-            $files[$type][$value] = array();
+            $files[$type][$value] = [];
             unset($files[$type][$key]);
           }
         }
@@ -345,29 +346,29 @@ function libraries_prepare_files(&$library, $version = NULL, $variant = NULL) {
 function libraries_detect_dependencies(&$library, $version = NULL, $variant = NULL) {
   if (isset($library['dependencies'])) {
     foreach ($library['dependencies'] as &$dependency_string) {
-      $dependency_info = ModuleHandler::parseDependency($dependency_string);
-      $dependency = libraries_detect($dependency_info['name']);
-      if (!$dependency['installed']) {
+      $dependency = Dependency::createFromString($dependency_string);
+      $info = libraries_detect($dependency->getName());
+      if (!isset($info['installed']) || !$info['installed']) {
         $library['installed'] = FALSE;
         $library['error'] = 'missing dependency';
-        $library['error message'] = t('The %dependency library, which the %library library depends on, is not installed.', array(
-          '%dependency' => $dependency['name'],
+        $library['error message'] = t('The %dependency library, which the %library library depends on, is not installed.', [
+          '%dependency' => $dependency->getName(),
           '%library' => $library['name'],
-        ));
+        ]);
       }
-      elseif (drupal_check_incompatibility($dependency_info, $dependency['version'])) {
+      elseif (!$dependency->isCompatible($info['version'])) {
         $library['installed'] = FALSE;
         $library['error'] = 'incompatible dependency';
-        $library['error message'] = t('The version %dependency_version of the %dependency library is not compatible with the %library library.', array(
-          '%dependency_version' => $dependency['version'],
-          '%dependency' => $dependency['name'],
+        $library['error message'] = t('The version %dependency_version of the %dependency library is not compatible with the %library library.', [
+          '%dependency_version' => $info['version'],
+          '%dependency' => $info['name'],
           '%library' => $library['name'],
-        ));
+        ]);
       }
 
       // Remove the version string from the dependency, so libraries_load() can
       // load the libraries directly.
-      $dependency_string = $dependency_info['name'];
+      $dependency_string = $info['name'] ?? NULL;
     }
   }
 }
@@ -400,26 +401,28 @@ function &libraries_info($name = NULL) {
   $libraries = &drupal_static(__FUNCTION__);
 
   if (!isset($libraries)) {
-    $libraries = array();
+    $libraries = [];
     // Gather information from hook_libraries_info().
     $module_handler = \Drupal::moduleHandler();
-    foreach ($module_handler->getImplementations('libraries_info') as $module) {
-      foreach ($module_handler->invoke($module, 'libraries_info') as $machine_name => $properties) {
+    $hook = 'libraries_info';
+    $module_handler->invokeAllWith($hook, function (callable $hook, string $module) use ($module_handler, &$libraries) {
+
+      foreach ((array) $module_handler->invoke($module, 'libraries_info') as $machine_name => $properties) {
         $properties['module'] = $module;
         $libraries[$machine_name] = $properties;
       }
-    }
+    });
     // Gather information from hook_libraries_info() in enabled themes.
     // @see drupal_alter()
     global $theme, $base_theme_info;
     if (isset($theme)) {
-      $theme_keys = array();
+      $theme_keys = [];
       foreach ($base_theme_info as $base) {
         $theme_keys[] = $base->name;
       }
       $theme_keys[] = $theme;
       foreach ($theme_keys as $theme_key) {
-        $function = $theme_key . '_' . 'libraries_info';
+        $function = $theme_key . '_libraries_info';
         if (function_exists($function)) {
           foreach ($function() as $machine_name => $properties) {
             $properties['theme'] = $theme_key;
@@ -439,7 +442,7 @@ function &libraries_info($name = NULL) {
     // 'type' key in info files. We therefore use Symfony's YAML parser
     // directly.
     // @todo Consider creating a dedicating InfoParser for library info files
-    //   similar to \Drupal\Core\Extension\InfoParser
+    //   similar to \Drupal\Core\Extension\InfoParser.
     $parser = new Parser();
     foreach (libraries_scan_info_files() as $machine_name => $file) {
       $properties = $parser->parse(file_get_contents($file->uri));
@@ -486,7 +489,7 @@ function &libraries_info($name = NULL) {
  * https://www.drupal.org/node/2170763
  */
 function libraries_info_defaults(&$library, $name) {
-  $library += array(
+  $library += [
     'machine name' => $name,
     'name' => $name,
     'vendor url' => '',
@@ -494,21 +497,21 @@ function libraries_info_defaults(&$library, $name) {
     'path' => '',
     'library path' => NULL,
     'version callback' => 'libraries_get_version',
-    'version arguments' => array(),
-    'files' => array(),
-    'dependencies' => array(),
-    'variants' => array(),
-    'versions' => array(),
-    'integration files' => array(),
-    'callbacks' => array(),
-  );
-  $library['callbacks'] += array(
-    'info' => array(),
-    'pre-detect' => array(),
-    'post-detect' => array(),
-    'pre-load' => array(),
-    'post-load' => array(),
-  );
+    'version arguments' => [],
+    'files' => [],
+    'dependencies' => [],
+    'variants' => [],
+    'versions' => [],
+    'integration files' => [],
+    'callbacks' => [],
+  ];
+  $library['callbacks'] += [
+    'info' => [],
+    'pre-detect' => [],
+    'post-detect' => [],
+    'pre-load' => [],
+    'post-load' => [],
+  ];
 
   // Add our own callbacks before any others.
   array_unshift($library['callbacks']['info'], 'libraries_prepare_files');
@@ -563,9 +566,9 @@ function libraries_detect($name) {
   }
   if ($library['library path'] === FALSE || !file_exists($library['library path'])) {
     $library['error'] = 'not found';
-    $library['error message'] = t('The %library library could not be found.', array(
+    $library['error message'] = t('The %library library could not be found.', [
       '%library' => $library['name'],
-    ));
+    ]);
     return $library;
   }
 
@@ -578,16 +581,16 @@ function libraries_detect($name) {
     // indexed array of multiple parameters.
     if (isset($library['version arguments'][0])) {
       // Add the library as the first argument.
-      $library['version'] = call_user_func_array($library['version callback'], array_merge(array($library), $library['version arguments']));
+      $library['version'] = call_user_func_array($library['version callback'], array_merge([$library], $library['version arguments']));
     }
     else {
       $library['version'] = $library['version callback']($library, $library['version arguments']);
     }
     if (empty($library['version'])) {
       $library['error'] = 'not detected';
-      $library['error message'] = t('The version of the %library library could not be detected.', array(
+      $library['error message'] = t('The version of the %library library could not be detected.', [
         '%library' => $library['name'],
-      ));
+      ]);
       return $library;
     }
   }
@@ -603,10 +606,10 @@ function libraries_detect($name) {
     }
     if (!$version) {
       $library['error'] = 'not supported';
-      $library['error message'] = t('The installed version %version of the %library library is not supported.', array(
+      $library['error message'] = t('The installed version %version of the %library library is not supported.', [
         '%version' => $library['version'],
         '%library' => $library['name'],
-      ));
+      ]);
       return $library;
     }
 
@@ -627,18 +630,19 @@ function libraries_detect($name) {
         // We support both a single parameter, which is an associative array,
         // and an indexed array of multiple parameters.
         if (isset($variant['variant arguments'][0])) {
-          // Add the library as the first argument, and the variant name as the second.
-          $variant['installed'] = call_user_func_array($variant['variant callback'], array_merge(array($library, $variant_name), $variant['variant arguments']));
+          // Add the library as the first argument, and the variant name as the
+          // second.
+          $variant['installed'] = call_user_func_array($variant['variant callback'], array_merge([$library, $variant_name], $variant['variant arguments']));
         }
         else {
           $variant['installed'] = $variant['variant callback']($library, $variant_name, $variant['variant arguments']);
         }
         if (!$variant['installed']) {
           $variant['error'] = 'not found';
-          $variant['error message'] = t('The %variant variant of the %library library could not be found.', array(
+          $variant['error message'] = t('The %variant variant of the %library library could not be found.', [
             '%variant' => $variant_name,
             '%library' => $library['name'],
-          ));
+          ]);
         }
       }
     }
@@ -678,7 +682,7 @@ function libraries_detect($name) {
  * https://www.drupal.org/node/2170763
  */
 function libraries_load($name, $variant = NULL) {
-  $loaded = &drupal_static(__FUNCTION__, array());
+  $loaded = &drupal_static(__FUNCTION__, []);
 
   if (!isset($loaded[$name])) {
     $library = \Drupal::cache('libraries')->get($name);
@@ -695,7 +699,7 @@ function libraries_load($name, $variant = NULL) {
       // Ensure that the $variant key exists, and if it does not, set its
       // 'installed' property to FALSE by default. This will prevent the loading
       // of the library files below.
-      $library['variants'] += array($variant => array('installed' => FALSE));
+      $library['variants'] += [$variant => ['installed' => FALSE]];
       $library = array_merge($library, $library['variants'][$variant]);
     }
     // Regardless of whether a specific variant was requested or not, there can
@@ -753,7 +757,7 @@ function libraries_load_files($library) {
   // The parameters for drupal_add_js() and drupal_add_css() require special
   // handling.
   // @see drupal_process_attached()
-  foreach (array('js', 'css') as $type) {
+  foreach (['js', 'css'] as $type) {
     // Given the removal of core functions like _drupal_add_js and
     // _drupal_add_css the logic below cannot safely be run anymore.
     // @see https://www.drupal.org/node/2702563
@@ -764,7 +768,7 @@ function libraries_load_files($library) {
         // (and only) argument.
         if (!is_array($options)) {
           $data = $options;
-          $options = array();
+          $options = [];
         }
         // In some cases, the first parameter ($data) is an array. Arrays can't
         // be passed as keys in PHP, so we have to get $data from the value
@@ -803,11 +807,11 @@ function libraries_load_files($library) {
   // Load integration files.
   if (!empty($library['integration files'])) {
     foreach ($library['integration files'] as $module => $files) {
-      libraries_load_files(array(
+      libraries_load_files([
         'files' => $files,
         'path' => '',
-        'library path' => drupal_get_path('module', $module),
-      ));
+        'library path' => \Drupal::service('extension.list.module')->getPath($module),
+      ]);
     }
   }
 
@@ -845,12 +849,12 @@ function libraries_load_files($library) {
  */
 function libraries_get_version($library, $options) {
   // Provide defaults.
-  $options += array(
+  $options += [
     'file' => '',
     'pattern' => '',
     'lines' => 20,
     'cols' => 200,
-  );
+  ];
 
   $file = DRUPAL_ROOT . '/' . $library['library path'] . '/' . $options['file'];
   if (empty($options['file']) || !file_exists($file)) {

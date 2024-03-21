@@ -19,11 +19,11 @@ class DefinitionDiscoveryFactory {
   protected $configFactory;
 
   /**
-   * The serializer for local definition files.
+   * The serializer for files.
    *
    * @var \Drupal\Component\Serialization\SerializationInterface
    */
-  protected $localSerializer;
+  protected $jsonSerializer;
 
   /**
    * The HTTP client used to fetch remote definitions.
@@ -33,34 +33,23 @@ class DefinitionDiscoveryFactory {
   protected $httpClient;
 
   /**
-   * The serializer for remote definitions.
-   *
-   * @var \Drupal\Component\Serialization\SerializationInterface
-   */
-  protected $remoteSerializer;
-
-  /**
    * Constructs a definition discovery factory.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The configuration factory.
-   * @param \Drupal\Component\Serialization\SerializationInterface $local_serializer
+   * @param \Drupal\Component\Serialization\SerializationInterface $json_serializer
    *   The serializer for local definition files.
    * @param \GuzzleHttp\ClientInterface $http_client
    *   The HTTP client used to fetch remote definitions.
-   * @param \Drupal\Component\Serialization\SerializationInterface $remote_serializer
-   *   The serializer for remote definitions.
    */
   public function __construct(
     ConfigFactoryInterface $config_factory,
-    SerializationInterface $local_serializer,
-    ClientInterface $http_client,
-    SerializationInterface $remote_serializer
+    SerializationInterface $json_serializer,
+    ClientInterface $http_client
   ) {
     $this->configFactory = $config_factory;
-    $this->localSerializer = $local_serializer;
+    $this->jsonSerializer = $json_serializer;
     $this->httpClient = $http_client;
-    $this->remoteSerializer = $remote_serializer;
   }
 
   /**
@@ -76,7 +65,7 @@ class DefinitionDiscoveryFactory {
       $discovery = new ChainDefinitionDiscovery();
 
       $local_discovery = new WritableFileDefinitionDiscovery(
-        $this->localSerializer,
+        $this->jsonSerializer,
         $config->get('definition.local.path')
       );
       $discovery->addDiscovery($local_discovery);
@@ -84,7 +73,7 @@ class DefinitionDiscoveryFactory {
       foreach ($config->get('definition.remote.urls') as $remote_url) {
         $remote_discovery = new GuzzleDefinitionDiscovery(
           $this->httpClient,
-          $this->remoteSerializer,
+          $this->jsonSerializer,
           $remote_url
         );
 
@@ -93,7 +82,7 @@ class DefinitionDiscoveryFactory {
     }
     else {
       $discovery = new FileDefinitionDiscovery(
-        $this->localSerializer,
+        $this->jsonSerializer,
         $config->get('definition.local.path')
       );
     }

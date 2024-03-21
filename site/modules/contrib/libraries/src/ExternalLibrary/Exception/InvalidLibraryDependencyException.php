@@ -12,8 +12,10 @@ use Drupal\libraries\ExternalLibrary\Utility\LibraryAccessorInterface;
  */
 class InvalidLibraryDependencyException extends \UnexpectedValueException implements LibraryAccessorInterface {
 
-  use LibraryAccessorTrait;
-  use DependencyAccessorTrait;
+  use LibraryAccessorTrait, DependencyAccessorTrait {
+    LibraryAccessorTrait::getLibrary insteadof DependencyAccessorTrait;
+    DependencyAccessorTrait::getLibrary as libraryAccessor;
+  }
 
   /**
    * Constructs a library exception.

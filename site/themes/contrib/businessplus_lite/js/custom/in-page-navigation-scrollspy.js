@@ -1,4 +1,4 @@
-(function ($, Drupal, drupalSettings) {
+(function ($, Drupal, drupalSettings, once) {
   Drupal.behaviors.inPageNavScrollspy = {
     attach: function (context, settings) {
       var target = $(".in-page-navigation").closest(".content").addClass("in-page-navigation-container");
@@ -10,4 +10,4 @@
       });
     }
   };
-})(jQuery, Drupal, drupalSettings);
+})(jQuery, Drupal, drupalSettings, once);

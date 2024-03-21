@@ -1,12 +1,10 @@
 name: 'Contextual Links'
 type: module
-description: 'Provides contextual links to perform actions related to elements on a page.'
+description: 'Provides contextual links to directly access tasks related to page elements.'
 package: Core
 # version: VERSION
-# core: 8.x
 
-# Information added by Drupal.org packaging script on 2019-01-16
-version: '8.6.7'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2024-03-06
+version: '10.2.4'
 project: 'drupal'
-datestamp: 1547682295
+datestamp: 1709715468

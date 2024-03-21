@@ -15,7 +15,7 @@ class PhpFileLibraryTest extends LibraryTypeKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->container->set('stream_wrapper.php_file_libraries', new TestLibraryFilesStream(

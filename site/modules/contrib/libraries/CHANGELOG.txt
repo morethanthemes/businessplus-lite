@@ -1,6 +1,7 @@
 
 Libraries 8.x-3.x, xxxx-xx-xx
 -----------------------------
+#2882709 by Kingdutch: Fix "LibraryIdAccessorInterface" name
 #2833756 by 20th: Check that public://library-definitions directory does not exist
 #2825940 by tstoeckler, rjacobs: Remove LibrariesServiceProvider
 #2816115 by rjacobs: Remove ExtensionHandler service

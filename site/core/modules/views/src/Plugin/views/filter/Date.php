@@ -23,7 +23,7 @@ class Date extends NumericFilter {
   }
 
   /**
-   * Add a type selector to the value form
+   * Add a type selector to the value form.
    */
   protected function valueForm(&$form, FormStateInterface $form_state) {
     if (!$form_state->get('exposed')) {
@@ -111,7 +111,7 @@ class Date extends NumericFilter {
     // one greater.
     $operators = $this->operators();
     $expected = $operators[$group['operator']]['values'] + 1;
-    $actual = count(array_filter($group['value'], 'static::arrayFilterZero'));
+    $actual = count(array_filter($group['value'], [static::class, 'arrayFilterZero']));
 
     return $actual == $expected;
   }

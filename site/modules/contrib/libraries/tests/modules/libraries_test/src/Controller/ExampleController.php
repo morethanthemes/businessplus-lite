@@ -23,7 +23,7 @@ class ExampleController implements ContainerInjectionInterface {
    * more information.
    */
   private function buildPage($library, $variant = NULL) {
-    libraries_load($library, $variant);
+    \Drupal::service('libraries.manager')->load($library, $variant);
     // JavaScript and CSS files can be checked directly by SimpleTest, so we only
     // need to manually check for PHP files.
     $output = '';

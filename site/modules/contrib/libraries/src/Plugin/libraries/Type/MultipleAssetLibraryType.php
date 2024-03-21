@@ -25,7 +25,7 @@ class MultipleAssetLibraryType extends LibraryTypeBase implements AttachableAsse
    * {@inheritdoc}
    */
   public function getAttachableAssetLibraries(LibraryInterface $external_library, LibraryManagerInterface $library_manager) {
-    assert('$external_library instanceof \Drupal\libraries\ExternalLibrary\Asset\MultipleAssetLibraryInterface');
+    assert($external_library instanceof MultipleAssetLibraryInterface);
     /** @var \Drupal\libraries\ExternalLibrary\Asset\MultipleAssetLibraryInterface $external_library */
     $attachable_libraries = [];
     foreach ($external_library->getAttachableAssetLibraries($library_manager) as $component_name => $attachable_library) {

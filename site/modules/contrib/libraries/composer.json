@@ -8,7 +8,7 @@
   "support": {
     "issues": "http://drupal.org/project/issues/libraries",
     "irc": "irc://irc.freenode.org/drupal-contribute",
-    "source": "http://cgit.drupalcode.org/libraries"
+    "source": "https://git.drupalcode.org/project/libraries"
   },
-  "license": "GPL-2.0+"
+  "license": "GPL-2.0-or-later"
 }

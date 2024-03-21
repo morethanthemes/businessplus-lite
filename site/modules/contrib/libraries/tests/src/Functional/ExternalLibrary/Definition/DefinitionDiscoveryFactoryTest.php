@@ -30,14 +30,21 @@ class DefinitionDiscoveryFactoryTest extends BrowserTestBase {
   protected $definitionPath;
 
   /**
-   * {@inheritdoc}
+   * Set default theme to stark.
+   *
+   * @var string
    */
-  public static $modules = ['libraries'];
+  protected $defaultTheme = 'stark';
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected static $modules = ['libraries'];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
     parent::setUp();
 
     /** @var \Drupal\Core\Config\ConfigFactoryInterface $config_factory */
@@ -108,11 +115,11 @@ class DefinitionDiscoveryFactoryTest extends BrowserTestBase {
     /** @var \Drupal\libraries\ExternalLibrary\Definition\DefinitionDiscoveryInterface $discovery */
     $discovery = $this->container->get($discovery_service_id);
     $definition_file = "$definitions_directory/$library_id.json";
-    $this->assertFalse(file_exists($definition_file));
+    $this->assertFileDoesNotExist($definition_file);
     $this->assertTrue($discovery->hasDefinition($library_id));
-    $this->assertFalse(file_exists($definition_file));
+    $this->assertFileDoesNotExist($definition_file);
     $this->assertEquals($discovery->getDefinition($library_id), $expected_definition);
-    $this->assertTrue(file_exists($definition_file));
+    $this->assertFileExists($definition_file);
   }
 
 }

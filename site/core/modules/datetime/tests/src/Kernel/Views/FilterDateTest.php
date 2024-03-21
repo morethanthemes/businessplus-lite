@@ -46,11 +46,11 @@ class FilterDateTest extends DateTimeHandlerTestBase {
    *
    * Create nodes with relative dates of yesterday, today, and tomorrow.
    */
-  protected function setUp($import_test_views = TRUE) {
+  protected function setUp($import_test_views = TRUE): void {
     parent::setUp($import_test_views);
 
     // Change field storage to date-only.
-    $storage = FieldStorageConfig::load('node.' . static::$field_name);
+    $storage = FieldStorageConfig::load('node.' . static::$fieldName);
     $storage->setSetting('datetime_type', DateTimeItem::DATETIME_TYPE_DATE);
     $storage->save();
 
@@ -83,11 +83,11 @@ class FilterDateTest extends DateTimeHandlerTestBase {
   }
 
   /**
-   * Test offsets with date-only fields.
+   * Tests offsets with date-only fields.
    */
   public function testDateOffsets() {
     $view = Views::getView('test_filter_datetime');
-    $field = static::$field_name . '_value';
+    $field = static::$fieldName . '_value';
 
     foreach (static::$timezones as $timezone) {
 
@@ -167,11 +167,11 @@ class FilterDateTest extends DateTimeHandlerTestBase {
   }
 
   /**
-   * Test date filter with date-only fields.
+   * Tests date filter with date-only fields.
    */
   public function testDateIs() {
     $view = Views::getView('test_filter_datetime');
-    $field = static::$field_name . '_value';
+    $field = static::$fieldName . '_value';
 
     foreach (static::$timezones as $timezone) {
 
@@ -222,7 +222,7 @@ class FilterDateTest extends DateTimeHandlerTestBase {
    */
   protected function updateNodesDateFieldsValues(array $dates) {
     foreach ($dates as $index => $date) {
-      $this->nodes[$index]->{static::$field_name}->value = $date;
+      $this->nodes[$index]->{static::$fieldName}->value = $date;
       $this->nodes[$index]->save();
     }
   }

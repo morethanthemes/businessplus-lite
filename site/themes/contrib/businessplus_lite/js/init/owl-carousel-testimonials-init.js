@@ -1,8 +1,8 @@
-(function ($, Drupal, drupalSettings) {
+(function ($, Drupal, drupalSettings, once) {
   Drupal.behaviors.mtowlCarouselTestimonials = {
     attach: function (context, settings) {
-      $(context).find('.mt-carousel-testimonials').once('mtowlCarouselTestimonialsInit').each(function() {
-        $(this).owlCarousel({
+      once('mtowlCarouselTestimonialsInit', ".mt-carousel-testimonials", context).forEach(function(item) {
+        $(item).owlCarousel({
           items: 1,
           responsive:{
             0:{
@@ -34,4 +34,4 @@
       });
     }
   };
-})(jQuery, Drupal, drupalSettings);
+})(jQuery, Drupal, drupalSettings, once);
