@@ -5,7 +5,7 @@
  * Hooks related to the Database system and the Schema API.
  */
 
-use Drupal\Core\Database\Query\Condition;
+use Drupal\Core\Database\Query\SelectInterface;
 
 /**
  * @defgroup database Database abstraction layer
@@ -14,12 +14,19 @@ use Drupal\Core\Database\Query\Condition;
  *
  * @section sec_intro Overview
  * Drupal's database abstraction layer provides a unified database query API
- * that can query different underlying databases. It is built upon PHP's
- * PDO (PHP Data Objects) database API, and inherits much of its syntax and
- * semantics. Besides providing a unified API for database queries, the
+ * that can query different underlying databases. It is generally built upon
+ * PHP's PDO (PHP Data Objects) database API, and inherits much of its syntax
+ * and semantics. Besides providing a unified API for database queries, the
  * database abstraction layer also provides a structured way to construct
  * complex queries, and it protects the database by using good security
  * practices.
+ *
+ * Drupal provides 'database drivers', in the form of Drupal modules, for the
+ * concrete implementation of its API towards a specific database engine.
+ * MySql, PostgreSQL and SQLite are core implementations, built on PDO. Other
+ * modules can provide implementations for additional database engines, like
+ * MSSql or Oracle; or alternative low-level database connection clients like
+ * mysqli or oci8.
  *
  * For more detailed information on the database abstraction layer, see
  * https://www.drupal.org/docs/8/api/database-api/database-api-overview.
@@ -93,6 +100,11 @@ use Drupal\Core\Database\Query\Condition;
  * fields (see the @link entity_api Entity API topic @endlink for more on
  * entity queries).
  *
+ * Note: \Drupal::database() is used here as a shorthand way to get a reference
+ * to the database connection object. In most classes, you should use dependency
+ * injection and inject the 'database' service to perform queries. See
+ * @ref sec_connection below for details.
+ *
  * The dynamic query API lets you build up a query dynamically using method
  * calls. As an illustration, the query example from @ref sec_simple above
  * would be:
@@ -157,20 +169,21 @@ use Drupal\Core\Database\Query\Condition;
  * remains in scope; when $transaction is destroyed, the transaction will be
  * committed. If your transaction is nested inside of another then Drupal will
  * track each transaction and only commit the outer-most transaction when the
- * last transaction object goes out out of scope (when all relevant queries have
+ * last transaction object goes out of scope (when all relevant queries have
  * completed successfully).
  *
  * Example:
  * @code
  * function my_transaction_function() {
  *   $connection = \Drupal::database();
- *   // The transaction opens here.
- *   $transaction = $connection->startTransaction();
  *
  *   try {
+ *     // The transaction opens here.
+ *     $transaction = $connection->startTransaction();
+ *
  *     $id = $connection->insert('example')
  *       ->fields(array(
- *         'field1' => 'mystring',
+ *         'field1' => 'string',
  *         'field2' => 5,
  *       ))
  *       ->execute();
@@ -180,13 +193,19 @@ use Drupal\Core\Database\Query\Condition;
  *     return $id;
  *   }
  *   catch (Exception $e) {
- *     // Something went wrong somewhere, so roll back now.
- *     $transaction->rollBack();
+ *     // Something went wrong somewhere. If the exception was thrown during
+ *     // startTransaction(), then $transaction is NULL and there's nothing to
+ *     // roll back. If the exception was thrown after a transaction was
+ *     // successfully started, then it must be rolled back.
+ *     if (isset($transaction)) {
+ *       $transaction->rollBack();
+ *     }
+ *
  *     // Log the exception to watchdog.
  *     watchdog_exception('type', $e);
  *   }
  *
- *   // $transaction goes out of scope here.  Unless the transaction was rolled
+ *   // $transaction goes out of scope here. Unless the transaction was rolled
  *   // back, it gets automatically committed here.
  * }
  *
@@ -385,7 +404,9 @@ use Drupal\Core\Database\Query\Condition;
  * ];
  * @endcode
  *
- * @see drupal_install_schema()
+ * @see \Drupal\Core\Extension\ModuleInstaller::installSchema()
+ * @see \Drupal\Core\Extension\ModuleInstaller::uninstallSchema()
+ * @see \Drupal\TestTools\Extension\SchemaInspector::getTablesSpecification()
  *
  * @}
  */
@@ -420,8 +441,14 @@ function hook_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) 
 /**
  * Perform alterations to a structured query for a given tag.
  *
+ * Some common tags include:
+ * - 'entity_reference': For queries that return entities that may be referenced
+ *   by an entity reference field.
+ * - ENTITY_TYPE . '_access': For queries of entities that will be displayed in
+ *   a listing (e.g., from Views) and therefore require access control.
+ *
  * @param $query
- *   An Query object describing the composite parts of a SQL query.
+ *   A Query object describing the composite parts of a SQL query.
  *
  * @see hook_query_alter()
  * @see node_query_node_access_alter()
@@ -431,34 +458,40 @@ function hook_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) 
  * @ingroup database
  */
 function hook_query_TAG_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
-  // Skip the extra expensive alterations if site has no node access control modules.
-  if (!node_access_view_all_nodes()) {
-    // Prevent duplicates records.
-    $query->distinct();
-    // The recognized operations are 'view', 'update', 'delete'.
-    if (!$op = $query->getMetaData('op')) {
-      $op = 'view';
+  // This is an example of a possible hook_query_media_access_alter()
+  // implementation. In other words, alter queries of media entities that
+  // require access control (have the 'media_access' query tag).
+
+  // Determine which media entities we want to remove from the query. In this
+  // example, we hard-code some media IDs.
+  $media_entities_to_hide = [1, 3];
+
+  // In this example, we're only interested in applying our media access
+  // restrictions to SELECT queries. hook_media_access() can be used to apply
+  // access control to 'update' and 'delete' operations.
+  if (!($query instanceof SelectInterface)) {
+    return;
+  }
+
+  // The tables in the query. This can include media entity tables and other
+  // tables. Tables might be joined more than once, with aliases.
+  $query_tables = $query->getTables();
+
+  // The tables belonging to media entity storage.
+  $table_mapping = \Drupal::entityTypeManager()->getStorage('media')->getTableMapping();
+  $media_tables = $table_mapping->getTableNames();
+
+  // For each table in the query, if it's a media entity storage table, add a
+  // condition to filter out records belonging to a media entity that we wish
+  // to hide.
+  foreach ($query_tables as $alias => $info) {
+    // Skip over subqueries.
+    if ($info['table'] instanceof SelectInterface) {
+      continue;
     }
-    // Skip the extra joins and conditions for node admins.
-    if (!\Drupal::currentUser()->hasPermission('bypass node access')) {
-      // The node_access table has the access grants for any given node.
-      $access_alias = $query->join('node_access', 'na', '%alias.nid = n.nid');
-      $or = new Condition('OR');
-      // If any grant exists for the specified user, then user has access to the node for the specified operation.
-      foreach (node_access_grants($op, $query->getMetaData('account')) as $realm => $gids) {
-        foreach ($gids as $gid) {
-          $or->condition((new Condition('AND'))
-            ->condition($access_alias . '.gid', $gid)
-            ->condition($access_alias . '.realm', $realm)
-          );
-        }
-      }
-
-      if (count($or->conditions())) {
-        $query->condition($or);
-      }
-
-      $query->condition($access_alias . 'grant_' . $op, 1, '>=');
+    $real_table_name = $info['table'];
+    if (in_array($real_table_name, $media_tables)) {
+      $query->condition("$alias.mid", $media_entities_to_hide, 'NOT IN');
     }
   }
 }

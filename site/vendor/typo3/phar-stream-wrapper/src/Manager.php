@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace TYPO3\PharStreamWrapper;
 
 /*
@@ -11,7 +12,11 @@ namespace TYPO3\PharStreamWrapper;
  * The TYPO3 project - inspiring people to share!
  */
 
-class Manager implements Assertable
+use TYPO3\PharStreamWrapper\Resolver\PharInvocationResolver;
+use TYPO3\PharStreamWrapper\Resolver\PharInvocation;
+use TYPO3\PharStreamWrapper\Resolver\PharInvocationCollection;
+
+class Manager
 {
     /**
      * @var self
@@ -24,13 +29,28 @@ class Manager implements Assertable
     private $behavior;
 
     /**
+     * @var Resolvable
+     */
+    private $resolver;
+
+    /**
+     * @var Collectable
+     */
+    private $collection;
+
+    /**
      * @param Behavior $behaviour
+     * @param Resolvable $resolver
+     * @param Collectable $collection
      * @return self
      */
-    public static function initialize(Behavior $behaviour)
-    {
+    public static function initialize(
+        Behavior $behaviour,
+        Resolvable $resolver = null,
+        Collectable $collection = null
+    ): self {
         if (self::$instance === null) {
-            self::$instance = new self($behaviour);
+            self::$instance = new self($behaviour, $resolver, $collection);
             return self::$instance;
         }
         throw new \LogicException(
@@ -42,7 +62,7 @@ class Manager implements Assertable
     /**
      * @return self
      */
-    public static function instance()
+    public static function instance(): self
     {
         if (self::$instance !== null) {
             return self::$instance;
@@ -56,7 +76,7 @@ class Manager implements Assertable
     /**
      * @return bool
      */
-    public static function destroy()
+    public static function destroy(): bool
     {
         if (self::$instance === null) {
             return false;
@@ -67,9 +87,16 @@ class Manager implements Assertable
 
     /**
      * @param Behavior $behaviour
+     * @param Resolvable $resolver
+     * @param Collectable $collection
      */
-    private function __construct(Behavior $behaviour)
-    {
+    private function __construct(
+        Behavior $behaviour,
+        Resolvable $resolver = null,
+        Collectable $collection = null
+    ) {
+        $this->collection = $collection ?? new PharInvocationCollection();
+        $this->resolver = $resolver ?? new PharInvocationResolver();
         $this->behavior = $behaviour;
     }
 
@@ -78,8 +105,26 @@ class Manager implements Assertable
      * @param string $command
      * @return bool
      */
-    public function assert($path, $command)
+    public function assert(string $path, string $command): bool
     {
         return $this->behavior->assert($path, $command);
+    }
+
+    /**
+     * @param string $path
+     * @param null|int $flags
+     * @return PharInvocation|null
+     */
+    public function resolve(string $path, int $flags = null)
+    {
+        return $this->resolver->resolve($path, $flags);
+    }
+
+    /**
+     * @return Collectable
+     */
+    public function getCollection(): Collectable
+    {
+        return $this->collection;
     }
 }

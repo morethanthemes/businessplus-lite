@@ -92,8 +92,8 @@ trait LocalLibraryTrait {
     $this->installed = TRUE;
     $this->localPath = (string) $path;
 
-    assert('$this->localPath !== ""');
-    assert('$this->localPath[0] !== "/"');
+    assert($this->localPath !== "");
+    assert($this->localPath[0] !== "/");
   }
 
 }

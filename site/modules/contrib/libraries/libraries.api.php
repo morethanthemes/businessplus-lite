@@ -341,7 +341,7 @@ function hook_libraries_info() {
 
   // This array key lets Libraries API search for 'sites/all/libraries/example'
   // directory, which should contain the entire, original extracted library.
-  $libraries['example'] = array(
+  $libraries['example'] = [
     // Only used in administrative UI of Libraries API.
     'name' => 'Example library',
     'vendor url' => 'http://example.com',
@@ -353,53 +353,53 @@ function hook_libraries_info() {
     'version callback' => 'mymodule_get_version',
     // Specify arguments for the version callback. By default,
     // libraries_get_version() takes a named argument array:
-    'version arguments' => array(
+    'version arguments' => [
       'file' => 'docs/CHANGELOG.txt',
       'pattern' => '@version\s+([0-9a-zA-Z\.-]+)@',
       'lines' => 5,
       'cols' => 20,
-    ),
+    ],
     // Default list of files of the library to load. Important: Only specify
     // third-party files belonging to the library here, not integration files of
     // your module.
-    'files' => array(
+    'files' => [
       // 'js' and 'css' follow the syntax of hook_library(), but file paths are
       // relative to the library path.
-      'js' => array(
+      'js' => [
         'exlib.js',
         'gadgets/foo.js',
-      ),
-      'css' => array(
+      ],
+      'css' => [
         'lib_style.css',
         'skin/example.css',
-      ),
+      ],
       // For PHP libraries, specify include files here, still relative to the
       // library path.
-      'php' => array(
+      'php' => [
         'exlib.php',
         'exlib.inc',
-      ),
-    ),
+      ],
+    ],
     // Optional: Specify alternative variants of the library, if available.
-    'variants' => array(
+    'variants' => [
       // All properties defined for 'minified' override top-level properties.
-      'minified' => array(
-        'files' => array(
-          'js' => array(
+      'minified' => [
+        'files' => [
+          'js' => [
             'exlib.min.js',
             'gadgets/foo.min.js',
-          ),
-          'css' => array(
+          ],
+          'css' => [
             'lib_style.css',
             'skin/example.css',
-          ),
-        ),
+          ],
+        ],
         'variant callback' => 'mymodule_check_variant',
-        'variant arguments' => array(
+        'variant arguments' => [
           'variant' => 'minified',
-        ),
-      ),
-    ),
+        ],
+      ],
+    ],
     // Optional, but usually required: Override top-level properties for later
     // versions of the library. The properties of the minimum version that is
     // matched override the top-level properties. Note:
@@ -409,85 +409,85 @@ function hook_libraries_info() {
     //   defaults.
     // - The array keys have to be strings, as PHP does not support floats for
     //   array keys.
-    'versions' => array(
-      '2' => array(
-        'files' => array(
-          'js' => array('exlib.js'),
-          'css' => array('exlib_style.css'),
-        ),
-      ),
-      '3.0' => array(
-        'files' => array(
-          'js' => array('exlib.js'),
-          'css' => array('lib_style.css'),
-        ),
-      ),
-      '3.2' => array(
-        'files' => array(
-          'js' => array(
+    'versions' => [
+      '2' => [
+        'files' => [
+          'js' => ['exlib.js'],
+          'css' => ['exlib_style.css'],
+        ],
+      ],
+      '3.0' => [
+        'files' => [
+          'js' => ['exlib.js'],
+          'css' => ['lib_style.css'],
+        ],
+      ],
+      '3.2' => [
+        'files' => [
+          'js' => [
             'exlib.js',
             'gadgets/foo.js',
-          ),
-          'css' => array(
+          ],
+          'css' => [
             'lib_style.css',
             'skin/example.css',
-          ),
-        ),
-      ),
-    ),
+          ],
+        ],
+      ],
+    ],
     // Optional: Register files to auto-load for your module. All files must be
     // keyed by module, and follow the syntax of the 'files' property.
-    'integration files' => array(
-      'mymodule' => array(
-        'js' => array('ex_lib.inc'),
-      ),
-    ),
+    'integration files' => [
+      'mymodule' => [
+        'js' => ['ex_lib.inc'],
+      ],
+    ],
     // Optionally register callbacks to apply to the library during different
     // stages of its lifetime ('callback groups').
-    'callbacks' => array(
+    'callbacks' => [
       // Used to alter the info associated with the library.
-      'info' => array(
+      'info' => [
         'mymodule_example_libraries_info_callback',
-      ),
+      ],
       // Called before detecting the given library.
-      'pre-detect' => array(
+      'pre-detect' => [
         'mymodule_example_libraries_predetect_callback',
-      ),
+      ],
       // Called after detecting the library.
-      'post-detect' => array(
+      'post-detect' => [
         'mymodule_example_libraries_postdetect_callback',
-      ),
+      ],
       // Called before the library is loaded.
-      'pre-load' => array(
+      'pre-load' => [
         'mymodule_example_libraries_preload_callback',
-      ),
+      ],
       // Called after the library is loaded.
-      'post-load' => array(
+      'post-load' => [
         'mymodule_example_libraries_postload_callback',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   // A very simple library. No changing APIs (hence, no versions), no variants.
   // Expected to be extracted into 'sites/all/libraries/simple'.
-  $libraries['simple'] = array(
+  $libraries['simple'] = [
     'name' => 'Simple library',
     'vendor url' => 'http://example.com/simple',
     'download url' => 'http://example.com/simple',
-    'version arguments' => array(
+    'version arguments' => [
       'file' => 'readme.txt',
       // Best practice: Document the actual version strings for later reference.
       // 1.x: Version 1.0
       'pattern' => '/Version (\d+)/',
       'lines' => 5,
-    ),
-    'files' => array(
-      'js' => array('simple.js'),
-    ),
-  );
+    ],
+    'files' => [
+      'js' => ['simple.js'],
+    ],
+  ];
 
   // A library that (naturally) evolves over time with API changes.
-  $libraries['tinymce'] = array(
+  $libraries['tinymce'] = [
     'name' => 'TinyMCE',
     'vendor url' => 'http://tinymce.moxiecode.com',
     'download url' => 'http://tinymce.moxiecode.com/download.php',
@@ -495,7 +495,7 @@ function hook_libraries_info() {
     // The regular expression catches two parts (the major and the minor
     // version), which libraries_get_version() doesn't allow.
     'version callback' => 'tinymce_get_version',
-    'version arguments' => array(
+    'version arguments' => [
       // It can be easier to parse the first characters of a minified file
       // instead of doing a multi-line pattern matching in a source file. See
       // 'lines' and 'cols' below.
@@ -506,61 +506,61 @@ function hook_libraries_info() {
       'pattern' => '@majorVersion[=:]["\'](\d).+?minorVersion[=:]["\']([\d\.]+)@',
       'lines' => 1,
       'cols' => 100,
-    ),
-    'versions' => array(
-      '2.1' => array(
-        'files' => array(
-          'js' => array('tiny_mce.js'),
-        ),
-        'variants' => array(
-          'source' => array(
-            'files' => array(
-              'js' => array('tiny_mce_src.js'),
-            ),
-          ),
-        ),
-        'integration files' => array(
-          'wysiwyg' => array(
-            'js' => array('editors/js/tinymce-2.js'),
-            'css' => array('editors/js/tinymce-2.css'),
-          ),
-        ),
-      ),
+    ],
+    'versions' => [
+      '2.1' => [
+        'files' => [
+          'js' => ['tiny_mce.js'],
+        ],
+        'variants' => [
+          'source' => [
+            'files' => [
+              'js' => ['tiny_mce_src.js'],
+            ],
+          ],
+        ],
+        'integration files' => [
+          'wysiwyg' => [
+            'js' => ['editors/js/tinymce-2.js'],
+            'css' => ['editors/js/tinymce-2.css'],
+          ],
+        ],
+      ],
       // Definition used if 3.1 or above is detected.
-      '3.1' => array(
+      '3.1' => [
         // Does not support JS aggregation.
-        'files' => array(
-          'js' => array(
-            'tiny_mce.js' => array('preprocess' => FALSE),
-          ),
-        ),
-        'variants' => array(
+        'files' => [
+          'js' => [
+            'tiny_mce.js' => ['preprocess' => FALSE],
+          ],
+        ],
+        'variants' => [
           // New variant leveraging jQuery. Not stable yet; therefore not the
           // default variant.
-          'jquery' => array(
-            'files' => array(
-              'js' => array(
-                'tiny_mce_jquery.js' => array('preprocess' => FALSE),
-              ),
-            ),
-          ),
-          'source' => array(
-            'files' => array(
-              'js' => array(
-                'tiny_mce_src.js' => array('preprocess' => FALSE),
-              ),
-            ),
-          ),
-        ),
-        'integration files' => array(
-          'wysiwyg' => array(
-            'js' => array('editors/js/tinymce-3.js'),
-            'css' => array('editors/js/tinymce-3.css'),
-          ),
-        ),
-      ),
-    ),
-  );
+          'jquery' => [
+            'files' => [
+              'js' => [
+                'tiny_mce_jquery.js' => ['preprocess' => FALSE],
+              ],
+            ],
+          ],
+          'source' => [
+            'files' => [
+              'js' => [
+                'tiny_mce_src.js' => ['preprocess' => FALSE],
+              ],
+            ],
+          ],
+        ],
+        'integration files' => [
+          'wysiwyg' => [
+            'js' => ['editors/js/tinymce-3.js'],
+            'css' => ['editors/js/tinymce-3.css'],
+          ],
+        ],
+      ],
+    ],
+  ];
   return $libraries;
 }
 
@@ -577,9 +577,9 @@ function hook_libraries_info() {
  * @deprecated Will be removed before a stable Drupal 8 release.
  */
 function hook_libraries_info_alter(&$libraries) {
-  $files = array(
-    'php' => array('example_module.php_spellchecker.inc'),
-  );
+  $files = [
+    'php' => ['example_module.php_spellchecker.inc'],
+  ];
   $libraries['php_spellchecker']['integration files']['example_module'] = $files;
 }
 
@@ -605,5 +605,5 @@ function hook_libraries_info_alter(&$libraries) {
 function hook_libraries_info_file_paths() {
   // Taken from the Libraries test module, which needs to specify the path to
   // the test library.
-  return array(drupal_get_path('module', 'libraries_test') . '/example');
+  return [\Drupal::service('extension.list.module')->getPath('libraries_test') . '/example'];
 }

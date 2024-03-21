@@ -56,7 +56,7 @@ class LinePatternDetector extends PluginBase implements VersionDetectorInterface
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('app.root')
+      $container->getParameter('app.root')
     );
   }
 

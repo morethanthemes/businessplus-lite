@@ -3,13 +3,9 @@ type: module
 description: 'Checks for available updates, and can securely install or update modules and themes via a web interface.'
 # version: VERSION
 package: Core
-# core: 8.x
 configure: update.settings
-dependencies:
-  - drupal:file
 
-# Information added by Drupal.org packaging script on 2019-01-16
-version: '8.6.7'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2023-09-20
+version: '9.5.11'
 project: 'drupal'
-datestamp: 1547682295
+datestamp: 1695228127

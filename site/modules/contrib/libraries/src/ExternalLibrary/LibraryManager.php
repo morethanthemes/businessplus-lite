@@ -61,7 +61,9 @@ class LibraryManager implements LibraryManagerInterface {
   public function getRequiredLibraryIds() {
     $library_ids = [];
     foreach (['module', 'theme'] as $type) {
-      foreach (system_get_info($type) as $info) {
+      $service_id = 'extension.list.' . $type;
+      $extension_list = \Drupal::service($service_id);
+      foreach ($extension_list->getAllInstalledInfo() as $info) {
         if (isset($info['library_dependencies'])) {
           $library_ids = array_merge($library_ids, $info['library_dependencies']);
         }
@@ -110,9 +112,13 @@ class LibraryManager implements LibraryManagerInterface {
    * @return \Drupal\libraries\ExternalLibrary\Type\LibraryTypeInterface
    */
   protected function getLibraryType($id, $definition) {
-    // @todo Validate that the type is a string.
     if (!isset($definition['type'])) {
       throw new LibraryTypeNotFoundException($id);
+    }
+    if (!is_string($definition['type'])) {
+      throw new \InvalidArgumentException(
+        "Expected 'string' but '" . gettype($definition['type']) . "' given"
+      );
     }
     return $this->libraryTypeFactory->createInstance($definition['type']);
   }

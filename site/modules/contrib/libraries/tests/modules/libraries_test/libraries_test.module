@@ -6,283 +6,284 @@
  */
 
 use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Core\Messenger\MessengerTrait;
 
 /**
  * Implements hook_libraries_info().
  */
 function libraries_test_libraries_info() {
   // Test library detection.
-  $libraries['example_missing'] = array(
+  $libraries['example_missing'] = [
     'name' => 'Example missing',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/missing',
-  );
-  $libraries['example_undetected_version'] = array(
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/missing',
+  ];
+  $libraries['example_undetected_version'] = [
     'name' => 'Example undetected version',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests',
     'version callback' => '_libraries_test_return_version',
-    'version arguments' => array(FALSE),
-  );
-  $libraries['example_unsupported_version'] = array(
+    'version arguments' => [FALSE],
+  ];
+  $libraries['example_unsupported_version'] = [
     'name' => 'Example unsupported version',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests',
     'version callback' => '_libraries_test_return_version',
-    'version arguments' => array('1'),
-    'versions' => array(
-      '2' => array(),
-    ),
-  );
+    'version arguments' => ['1'],
+    'versions' => [
+      '2' => [],
+    ],
+  ];
 
-  $libraries['example_supported_version'] = array(
+  $libraries['example_supported_version'] = [
     'name' => 'Example supported version',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests',
     'version callback' => '_libraries_test_return_version',
-    'version arguments' => array('1'),
-    'versions' => array(
-      '1' => array(),
-    ),
-  );
+    'version arguments' => ['1'],
+    'versions' => [
+      '1' => [],
+    ],
+  ];
 
   // Test the default version callback.
-  $libraries['example_default_version_callback'] = array(
+  $libraries['example_default_version_callback'] = [
     'name' => 'Example default version callback',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
-    'version arguments' => array(
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
+    'version arguments' => [
       'file' => 'README.txt',
       // Version 1
       'pattern' => '/Version (\d+)/',
       'lines' => 5,
-    ),
-  );
+    ],
+  ];
 
   // Test a multiple-parameter version callback.
-  $libraries['example_multiple_parameter_version_callback'] = array(
+  $libraries['example_multiple_parameter_version_callback'] = [
     'name' => 'Example multiple parameter version callback',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     // Version 1
     'version callback' => '_libraries_test_get_version',
-    'version arguments' => array('README.txt', '/Version (\d+)/', 5),
-  );
+    'version arguments' => ['README.txt', '/Version (\d+)/', 5],
+  ];
 
   // Test a top-level files property.
-  $libraries['example_files'] = array(
+  $libraries['example_files'] = [
     'name' => 'Example files',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '1',
-    'files' => array(
-      'js' => array('example_1.js'),
-      'css' => array('example_1.css'),
-      'php' => array('example_1.php'),
-    ),
-  );
+    'files' => [
+      'js' => ['example_1.js'],
+      'css' => ['example_1.css'],
+      'php' => ['example_1.php'],
+    ],
+  ];
 
   // Test loading of integration files.
   // Normally added by the corresponding module via hook_libraries_info_alter(),
   // these files should be automatically loaded when the library is loaded.
-  $libraries['example_integration_files'] = array(
+  $libraries['example_integration_files'] = [
     'name' => 'Example integration files',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '1',
-    'integration files' => array(
-      'libraries_test' => array(
-        'js' => array('libraries_test.js'),
-        'css' => array('libraries_test.css'),
-        'php' => array('libraries_test.inc'),
-      ),
-    ),
-  );
+    'integration files' => [
+      'libraries_test' => [
+        'js' => ['libraries_test.js'],
+        'css' => ['libraries_test.css'],
+        'php' => ['libraries_test.inc'],
+      ],
+    ],
+  ];
 
   // Test version overloading.
-  $libraries['example_versions'] = array(
+  $libraries['example_versions'] = [
     'name' => 'Example versions',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '2',
-    'versions' => array(
-      '1' => array(
-        'files' => array(
-          'js' => array('example_1.js'),
-          'css' => array('example_1.css'),
-          'php' => array('example_1.php'),
-        ),
-      ),
-      '2' => array(
-        'files' => array(
-          'js' => array('example_2.js'),
-          'css' => array('example_2.css'),
-          'php' => array('example_2.php'),
-        ),
-      ),
-    ),
-  );
+    'versions' => [
+      '1' => [
+        'files' => [
+          'js' => ['example_1.js'],
+          'css' => ['example_1.css'],
+          'php' => ['example_1.php'],
+        ],
+      ],
+      '2' => [
+        'files' => [
+          'js' => ['example_2.js'],
+          'css' => ['example_2.css'],
+          'php' => ['example_2.php'],
+        ],
+      ],
+    ],
+  ];
 
   // Test variant detection.
-  $libraries['example_variant_missing'] = array(
+  $libraries['example_variant_missing'] = [
     'name' => 'Example variant missing',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '1',
-    'variants' => array(
-      'example_variant' => array(
-        'files' => array(
-          'js' => array('example_3.js'),
-          'css' => array('example_3.css'),
-          'php' => array('example_3.php'),
-        ),
+    'variants' => [
+      'example_variant' => [
+        'files' => [
+          'js' => ['example_3.js'],
+          'css' => ['example_3.css'],
+          'php' => ['example_3.php'],
+        ],
         'variant callback' => '_libraries_test_return_installed',
-        'variant arguments' => array(FALSE),
-      ),
-    ),
-  );
+        'variant arguments' => [FALSE],
+      ],
+    ],
+  ];
 
-  $libraries['example_variant'] = array(
+  $libraries['example_variant'] = [
     'name' => 'Example variant',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '1',
-    'variants' => array(
-      'example_variant' => array(
-        'files' => array(
-          'js' => array('example_3.js'),
-          'css' => array('example_3.css'),
-          'php' => array('example_3.php'),
-        ),
+    'variants' => [
+      'example_variant' => [
+        'files' => [
+          'js' => ['example_3.js'],
+          'css' => ['example_3.css'],
+          'php' => ['example_3.php'],
+        ],
         'variant callback' => '_libraries_test_return_installed',
-        'variant arguments' => array(TRUE),
-      ),
-    ),
-  );
+        'variant arguments' => [TRUE],
+      ],
+    ],
+  ];
 
   // Test correct behaviour with multiple versions and multiple variants.
-  $libraries['example_versions_and_variants'] = array(
+  $libraries['example_versions_and_variants'] = [
     'name' => 'Example versions and variants',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '2',
-    'versions' => array(
-      '1' => array(
-        'variants' => array(
-          'example_variant_1' => array(
-            'files' => array(
-              'js' => array('example_1.js'),
-              'css' => array('example_1.css'),
-              'php' => array('example_1.php'),
-            ),
+    'versions' => [
+      '1' => [
+        'variants' => [
+          'example_variant_1' => [
+            'files' => [
+              'js' => ['example_1.js'],
+              'css' => ['example_1.css'],
+              'php' => ['example_1.php'],
+            ],
             'variant callback' => '_libraries_test_return_installed',
-            'variant arguments' => array(TRUE),
-          ),
-          'example_variant_2' => array(
-            'files' => array(
-              'js' => array('example_2.js'),
-              'css' => array('example_2.css'),
-              'php' => array('example_2.php'),
-            ),
+            'variant arguments' => [TRUE],
+          ],
+          'example_variant_2' => [
+            'files' => [
+              'js' => ['example_2.js'],
+              'css' => ['example_2.css'],
+              'php' => ['example_2.php'],
+            ],
             'variant callback' => '_libraries_test_return_installed',
-            'variant arguments' => array(TRUE),
-          ),
-        ),
-      ),
-      '2' => array(
-        'variants' => array(
-          'example_variant_1' => array(
-            'files' => array(
-              'js' => array('example_3.js'),
-              'css' => array('example_3.css'),
-              'php' => array('example_3.php'),
-            ),
+            'variant arguments' => [TRUE],
+          ],
+        ],
+      ],
+      '2' => [
+        'variants' => [
+          'example_variant_1' => [
+            'files' => [
+              'js' => ['example_3.js'],
+              'css' => ['example_3.css'],
+              'php' => ['example_3.php'],
+            ],
             'variant callback' => '_libraries_test_return_installed',
-            'variant arguments' => array(TRUE),
-          ),
-          'example_variant_2' => array(
-            'files' => array(
-              'js' => array('example_4.js'),
-              'css' => array('example_4.css'),
-              'php' => array('example_4.php'),
-            ),
+            'variant arguments' => [TRUE],
+          ],
+          'example_variant_2' => [
+            'files' => [
+              'js' => ['example_4.js'],
+              'css' => ['example_4.css'],
+              'php' => ['example_4.php'],
+            ],
             'variant callback' => '_libraries_test_return_installed',
-            'variant arguments' => array(TRUE),
-          ),
-        ),
-      ),
-    ),
-  );
+            'variant arguments' => [TRUE],
+          ],
+        ],
+      ],
+    ],
+  ];
 
   // Test dependency loading.
   // We add one file to each library to be able to verify if it was loaded with
   // libraries_load().
   // This library acts as a dependency for the libraries below.
-  $libraries['example_dependency'] = array(
+  $libraries['example_dependency'] = [
     'name' => 'Example dependency',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '1.1',
-    'files' => array('js' => array('example_1.js')),
-  );
-  $libraries['example_dependency_missing'] = array(
+    'files' => ['js' => ['example_1.js']],
+  ];
+  $libraries['example_dependency_missing'] = [
     'name' => 'Example dependency missing',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '1',
-    'dependencies' => array('example_missing'),
-    'files' => array('js' => array('example_1.js')),
-  );
-  $libraries['example_dependency_incompatible'] = array(
+    'dependencies' => ['example_missing'],
+    'files' => ['js' => ['example_1.js']],
+  ];
+  $libraries['example_dependency_incompatible'] = [
     'name' => 'Example dependency incompatible',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '1',
-    'dependencies' => array('example_dependency (>1.1)'),
-    'files' => array('js' => array('example_1.js')),
-  );
-  $libraries['example_dependency_compatible'] = array(
+    'dependencies' => ['example_dependency (>1.1)'],
+    'files' => ['js' => ['example_1.js']],
+  ];
+  $libraries['example_dependency_compatible'] = [
     'name' => 'Example dependency compatible',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '1',
-    'dependencies' => array('example_dependency (>=1.1)'),
-    'files' => array('js' => array('example_1.js')),
-  );
+    'dependencies' => ['example_dependency (>=1.1)'],
+    'files' => ['js' => ['example_1.js']],
+  ];
 
   // Test the applying of callbacks.
-  $libraries['example_callback'] = array(
+  $libraries['example_callback'] = [
     'name' => 'Example callback',
-    'library path' => drupal_get_path('module', 'libraries') . '/tests/example',
+    'library path' => \Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example',
     'version' => '1',
-    'versions' => array(
-      '1' => array(
-        'variants' => array(
-          'example_variant' => array(
+    'versions' => [
+      '1' => [
+        'variants' => [
+          'example_variant' => [
             // These keys are for testing purposes only.
             'info callback' => 'not applied',
             'pre-detect callback' => 'not applied',
             'post-detect callback' => 'not applied',
             'pre-load callback' => 'not applied',
             'post-load callback' => 'not applied',
-          ),
-        ),
+          ],
+        ],
         // These keys are for testing purposes only.
         'info callback' => 'not applied',
         'pre-detect callback' => 'not applied',
         'post-detect callback' => 'not applied',
         'pre-load callback' => 'not applied',
         'post-load callback' => 'not applied',
-      ),
-    ),
-    'variants' => array(
-      'example_variant' => array(
+      ],
+    ],
+    'variants' => [
+      'example_variant' => [
         // These keys are for testing purposes only.
         'info callback' => 'not applied',
         'pre-detect callback' => 'not applied',
         'post-detect callback' => 'not applied',
         'pre-load callback' => 'not applied',
         'post-load callback' => 'not applied',
-      ),
-    ),
-    'callbacks' => array(
-      'info' => array('_libraries_test_info_callback'),
-      'pre-detect' => array('_libraries_test_pre_detect_callback'),
-      'post-detect' => array('_libraries_test_post_detect_callback'),
-      'pre-load' => array('_libraries_test_pre_load_callback'),
-      'post-load' => array('_libraries_test_post_load_callback'),
-    ),
+      ],
+    ],
+    'callbacks' => [
+      'info' => ['_libraries_test_info_callback'],
+      'pre-detect' => ['_libraries_test_pre_detect_callback'],
+      'post-detect' => ['_libraries_test_post_detect_callback'],
+      'pre-load' => ['_libraries_test_pre_load_callback'],
+      'post-load' => ['_libraries_test_post_load_callback'],
+    ],
     // These keys are for testing purposes only.
     'info callback' => 'not applied',
     'pre-detect callback' => 'not applied',
     'post-detect callback' => 'not applied',
     'pre-load callback' => 'not applied',
     'post-load callback' => 'not applied',
-  );
+  ];
 
   return $libraries;
 }
@@ -291,7 +292,7 @@ function libraries_test_libraries_info() {
  * Implements hook_libraries_info_file_paths()
  */
 function libraries_test_libraries_info_file_paths() {
-  return array(drupal_get_path('module', 'libraries') . '/tests/example');
+  return [\Drupal::service('extension.list.module')->getPath('libraries') . '/tests/example'];
 }
 
 /**
@@ -461,7 +462,7 @@ function _libraries_test_callback(&$library, $version, $variant, $group) {
   // Only set the message for the top-level library to prevent confusing,
   // duplicate messages.
   if (!isset($version) && !isset($variant) && \Drupal::state()->get('libraries_test.cache', FALSE)) {
-    drupal_set_message(SafeMarkup::set("The <em>$group</em> callback group was invoked."));
+    \Drupal::messenger()->addMessage(SafeMarkup::set("The <em>$group</em> callback group was invoked."));
   }
 }
 
@@ -469,29 +470,29 @@ function _libraries_test_callback(&$library, $version, $variant, $group) {
  * Implements hook_menu().
  */
 function libraries_test_menu() {
-  $items['libraries_test/files'] = array(
+  $items['libraries_test/files'] = [
     'title' => 'Test files',
     'route_name' => 'libraries_test_files',
-  );
-  $items['libraries_test/integration_files'] = array(
+  ];
+  $items['libraries_test/integration_files'] = [
     'title' => 'Test integration files',
     'route_name' => 'libraries_test_integration_files',
-  );
-  $items['libraries_test/versions'] = array(
+  ];
+  $items['libraries_test/versions'] = [
     'title' => 'Test version loading',
     'route_name' => 'libraries_test_versions',
-  );
-  $items['libraries_test/variant'] = array(
+  ];
+  $items['libraries_test/variant'] = [
     'title' => 'Test variant loading',
     'route_name' => 'libraries_test_variant',
-  );
-  $items['libraries_test/versions_and_variants'] = array(
+  ];
+  $items['libraries_test/versions_and_variants'] = [
     'title' => 'Test concurrent version and variant loading',
     'route_name' => 'libraries_test_versions_and_variants',
-  );
-  $items['libraries_test/cache'] = array(
+  ];
+  $items['libraries_test/cache'] = [
     'title' => 'Test caching of library information',
     'route_name' => 'libraries_test_cache',
-  );
+  ];
   return $items;
 }
